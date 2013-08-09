@@ -2,7 +2,7 @@
 
 Keep track of your best moments with your hand
 
-![Memories 9.08.2013]()
+![Memories 9.08.2013](https://raw.github.com/Mefrio/Memories/master/resources/gh-page/memories-9-8-13.png)
 
 ### Features ###
  
