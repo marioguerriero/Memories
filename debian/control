@@ -11,7 +11,7 @@ Vcs-Git: git://git.debian.org/collab-maint/memories.git
 Package: memories
 Architecture: all
 Depends: ${misc:Depends},qtdeclarative5-qtquick2-plugin,qtdeclarative5-u1db1.0,qtdeclarative5-ubuntu-ui-toolkit-plugin|qt-components-ubuntu,${shlibs:Depends},qmlscene
-Description: Keep track of your best moments with your hand
+Description: Keep track of your best moments with your hands
  Memories is an Ubuntu Touch application which allows you to manage
  all your best life's moments. In includes features like:
   * Memory tags

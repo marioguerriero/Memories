@@ -1,6 +1,6 @@
 # Memories #
 
-Keep track of your best moments with your hand
+Keep track of your best moments with your hands
 
 ![Memories 9.08.2013](https://raw.github.com/Mefrio/Memories/master/resources/gh-page/memories-9-8-13.png)
 
