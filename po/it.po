@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-09 23:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: /home/mario/memories/components/Toolbar.qml:8
+msgid "New"
+msgstr "Nuovo"
+
+#: /home/mario/memories/memories.qml:45
+msgid "Memories"
+msgstr "Memorie"
+
+#: /home/mario/memories/memories.qml:53
+msgid "No memories!"
+msgstr "Nessuna memoria!"
+
+#: /home/mario/memories/components/MemoryPage.qml:11
+msgid "Edit"
+msgstr "Modifica"
+
+#: /home/mario/memories/components/MemoryPage.qml:21
+msgid "Delete"
+msgstr "Rimuovi"
+
+#: /home/mario/memories/components/NewMemory.qml:7
+msgid "New Memory"
+msgstr "Nuova memoria"
+
+#: /home/mario/memories/components/NewMemory.qml:22
+msgid "Clear"
+msgstr "Ripristinaa"
+
+#: /home/mario/memories/components/NewMemory.qml:32
+msgid "Save"
+msgstr "Salva"
+
+#: /home/mario/memories/components/NewMemory.qml:89
+msgid "Title..."
+msgstr "Titlo..."
+
+#: /home/mario/memories/components/NewMemory.qml:99
+msgid "Tags..."
+msgstr "Tags..."
+
+#: /home/mario/memories/components/NewMemory.qml:114
+msgid "Location"
+msgstr "Luogo"
+
+#: /home/mario/memories/components/NewMemory.qml:120
+msgid "Weather"
+msgstr "Condizioni atmosferiche"
