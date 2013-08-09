@@ -15,7 +15,7 @@ MainView {
     */
     //automaticOrientation: true
     
-    width: units.gu(50)
+    width: units.gu(100)
     height: units.gu(75)
     
     PageStack {
@@ -54,6 +54,11 @@ MainView {
                     id: model
                     onRowsInserted: {
                         label.visible = false
+                        print ("Add to database!!!")
+                    }
+                    onRowsRemoved: {
+                        label.visible = (model.count == 0)
+                        print ("Delete from database!!!")
                     }
                 }
 
@@ -61,7 +66,14 @@ MainView {
                     id: list
                     anchors.fill: parent
                     model: model
-                    delegate: MemoryItem {text:name}
+                    delegate: MemoryItem {
+                        text:name
+                        description: desc
+                        date: dt
+                        location: loc
+                        weather: wt
+                        index:count
+                    }
                 }
                 Scrollbar {
                     flickableItem: list

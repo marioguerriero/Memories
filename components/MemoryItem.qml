@@ -7,9 +7,19 @@ ListItem.Standard {
     text: "Memory"
     progression: true
 
+    // Properties for the Memory itself
+    property string title
+    property string description
+    property string date
+    property string location
+    property string weather
+    property int index: 1
+
     onClicked: {
-        stack.push(newMemory);
-        newMemory.title = memory.title;
+        memoryPage.title = text
+        memoryPage.index = index
+        stack.push(memoryPage);
+        memoryPage.fill(memory)
     }
 
     property Memory memory;

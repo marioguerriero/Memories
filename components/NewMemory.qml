@@ -2,20 +2,26 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 
 Page {
+    id: newMemoryPage
     title: i18n.tr("New Memory")
     visible: false
+
+    // Some functions
+    function clear() {
+        title.text = ""
+        description.text = ""
+    }
 
     // Toolbar
     ToolbarItems {
         id: toolbar
-
+        property int index: 0
         ToolbarButton {
             text: i18n.tr("Clear")
             iconSource: Qt.resolvedUrl("../resources/images/clear.png")
 
             onTriggered: {
-                title.text = ""
-                description.text = ""
+                newMemoryPage.clear()
             }
         }
 
@@ -24,7 +30,14 @@ Page {
             iconSource: Qt.resolvedUrl("../resources/images/save.png")
 
             onTriggered: {
-                model.append ({"name":title.text})
+                model.append ({   "name":title.text,
+                                  "desc": description.text,
+                                  "dt": date.text,
+                                  "loc": "", // FIXME
+                                  "wt": "", // FIXME
+                                  "count":model.count
+                              })
+                newMemoryPage.clear()
                 stack.push(home);
             }
         }
@@ -46,11 +59,11 @@ Page {
             width: 150
             height: 35
 
-            property alias text : myText.text
+            property alias text : label.text
 
 
             Label {
-                id: myText
+                id: label
                 anchors.centerIn: parent
                 text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
                 color: UbuntuColors.orange
