@@ -5,16 +5,8 @@ import Ubuntu.Components.Popups 0.1
 ToolbarItems {
 
     ToolbarButton {
-        text: i18n.tr("Cloud Sync")
-        iconSource: Qt.resolvedUrl("../resources/images/cloud.png")
-
-        //onTriggered: stack.push()
-
-    }
-
-    ToolbarButton {
         text: i18n.tr("New")
-        iconSource: Qt.resolvedUrl("../resources/images/add.png")
+        iconSource: icon("add")
 
         onTriggered: {
             stack.push(newMemory)

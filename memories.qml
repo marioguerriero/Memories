@@ -4,6 +4,8 @@ import U1db 1.0 as U1db
 import "components"
 
 MainView {
+    id: mainView
+
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
     
@@ -134,5 +136,10 @@ MainView {
         }
 
         model.append({"mem": memory})
+    }
+
+    // Helper functions
+    function icon(name) {
+        return "/usr/share/icons/ubuntu-mobile/actions/scalable/" + name + ".svg"
     }
 }

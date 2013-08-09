@@ -18,8 +18,9 @@ Page {
         id: toolbar
         property int index: 0
         ToolbarButton {
+            id: clearButton
             text: i18n.tr("Clear")
-            iconSource: Qt.resolvedUrl("../resources/images/clear.png")
+            iconSource: icon("back")
 
             onTriggered: {
                 newMemoryPage.clear()
@@ -27,10 +28,12 @@ Page {
         }
 
         ToolbarButton {
+            id: saveButton
             text: i18n.tr("Save")
-            iconSource: Qt.resolvedUrl("../resources/images/save.png")
+            iconSource: icon("save")
 
             onTriggered: {
+                if (!enabled) return;
                 var component = Qt.createComponent("Memory.qml")
                 var memory = component.createObject(toolbar,
                                                 {   "title": title.text,
@@ -47,6 +50,7 @@ Page {
                 newMemoryPage.clear()
                 stack.push(home);
             }
+            enabled: false
         }
 
         locked: true
@@ -83,6 +87,9 @@ Page {
             anchors.left: parent.left
             anchors.right: parent.right
             placeholderText: i18n.tr("Title...")
+            onTextChanged: {
+                saveButton.enabled = (text != "")
+            }
         }
 
         TextField {
