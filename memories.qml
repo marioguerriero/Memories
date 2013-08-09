@@ -15,7 +15,7 @@ MainView {
     */
     //automaticOrientation: true
     
-    width: units.gu(100)
+    width: units.gu(50)
     height: units.gu(75)
     
     PageStack {
