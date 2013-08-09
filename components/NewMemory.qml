@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.ListItems 0.1 as ListItem
 
 Page {
     id: newMemoryPage
@@ -30,7 +31,8 @@ Page {
             iconSource: Qt.resolvedUrl("../resources/images/save.png")
 
             onTriggered: {
-                model.append ({   "name":title.text,
+                model.append ({   "name": title.text,
+                                  "tg": tags.text,
                                   "desc": description.text,
                                   "dt": date.text,
                                   "loc": "", // FIXME
@@ -48,6 +50,7 @@ Page {
 
     // Page content
     Column {
+        id: col
         spacing: units.gu(1)
         anchors {
             margins: units.gu(2)
@@ -77,22 +80,33 @@ Page {
             placeholderText: i18n.tr("Title...")
         }
 
+        TextField {
+            id: tags
+            anchors.left: parent.left
+            anchors.right: parent.right
+            placeholderText: i18n.tr("Tags...")
+            visible: false
+        }
+
         TextArea {
             id: description
+            placeholderText: "Memory"
+            autoSize: true
+            maximumLineCount: 5
             anchors.left: parent.left
             anchors.right: parent.right
         }
 
-        CheckBox {
+        ListItem.Standard {
             id: location
-            checked: false
-            text: i18n.tr("Add your location")
+            text: i18n.tr("Location")
+            control: Switch {}
         }
 
-        CheckBox {
+        ListItem.Standard {
             id: weather
-            checked: false
-            text: i18n.tr("Add the weather conditions")
+            text: i18n.tr("Weather")
+            control: Switch {}
         }
 
     }

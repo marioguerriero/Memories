@@ -4,8 +4,6 @@ import Ubuntu.Components 0.1
 Page {
     title: ""
     visible: false
-    property real index
-
     tools: ToolbarItems {
 
         ToolbarButton {
@@ -17,12 +15,25 @@ Page {
                 stack.push(home)
             }
         }
-
         locked: true
         opened: true
     }
 
+    property real index
+
+    // Page content
+    Column {
+        TextArea {
+            id: memoryArea
+            textFormat: TextEdit.RichText
+        }
+    }
+
     property Memory memory;
+
+    function setMemory(str) {
+        memoryArea.text = str
+    }
 
     function fill (mem) {
         memory = mem
