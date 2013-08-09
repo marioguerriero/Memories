@@ -11,7 +11,7 @@ Page {
             iconSource: Qt.resolvedUrl("../resources/images/trash.png")
 
             onTriggered: {
-                model.remove(index)
+                model.remove(memory.index)
                 stack.push(home)
             }
         }
@@ -31,13 +31,9 @@ Page {
 
     property Memory memory;
 
-    function setMemory(str) {
-        memoryArea.text = str
-    }
-
-    function fill (mem) {
-        memory = mem
-        title = mem.title
+    onMemoryChanged: {
+        title = memory.title
+        memoryArea.text = memory.description
     }
 
 }

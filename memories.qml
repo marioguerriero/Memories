@@ -52,30 +52,28 @@ MainView {
             }
 
             // List
+            Component {
+                id: memoryComponent
+
+                Memory {
+
+                }
+            }
             ListModel {
                 id: model
                 onRowsInserted: {
                     label.visible = false
-                    print ("Add to database!!!")
                 }
                 onRowsRemoved: {
                     label.visible = (model.count == 0)
-                    print ("Delete from database!!!")
                 }
             }
-
             ListView {
                 id: list
                 anchors.fill: parent
                 model: model
                 delegate: MemoryItem {
-                    text: name
-                    tags: tg
-                    description: desc
-                    date: dt
-                    location: loc
-                    weather: wt
-                    index:count
+                    memory:mem
                 }
             }
             Scrollbar {
@@ -110,7 +108,7 @@ MainView {
         var memories = []
 
         for (var i = 0; i < model.count; i++) {
-            var memory = model.get(i).modelData
+            var memory = model.get(i).mem
             memories.push(memory.toJSON())
         }
 
@@ -121,6 +119,7 @@ MainView {
     }
 
     function loadMemories() {
+        print("Loading Memories...")
         var memories = JSON.parse(memoriesDatebase.contents.memories)
         for (var i = 0; i < memories.length; i++) {
             newMemoryObject(memories[i])
@@ -128,12 +127,12 @@ MainView {
     }
 
     function newMemoryObject(args) {
-        var memory = memoryComponent.createObject(memoriesModel, args)
+        var memory = memoryComponent.createObject(model, args)
 
         if (memory === null) {
             console.log("Unable to create memory object!")
         }
 
-        memoriesModel.append({"modelData": memory})
+        model.append({"mem": memory})
     }
 }

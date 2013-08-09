@@ -31,13 +31,18 @@ Page {
             iconSource: Qt.resolvedUrl("../resources/images/save.png")
 
             onTriggered: {
-                model.append ({   "name": title.text,
-                                  "tg": tags.text,
-                                  "desc": description.text,
-                                  "dt": date.text,
-                                  "loc": "", // FIXME
-                                  "wt": "", // FIXME
-                                  "count":model.count
+                var component = Qt.createComponent("Memory.qml")
+                var memory = component.createObject(toolbar,
+                                                {   "title": title.text,
+                                                    "tags" : tags.text,
+                                                    "description": description.text,
+                                                    "date": date.text,
+                                                    "loc": "",
+                                                    "wt": "",
+                                                    "count": model.count
+                                                })
+                model.append ({
+                                  "mem": memory
                               })
                 newMemoryPage.clear()
                 stack.push(home);

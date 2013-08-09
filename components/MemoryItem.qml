@@ -4,7 +4,6 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 
 ListItem.MultiValue {
     id: item
-    text: "Memory"
     progression: true
 
     // Properties for the Memory itself
@@ -19,16 +18,14 @@ ListItem.MultiValue {
     values: [ date ]
 
     onClicked: {
-        memoryPage.title = text
-        memoryPage.index = index
-        memoryPage.setMemory(description)
+        memoryPage.memory = memory
         stack.push(memoryPage);
     }
 
     property Memory memory;
 
-    function fill (mem) {
-        item.text = mem.title
-        memory = mem
+    onMemoryChanged: {
+        item.text = memory.title
+        values = [ memory.date ]
     }
 }

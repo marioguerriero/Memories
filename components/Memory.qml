@@ -2,8 +2,23 @@ import QtQuick 2.0
 
 // It is used only to get informations about memories
 
-Item {
+QtObject {
+
+    id: memory
+
+    function toJSON() {
+        return {
+            title: title,
+            tags: tags,
+            description: description,
+            date: date,
+            location: location,
+            weather: weather
+        }
+    }
+
     property string title;
+    property string tags;
     property string description;
     property string date;
     property string location;
