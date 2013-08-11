@@ -19,6 +19,5 @@ To run, simply open in Qt Creator/Ubuntu SDK, and click the run button!
  * Use Markdown/HTML instead of simple text for memory content
  * Associate photos with your memories
  * Localization support
- * Weather detection in your location
  * Sync with UbuntuOne personal cloud database
  * Basic memory management (add, remove and edit)

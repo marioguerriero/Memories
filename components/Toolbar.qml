@@ -13,6 +13,6 @@ ToolbarItems {
         }
     }
 
-    locked: true
-    opened: true
+    locked: false
+    opened: false
 }

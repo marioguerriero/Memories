@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.Popups 0.1
 
 Page {
     id: newMemoryPage
@@ -40,8 +41,8 @@ Page {
                                                     "tags" : tags.text,
                                                     "description": description.text,
                                                     "date": date.text,
-                                                    "location": "casa",
-                                                    "weather": "w",
+                                                    "location": locationString.text,
+                                                    "weather": "",
                                                 })
                 model.append ({
                                   "mem": memory
@@ -52,8 +53,8 @@ Page {
             enabled: false
         }
 
-        locked: true
-        opened: true
+        locked: false
+        opened: false
     }
 
     // Page content
@@ -108,18 +109,78 @@ Page {
             anchors.right: parent.right
         }
 
-        ListItem.Standard {
-            id: location
-            text: i18n.tr("Location")
-            control: Switch {}
+        // Location
+        WorkerScript {
+            id: searchWorker
+            source: "./WeatherApi.js"
+            onMessage: {
+                if(!messageObject.error) {
+                    listView.visible = true
+                    messageObject.result.locations.forEach(function(loc) {
+                        citiesModel.append(loc);
+                        //noCityError.visible = false
+                    });
+                } else {
+                    console.log(messageObject.error.msg+" / "+messageObject.error.request.url)
+                }
+                if (!citiesModel.count) {
+                    // DO NOTHING!
+                }
+            }
         }
 
-        ListItem.Standard {
-            id: weather
-            text: i18n.tr("Weather")
-            control: Switch {}
+        TextField {
+            id: locationString
+            objectName: "LocationField"
+            anchors.left: parent.left
+            anchors.right: parent.right
+            placeholderText: i18n.tr("Location...")
+            hasClearButton: true
+            onTextChanged: {
+                citiesModel.clear();
+                searchWorker.sendMessage({
+                    action: "searchByName",
+                    params: {name:locationString.text, units:"metric"}
+                })
+            }
         }
 
+        ListModel {
+            id: citiesModel
+        }
+
+        Rectangle {
+            width: parent.width
+            height: units.gu(52)
+            color: "transparent"
+            ListView {
+                id: listView;
+                objectName: "SearchResultList"
+                visible: false
+                clip: true
+                anchors.fill: parent
+                model:  citiesModel
+                delegate: ListItem.Standard {
+                    objectName: "searchResult" + index
+                    text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
+                    progression: true;
+                    onClicked: {
+                        //var location = citiesModel.get(index)
+                        //locationManager.addLocation(location)
+                        //mainView.newLocationAdded(location)
+                        //locationManagerSheet.addLocation(location)
+                        //PopupUtils.close(addLocationSheet)
+                        //pageStack.pop()
+                        locationString.text = text
+                        //clear()
+                    }
+                }
+                Scrollbar {
+                    flickableItem: listView;
+                    align: Qt.AlignTrailing;
+                }
+            }
+        }
     }
     tools: toolbar
 

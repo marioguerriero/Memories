@@ -21,6 +21,10 @@ MainView {
     width: units.gu(50)
     height: units.gu(75)
     
+    headerColor: "#57365E"
+    backgroundColor: "#A55263"
+    footerColor: "#D75669"
+
     PageStack {
         id: stack
         Component.onCompleted: {

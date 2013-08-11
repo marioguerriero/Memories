@@ -63,8 +63,8 @@ Page {
                                                             "tags" : "tags.text",
                                                             "description": memoryArea.text,
                                                             "date": "date.text",
-                                                            "location": locationField.text,
-                                                            "weather": "watherField.text"
+                                                            "location": locationString.text,
+                                                            "weather": ""
                                                            })
                         model.append ({
                                           "mem": new_memory
@@ -78,8 +78,8 @@ Page {
             }
         }
 
-        locked: true
-        opened: true
+        locked: false
+        opened: false
     }
 
     // Delete dialog
@@ -129,10 +129,80 @@ Page {
             id: location
             visible: (text != "") && !editing
         }
+        // Location
+        WorkerScript {
+            id: searchWorker
+            source: "./WeatherApi.js"
+            onMessage: {
+                if(!messageObject.error) {
+                    listView.visible = true
+                    messageObject.result.locations.forEach(function(loc) {
+                        citiesModel.append(loc);
+                        //noCityError.visible = false
+                    });
+                } else {
+                    console.log(messageObject.error.msg+" / "+messageObject.error.request.url)
+                }
+                if (!citiesModel.count) {
+                    // DO NOTHING!
+                }
+            }
+        }
+
         TextField {
-            id: locationField
-            placeholderText: "Location..."
-            visible: !memoryArea.readOnly // EH? :S it works!
+            id: locationString
+            objectName: "LocationField"
+            anchors.left: parent.left
+            anchors.right: parent.right
+            visible: !memoryArea.readOnly
+            text: location.text
+            placeholderText: i18n.tr("Location...")
+            hasClearButton: true
+            onTextChanged: {
+                citiesModel.clear();
+                searchWorker.sendMessage({
+                    action: "searchByName",
+                    params: {name:locationString.text, units:"metric"}
+                })
+            }
+        }
+
+        ListModel {
+            id: citiesModel
+        }
+
+        Rectangle {
+            width: parent.width
+            height: units.gu(52)
+            color: "transparent"
+            visible: !memoryArea.readOnly
+            ListView {
+                id: listView;
+                objectName: "SearchResultList"
+                visible: false
+                clip: true
+                anchors.fill: parent
+                model:  citiesModel
+                delegate: ListItem.Standard {
+                    objectName: "searchResult" + index
+                    text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
+                    progression: true;
+                    onClicked: {
+                        //var location = citiesModel.get(index)
+                        //locationManager.addLocation(location)
+                        //mainView.newLocationAdded(location)
+                        //locationManagerSheet.addLocation(location)
+                        //PopupUtils.close(addLocationSheet)
+                        //pageStack.pop()
+                        locationString.text = text
+                        //clear()
+                    }
+                }
+                Scrollbar {
+                    flickableItem: listView;
+                    align: Qt.AlignTrailing;
+                }
+            }
         }
 
         Label {
