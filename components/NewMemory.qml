@@ -40,9 +40,8 @@ Page {
                                                     "tags" : tags.text,
                                                     "description": description.text,
                                                     "date": date.text,
-                                                    "loc": "",
-                                                    "wt": "",
-                                                    "count": model.count
+                                                    "location": "casa",
+                                                    "weather": "w",
                                                 })
                 model.append ({
                                   "mem": memory

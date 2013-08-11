@@ -138,6 +138,17 @@ MainView {
         model.append({"mem": memory})
     }
 
+    function removeMemory(memory) {
+        for (var i = 0; i < model.count; i++) {
+            var item = model.get(i).mem
+            if (item === memory) {
+                model.remove(i)
+                item.destroy()
+                return
+            }
+        }
+    }
+
     // Helper functions
     function icon(name) {
         return "/usr/share/icons/ubuntu-mobile/actions/scalable/" + name + ".svg"

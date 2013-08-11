@@ -17,6 +17,10 @@ QtObject {
         }
     }
 
+    function remove() {
+        removeMemory(memory)
+    }
+
     property string title;
     property string tags;
     property string description;
