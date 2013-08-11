@@ -36,11 +36,14 @@ Page {
             onTriggered: {
                 if (!enabled) return;
                 var component = Qt.createComponent("Memory.qml")
+                var dt = date.text
+                if(dt == "" || dt == null)
+                    dt = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
                 var memory = component.createObject(toolbar,
                                                 {   "title": title.text,
                                                     "tags" : tags.text,
                                                     "description": description.text,
-                                                    "date": date.text,
+                                                    "date": dt,
                                                     "location": locationString.text,
                                                     "weather": "",
                                                 })
@@ -66,20 +69,12 @@ Page {
             fill: parent
         }
 
-        UbuntuShape {
+        TextField {
             id: date
-            width: 150
-            height: 35
-
-            property alias text : label.text
-
-
-            Label {
-                id: label
-                anchors.centerIn: parent
-                text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
-                color: UbuntuColors.orange
-            }
+            anchors.left: parent.left
+            anchors.right: parent.right
+            text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
+            placeholderText: i18n.tr("Date...")
         }
 
         TextField {

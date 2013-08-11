@@ -23,7 +23,7 @@ Page {
             onTriggered: {
                 editing = true
                 locationField.text = location.text
-                weatherFiled.text = weather.text
+                weatherField.text = weather.text
             }
         }
 
@@ -63,7 +63,7 @@ Page {
                                                             "tags" : "tags.text",
                                                             "description": memoryArea.text,
                                                             "date": "date.text",
-                                                            "location": locationString.text,
+                                                            "location": locationField.text,
                                                             "weather": ""
                                                            })
                         model.append ({
@@ -116,6 +116,29 @@ Page {
             fill: parent
         }
 
+        UbuntuShape {
+            id: date
+            width: 150
+            height: 35
+            visible: !editing
+
+            property alias text : label.text
+
+            Label {
+                id: label
+                anchors.centerIn: parent
+                color: UbuntuColors.orange
+            }
+        }
+        TextField {
+            id: dateField
+            anchors.right: parent.right
+            anchors.left: parent.left
+            text: date.text
+            placeholderText: "Date..."
+            visible: !memoryArea.readOnly // EH? :S it works!
+        }
+
         TextArea {
             id: memoryArea
             anchors.right: parent.right
@@ -150,7 +173,7 @@ Page {
         }
 
         TextField {
-            id: locationString
+            id: locationField
             objectName: "LocationField"
             anchors.left: parent.left
             anchors.right: parent.right
@@ -162,7 +185,7 @@ Page {
                 citiesModel.clear();
                 searchWorker.sendMessage({
                     action: "searchByName",
-                    params: {name:locationString.text, units:"metric"}
+                    params: {name:locationField.text, units:"metric"}
                 })
             }
         }
@@ -194,7 +217,7 @@ Page {
                         //locationManagerSheet.addLocation(location)
                         //PopupUtils.close(addLocationSheet)
                         //pageStack.pop()
-                        locationString.text = text
+                        locationField.text = text
                         //clear()
                     }
                 }
@@ -210,7 +233,7 @@ Page {
             visible: (text != "") && !editing
         }
         TextField {
-            id: weatherFiled
+            id: weatherField
             placeholderText: "Weather Conditions..."
             visible: !memoryArea.readOnly // EH? :S it works!
         }
@@ -222,6 +245,7 @@ Page {
         if(memory == null)
             return;
 
+        date.text = memory.date
         title = memory.title
         memoryArea.text = memory.description
         location.text = memory.location
