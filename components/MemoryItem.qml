@@ -6,17 +6,6 @@ ListItem.MultiValue {
     id: item
     progression: true
 
-    // Properties for the Memory itself
-    property string title
-    property string tags
-    property string description
-    property string date
-    property string location
-    property string weather
-    property int index: 1
-
-    values: [ date ]
-
     onClicked: {
         memoryPage.memory = memory
         stack.push(memoryPage);
@@ -26,6 +15,6 @@ ListItem.MultiValue {
 
     onMemoryChanged: {
         item.text = memory.title
-        values = [ memory.date ]
+        values = [ memory.date, memory.location ]
     }
 }

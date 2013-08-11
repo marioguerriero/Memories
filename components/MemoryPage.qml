@@ -22,6 +22,7 @@ Page {
 
             onTriggered: {
                 editing = true
+                dateField.text = date.text
                 locationField.text = location.text
                 weatherField.text = weather.text
             }
@@ -62,7 +63,7 @@ Page {
                                                           { "title": memory.title,
                                                             "tags" : "tags.text",
                                                             "description": memoryArea.text,
-                                                            "date": "date.text",
+                                                            "date": dateField.text,
                                                             "location": locationField.text,
                                                             "weather": ""
                                                            })
