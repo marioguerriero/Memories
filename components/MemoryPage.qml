@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
+import Qt.labs.folderlistmodel 1.0
 
 Page {
     id: page
@@ -57,7 +58,14 @@ Page {
                     var item = model.get(i).mem
                     if (item === memory) {
                         memory.remove()
-                        print(memoryArea.text)
+
+                        // Photos
+                        var photos = ""
+                        for(var n = 0; n < photoEditGrid.children.length; n++) {
+                            var photo_path = photoEditGrid.children[n].source
+                            if(photo_path)
+                                photos += photo_path + "||"
+                        }
                         var component = Qt.createComponent("Memory.qml")
                         var new_memory = component.createObject(toolbar,
                                                           { "title": memory.title,
@@ -65,7 +73,8 @@ Page {
                                                             "description": memoryArea.text,
                                                             "date": dateField.text,
                                                             "location": locationField.text,
-                                                            "weather": ""
+                                                            "weather": "",
+                                                            "photos": photos
                                                            })
                         model.append ({
                                           "mem": new_memory
@@ -119,7 +128,7 @@ Page {
 
         UbuntuShape {
             id: date
-            width: 150
+            width: parent.width
             height: 35
             visible: !editing
 
@@ -137,7 +146,7 @@ Page {
             anchors.left: parent.left
             text: date.text
             placeholderText: "Date..."
-            visible: !memoryArea.readOnly // EH? :S it works!
+            visible: !memoryArea.readOnly
         }
 
         TextArea {
@@ -169,6 +178,107 @@ Page {
                 }
                 if (!citiesModel.count) {
                     // DO NOTHING!
+                }
+            }
+        }
+
+        // Photos
+        Component {
+            id: photoDialog
+
+            Dialog {
+                id: dialogue
+                title: i18n.tr("Add a Photo")
+                text: i18n.tr("Locate the photo file.")
+
+                property string folderPath: "/home"
+                property string file: ""
+
+                onFileChanged: {
+                    var path = folderPath + file
+
+                    var component = Qt.createComponent("PhotoItem.qml")
+                    var params = {
+                        "source": path
+                    }
+                    var shape = component.createObject(photoEditGrid, params)
+
+                    photoEditGrid.children.append += shape
+
+                    PopupUtils.close(dialogue)
+                }
+
+                Label {
+                    id: folder
+                    text: folderPath + file
+                }
+
+                ListView {
+                    clip: true
+                    height: units.gu(30)
+                    FolderListModel {
+                        id: folderModel
+                        folder: folderPath
+                        showDotAndDotDot: true
+                    }
+
+                    Component {
+                        id: fileDelegate
+                        ListItem.Standard {
+                            text: fileName
+                            onClicked: {
+                                var split = folder.text.split("/")
+                                if(fileName == "..") {
+                                    if(split.length > 2) {
+                                        for(var i = 1, newFolder = ""; i < split.length - 1; i++) {
+                                            newFolder = newFolder + "/" + split[i]
+                                        }
+                                    } else {
+                                        newFolder = "/"
+                                    }
+                                } else if(fileName == ".") {
+                                    newFolder = "/"
+                                }else {
+                                    if(folder.text != "/") newFolder = folder.text + "/" + fileName
+                                    else newFolder = "/" + fileName
+                                }
+                                if(folderModel.isFolder(index)) {
+                                    folderPath = newFolder
+                                    file = "";
+                                } else {
+                                    if(fileName.split(".").pop() === "png") {
+                                        file = "/" + fileName
+                                        PopupUtils.close(dialogue)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    model: folderModel
+                    delegate: fileDelegate
+                }
+                Button {
+                    text: i18n.tr("Cancel")
+                    onClicked: PopupUtils.close(dialogue)
+                }
+            }
+        }
+
+        Grid {
+            id: photoEditGrid
+            objectName: "photoEditGrid"
+            columns: (mainView.width - units.gu(4)) / units.gu(8) - 1
+            spacing: 12
+            visible: !memoryArea.readOnly
+            Button {
+                id: photoButton
+                width: units.gu(8)
+                height: units.gu(8)
+                objectName: "LocationField"
+                iconSource: "../resources/images/import-image.png"
+                onClicked: {
+                    PopupUtils.open(photoDialog)
                 }
             }
         }
@@ -212,14 +322,7 @@ Page {
                     text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
                     progression: true;
                     onClicked: {
-                        //var location = citiesModel.get(index)
-                        //locationManager.addLocation(location)
-                        //mainView.newLocationAdded(location)
-                        //locationManagerSheet.addLocation(location)
-                        //PopupUtils.close(addLocationSheet)
-                        //pageStack.pop()
                         locationField.text = text
-                        //clear()
                     }
                 }
                 Scrollbar {
@@ -231,12 +334,23 @@ Page {
 
         Label {
             id: weather
-            visible: (text != "") && !editing
+            //visible: (text != "") && !editing
+            visible: false // for now
         }
         TextField {
             id: weatherField
             placeholderText: "Weather Conditions..."
-            visible: !memoryArea.readOnly // EH? :S it works!
+            visible: false // for now
+            //visible: !memoryArea.readOnly
+        }
+
+        // Photos
+        Grid {
+            id: photoViewGrid
+            objectName: "photoViewGrid"
+            columns: (mainView.width - units.gu(4)) / units.gu(8) - 1
+            spacing: 12
+            visible: memoryArea.readOnly
         }
     }
 
@@ -251,6 +365,26 @@ Page {
         memoryArea.text = memory.description
         location.text = memory.location
         weather.text = memory.weather
+        // Clean photo views
+        photoViewGrid.children = ""
+        for(var k = photoEditGrid.children.length; k > 1 ; k--)
+            photoEditGrid.children[k-1].destroy()
+        // Append photos
+        var photo_list = memory.photos.split("||")
+        for(var i = 0; i < photo_list.length; i++) {
+            if(photo_list[i] == "")
+                return
+            var component = Qt.createComponent("PhotoItem.qml")
+            var params = {
+                "source": photo_list[i]
+            }
+            // Add to photoViewGrid...
+            var shape = component.createObject(photoViewGrid, params)
+            photoViewGrid.children.append += shape
+            // ...and to photoEditGrid both
+            shape = component.createObject(photoEditGrid, params)
+            photoEditGrid.children.append += shape
+        }
     }
 
 }

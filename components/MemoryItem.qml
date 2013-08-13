@@ -14,6 +14,8 @@ ListItem.MultiValue {
     property Memory memory;
 
     onMemoryChanged: {
+        if(!memory)
+            return
         item.text = memory.title
         values = [ memory.date, memory.location ]
     }

@@ -5,7 +5,7 @@ Maintainer: Mario Guerriero <mario@elementaryos.org>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
 Homepage: https://github.com/Mefrio/Memories
-Vcs-Git: git://git.debian.org/collab-maint/memories.git
+#Vcs-Git: git://git.debian.org/collab-maint/memories.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/memories.git;a=summary
 
 Package: memories

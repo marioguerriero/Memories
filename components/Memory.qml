@@ -13,7 +13,8 @@ QtObject {
             description: description,
             date: date,
             location: location,
-            weather: weather
+            weather: weather,
+            photos: photos
         }
     }
 
@@ -27,4 +28,5 @@ QtObject {
     property string date;
     property string location;
     property string weather;
+    property string photos; // A list of photos divided by a '||'
 }

@@ -38,9 +38,21 @@ Page {
             onTriggered: {
                 if (!enabled) return;
                 var component = Qt.createComponent("Memory.qml")
+
+                // Date
                 var dt = date.text
                 if(dt == "" || dt == null)
                     dt = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
+
+                // Photos
+                var photos = ""
+                for(var i = 0; i < photoContainer.children.length; i++) {
+                    var photo_path = photoContainer.children[i].source
+                    print(photo_path)
+                    if(photo_path)
+                        photos += photo_path + "||"
+                }
+
                 var memory = component.createObject(toolbar,
                                                 {   "title": title.text,
                                                     "tags" : tags.text,
@@ -48,6 +60,7 @@ Page {
                                                     "date": dt,
                                                     "location": locationString.text,
                                                     "weather": "",
+                                                    "photos": photos
                                                 })
                 model.append ({
                                   "mem": memory
@@ -129,7 +142,7 @@ Page {
 
                     photoContainer.children.append += shape
 
-                    PopupUtils.close(photoDialog.dialogue)
+                    PopupUtils.close(dialogue)
                 }
 
                 Label {
@@ -198,9 +211,9 @@ Page {
 
             Grid {
                 id: photoGrid
-                // MainView width -
-                columns: (mainView.width/* - (((children.count * units.gu(9)) + units.gu(4))*/) / units.gu(8) - 1
-                spacing: units.gu(1)
+                objectName: "photoGrid"
+                columns: (mainView.width - units.gu(4)) / units.gu(8) - 1
+                spacing: 12
                 Button {
                     id: photoButton
                     width: units.gu(8)
