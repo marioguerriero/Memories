@@ -2,6 +2,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
+import Qt.labs.folderlistmodel 1.0
 
 Page {
     id: newMemoryPage
@@ -25,6 +26,7 @@ Page {
 
             onTriggered: {
                 newMemoryPage.clear()
+                PopupUtils.open(photo)
             }
         }
 
@@ -104,9 +106,159 @@ Page {
             anchors.right: parent.right
         }
 
+        // Photos
+        Component {
+            id: photoDialog
+
+            Dialog {
+                id: dialogue
+                title: i18n.tr("Add a Photo")
+                text: i18n.tr("Locate the photo file.")
+
+                property string folderPath: "/home"
+                property string file: ""
+
+                onFileChanged: {
+                    var path = folderPath + file
+
+                    var component = Qt.createComponent("PhotoItem.qml")
+                    var params = {
+                        "source": path
+                    }
+                    var shape = component.createObject(photoGrid, params)
+
+                    photoContainer.children.append += shape
+
+                    PopupUtils.close(photoDialog.dialogue)
+                }
+
+                Label {
+                    id: folder
+                    text: folderPath + file
+                }
+
+                ListView {
+                    clip: true
+                    height: units.gu(30)
+                    FolderListModel {
+                        id: folderModel
+                        folder: folderPath
+                        showDotAndDotDot: true
+                    }
+
+                    Component {
+                        id: fileDelegate
+                        ListItem.Standard {
+                            text: fileName
+                            onClicked: {
+                                var split = folder.text.split("/")
+                                if(fileName == "..") {
+                                    if(split.length > 2) {
+                                        for(var i = 1, newFolder = ""; i < split.length - 1; i++) {
+                                            newFolder = newFolder + "/" + split[i]
+                                        }
+                                    } else {
+                                        newFolder = "/"
+                                    }
+                                } else if(fileName == ".") {
+                                    newFolder = "/"
+                                }else {
+                                    if(folder.text != "/") newFolder = folder.text + "/" + fileName
+                                    else newFolder = "/" + fileName
+                                }
+                                if(folderModel.isFolder(index)) {
+                                    folderPath = newFolder
+                                    file = "";
+                                } else {
+                                    if(fileName.split(".").pop() === "png") {
+                                        file = "/" + fileName
+                                        PopupUtils.close(dialogue)
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    model: folderModel
+                    delegate: fileDelegate
+                }
+                Button {
+                    text: i18n.tr("Cancel")
+                    onClicked: PopupUtils.close(dialogue)
+                }
+            }
+        }
+
+        Rectangle {
+            id: photoContainer
+            width: parent.width
+            height: units.gu(8)
+            color: "transparent"
+            default property alias children : photoGrid.children
+
+            Grid {
+                id: photoGrid
+                // MainView width -
+                columns: (mainView.width/* - (((children.count * units.gu(9)) + units.gu(4))*/) / units.gu(8) - 1
+                spacing: units.gu(1)
+                Button {
+                    id: photoButton
+                    width: units.gu(8)
+                    height: units.gu(8)
+                    objectName: "LocationField"
+                    iconSource: "../resources/images/import-image.png"
+                    onClicked: {
+                        PopupUtils.open(photoDialog)
+                    }
+                }
+            }
+
+            TextField {
+                id: locationString
+                objectName: "LocationField"
+                anchors.top: photoGrid.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.topMargin: units.gu(1)
+                placeholderText: i18n.tr("Location...")
+                hasClearButton: true
+                onTextChanged: {
+                    citiesModel.clear();
+                    searchWorker.sendMessage({
+                        action: "searchByName",
+                        params: {name:locationString.text, units:"metric"}
+                    })
+                }
+            }
+
+            ListView {
+                id: listView;
+                objectName: "SearchResultList"
+                visible: false
+                clip: true
+                height: units.gu(35)
+                width: parent.width
+                anchors.top: locationString.bottom
+                model:  citiesModel
+                delegate: ListItem.Standard {
+                    objectName: "searchResult" + index
+                    text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
+                    progression: true;
+                    onClicked: {
+                        locationString.text = text
+                    }
+                }
+                Scrollbar {
+                    flickableItem: listView;
+                    align: Qt.AlignTrailing;
+                }
+            }
+        }
+
         // Location
         WorkerScript {
             id: searchWorker
+            objectName: "searchWorker"
             source: "./WeatherApi.js"
             onMessage: {
                 if(!messageObject.error) {
@@ -124,57 +276,9 @@ Page {
             }
         }
 
-        TextField {
-            id: locationString
-            objectName: "LocationField"
-            anchors.left: parent.left
-            anchors.right: parent.right
-            placeholderText: i18n.tr("Location...")
-            hasClearButton: true
-            onTextChanged: {
-                citiesModel.clear();
-                searchWorker.sendMessage({
-                    action: "searchByName",
-                    params: {name:locationString.text, units:"metric"}
-                })
-            }
-        }
-
         ListModel {
             id: citiesModel
-        }
-
-        Rectangle {
-            width: parent.width
-            height: units.gu(52)
-            color: "transparent"
-            ListView {
-                id: listView;
-                objectName: "SearchResultList"
-                visible: false
-                clip: true
-                anchors.fill: parent
-                model:  citiesModel
-                delegate: ListItem.Standard {
-                    objectName: "searchResult" + index
-                    text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
-                    progression: true;
-                    onClicked: {
-                        //var location = citiesModel.get(index)
-                        //locationManager.addLocation(location)
-                        //mainView.newLocationAdded(location)
-                        //locationManagerSheet.addLocation(location)
-                        //PopupUtils.close(addLocationSheet)
-                        //pageStack.pop()
-                        locationString.text = text
-                        //clear()
-                    }
-                }
-                Scrollbar {
-                    flickableItem: listView;
-                    align: Qt.AlignTrailing;
-                }
-            }
+            objectName: "citiesModel"
         }
     }
     tools: toolbar
