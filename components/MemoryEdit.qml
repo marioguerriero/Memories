@@ -5,14 +5,37 @@ import Ubuntu.Components.Popups 0.1
 import Qt.labs.folderlistmodel 1.0
 
 Page {
-    id: newMemoryPage
+    id: memoryEditPage
     title: i18n.tr("New Memory")
     visible: false
 
     // Some functions
     function clear() {
-        title.text = ""
-        description.text = ""
+        editing = true
+        title = i18n.tr("New Memory")
+        titleField.text = ""
+        dateField.text = ""
+        descriptionArea.text = ""
+        tagsField.text = ""
+        locationField.text = ""
+        //weatherField.text = ""
+        photoGrid.clean()
+    }
+
+    property Memory memory
+    property bool editing: false
+    function setMemory(mem) {
+        clear()
+        memory = mem
+        editing = true
+        titleField.text = memory.title
+        title = "Editing: " + titleField.text
+        dateField.text = memory.date
+        descriptionArea.text = memory.description
+        tagsField.text = memory.tags
+        locationField.text = memory.location
+        //weatherField.text = memory.weather
+        photoGrid.addPhotos(memory.photos)
     }
 
     // Toolbar
@@ -25,8 +48,7 @@ Page {
             iconSource: icon("back")
 
             onTriggered: {
-                newMemoryPage.clear()
-                PopupUtils.open(photo)
+                memoryEditPage.clear()
             }
         }
 
@@ -37,10 +59,23 @@ Page {
 
             onTriggered: {
                 if (!enabled) return;
+
+                // If editing
+                var index
+                if(editing) {
+                    for(var i = 0; i < model.count; i++) {
+                        var item = model.get(i).mem
+                        if(item === memoryEditPage.memory) {
+                            index = i
+                            memoryEditPage.memory.remove()
+                        }
+                    }
+                }
+
                 var component = Qt.createComponent("Memory.qml")
 
                 // Date
-                var dt = date.text
+                var dt = dateField.text
                 if(dt == "" || dt == null)
                     dt = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
 
@@ -54,18 +89,20 @@ Page {
                 }
 
                 var memory = component.createObject(toolbar,
-                                                {   "title": title.text,
-                                                    "tags" : tags.text,
-                                                    "description": description.text,
+                                                {   "title": titleField.text,
+                                                    "tags" : tagsField.text,
+                                                    "description": descriptionArea.text,
                                                     "date": dt,
-                                                    "location": locationString.text,
+                                                    "location": locationField.text,
                                                     "weather": "",
                                                     "photos": photos
                                                 })
                 model.append ({
                                   "mem": memory
                               })
-                newMemoryPage.clear()
+                if(editing)
+                    model.move(model.count-1, index, 1)
+                memoryEditPage.clear()
                 stack.push(home);
             }
             enabled: false
@@ -85,7 +122,8 @@ Page {
         }
 
         TextField {
-            id: date
+            id: dateField
+            objectName: "dateField"
             anchors.left: parent.left
             anchors.right: parent.right
             text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
@@ -93,7 +131,8 @@ Page {
         }
 
         TextField {
-            id: title
+            id: titleField
+            objectName: "titleField"
             anchors.left: parent.left
             anchors.right: parent.right
             placeholderText: i18n.tr("Title...")
@@ -103,16 +142,19 @@ Page {
         }
 
         TextArea {
-            id: description
-            placeholderText: "Memory"
+            id: descriptionArea
+            objectName: "descriptionArea"
+            placeholderText: i18n.tr("Memory...")
             autoSize: true
             maximumLineCount: 5
             anchors.left: parent.left
             anchors.right: parent.right
+            textFormat: TextEdit.AutoText
         }
 
         TextField {
-            id: tags
+            id: tagsField
+            objectName: "tagsField"
             anchors.left: parent.left
             anchors.right: parent.right
             placeholderText: i18n.tr("Tags... (separed by a comma)")
@@ -226,10 +268,28 @@ Page {
                         PopupUtils.open(photoDialog)
                     }
                 }
+                function addPhotos(photos) {
+                    var photo_list = photos.split("||")
+                    for(var i = 0; i < photo_list.length; i++) {
+                        if(photo_list[i] == "")
+                            return
+                        var component = Qt.createComponent("PhotoItem.qml")
+                        var params = {
+                            "source": photo_list[i],
+                        }
+                        // Add to photoViewGrid...
+                        var shape = component.createObject(photoGrid, params)
+                        photoGrid.children.append += shape
+                    }se
+                }
+                function clean() {
+                    for(var k = photoGrid.children.length; k > 1 ; k--)
+                        photoGrid.children[k-1].destroy()
+                }
             }
 
             TextField {
-                id: locationString
+                id: locationField
                 objectName: "LocationField"
                 anchors.top: photoGrid.bottom
                 anchors.left: parent.left
@@ -241,7 +301,7 @@ Page {
                     citiesModel.clear();
                     searchWorker.sendMessage({
                         action: "searchByName",
-                        params: {name:locationString.text, units:"metric"}
+                        params: {name:locationField.text, units:"metric"}
                     })
                 }
             }
@@ -253,14 +313,14 @@ Page {
                 clip: true
                 height: units.gu(35)
                 width: parent.width
-                anchors.top: locationString.bottom
+                anchors.top: locationField.bottom
                 model:  citiesModel
                 delegate: ListItem.Standard {
                     objectName: "searchResult" + index
                     text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
                     progression: true;
                     onClicked: {
-                        locationString.text = text
+                        locationField.text = text
                     }
                 }
                 Scrollbar {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-09 23:33+0200\n"
+"POT-Creation-Date: 2013-08-15 01:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,50 +17,68 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/mario/memories/components/Toolbar.qml:8
-msgid "New"
-msgstr ""
-
-#: /home/mario/memories/memories.qml:45
-msgid "Memories"
-msgstr ""
-
-#: /home/mario/memories/memories.qml:53
-msgid "No memories!"
-msgstr ""
-
-#: /home/mario/memories/components/MemoryPage.qml:11
-msgid "Edit"
-msgstr ""
-
-#: /home/mario/memories/components/MemoryPage.qml:21
-msgid "Delete"
-msgstr ""
-
-#: /home/mario/memories/components/NewMemory.qml:7
+#: /home/mario/memories/components/MemoryEdit.qml:9
+#: /home/mario/memories/components/MemoryEdit.qml:15
 msgid "New Memory"
 msgstr ""
 
-#: /home/mario/memories/components/NewMemory.qml:22
+#: /home/mario/memories/components/MemoryEdit.qml:47
 msgid "Clear"
 msgstr ""
 
-#: /home/mario/memories/components/NewMemory.qml:32
+#: /home/mario/memories/components/MemoryEdit.qml:57
 msgid "Save"
 msgstr ""
 
-#: /home/mario/memories/components/NewMemory.qml:89
+#: /home/mario/memories/components/MemoryEdit.qml:130
+msgid "Date..."
+msgstr ""
+
+#: /home/mario/memories/components/MemoryEdit.qml:138
 msgid "Title..."
 msgstr ""
 
-#: /home/mario/memories/components/NewMemory.qml:99
-msgid "Tags..."
+#: /home/mario/memories/components/MemoryEdit.qml:147
+msgid "Memory..."
 msgstr ""
 
-#: /home/mario/memories/components/NewMemory.qml:114
-msgid "Location"
+#: /home/mario/memories/components/MemoryEdit.qml:160
+msgid "Tags... (separed by a comma)"
 msgstr ""
 
-#: /home/mario/memories/components/NewMemory.qml:120
-msgid "Weather"
+#: /home/mario/memories/components/MemoryEdit.qml:169
+msgid "Add a Photo"
+msgstr ""
+
+#: /home/mario/memories/components/MemoryEdit.qml:170
+msgid "Locate the photo file."
+msgstr ""
+
+#: /home/mario/memories/components/MemoryEdit.qml:243
+#: /home/mario/memories/components/MemoryPage.qml:31
+msgid "Cancel"
+msgstr ""
+
+#: /home/mario/memories/components/MemoryEdit.qml:298
+msgid "Location..."
+msgstr ""
+
+#: /home/mario/memories/memories.qml:49
+msgid "Memories"
+msgstr ""
+
+#: /home/mario/memories/memories.qml:57
+msgid "No memories!"
+msgstr ""
+
+#: /home/mario/memories/memories.qml:92
+msgid "New"
+msgstr ""
+
+#: /home/mario/memories/components/MemoryPage.qml:20
+msgid "Edit"
+msgstr ""
+
+#: /home/mario/memories/components/MemoryPage.qml:41
+msgid "Delete"
 msgstr ""

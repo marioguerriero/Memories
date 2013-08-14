@@ -36,8 +36,8 @@ MainView {
         }
 
         // Different pages
-        NewMemory {
-            id: newMemory
+        MemoryEdit{
+            id: memoryEditPage
         }
 
         MemoryPage {
@@ -86,7 +86,21 @@ MainView {
                 flickableItem: list
                 align: Qt.AlignTrailing
             }
-            tools: Toolbar {}
+            tools: ToolbarItems {
+
+                ToolbarButton {
+                    text: i18n.tr("New")
+                    iconSource: icon("add")
+
+                    onTriggered: {
+                        memoryEditPage.clear()
+                        stack.push(memoryEditPage)
+                    }
+                }
+
+                locked: false
+                opened: false
+            }
         }
     }
 
@@ -97,7 +111,7 @@ MainView {
     }
 
     U1db.Document {
-        id: memoriesDatebase
+        id: memoriesDatabase
 
         database: storage
         docId: 'memories'
@@ -119,17 +133,18 @@ MainView {
         }
 
         var tempContents = {}
-        tempContents = memoriesDatebase.contents
+        tempContents = memoriesDatabase.contents
         tempContents.memories = JSON.stringify(memories)
-        memoriesDatebase.contents = tempContents
+        memoriesDatabase.contents = tempContents
     }
 
     function loadMemories() {
         print("Loading Memories...")
-        var memories = JSON.parse(memoriesDatebase.contents.memories)
-        for (var i = 0; i < memories.length; i++) {
+        var memories = JSON.parse(memoriesDatabase.contents.memories)
+        for(var i = 0; i < memories.length; i++) {
             newMemoryObject(memories[i])
         }
+        filter("")
     }
 
     function newMemoryObject(args) {
@@ -149,6 +164,19 @@ MainView {
                 model.remove(i)
                 item.destroy()
                 return
+            }
+        }
+    }
+
+    // Search and filter functions
+    function filter(filter) {
+        for(var i = 0; i < model.count; i++) {
+            var tags = model.get(i).mem.getTags()
+            for(var n = 0; n < tags.length; n++) {
+                var tag = tags[n].replace(" ", "")
+                //tags[n].replace(" ", "")
+                print(tag)
+                model.get(i).visible = false
             }
         }
     }
