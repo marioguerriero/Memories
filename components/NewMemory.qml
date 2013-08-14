@@ -136,8 +136,10 @@ Page {
 
                     var component = Qt.createComponent("PhotoItem.qml")
                     var params = {
-                        "source": path
+                        "source": path,
+                        "editing": true,
                     }
+
                     var shape = component.createObject(photoGrid, params)
 
                     photoContainer.children.append += shape

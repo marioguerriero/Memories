@@ -101,7 +101,7 @@ Page {
             text: "Are you sure you want to delete this memory?"
             Button {
                 text: "Cancel"
-                color: UbuntuColors.warmGrey
+                color: UbuntuColors.orange
                 onClicked: PopupUtils.close(dialogue)
             }
             Button {
@@ -137,7 +137,6 @@ Page {
             Label {
                 id: label
                 anchors.centerIn: parent
-                color: UbuntuColors.orange
             }
         }
         TextField {
@@ -199,7 +198,8 @@ Page {
 
                     var component = Qt.createComponent("PhotoItem.qml")
                     var params = {
-                        "source": path
+                        "source": path,
+                        "editing": !memoryArea.readOnly
                     }
                     var shape = component.createObject(photoEditGrid, params)
 
@@ -376,12 +376,16 @@ Page {
                 return
             var component = Qt.createComponent("PhotoItem.qml")
             var params = {
-                "source": photo_list[i]
+                "source": photo_list[i],
             }
             // Add to photoViewGrid...
             var shape = component.createObject(photoViewGrid, params)
             photoViewGrid.children.append += shape
             // ...and to photoEditGrid both
+            params = {
+                "source": photo_list[i],
+                "editing": true
+            }
             shape = component.createObject(photoEditGrid, params)
             photoEditGrid.children.append += shape
         }

@@ -21,9 +21,9 @@ MainView {
     width: units.gu(50)
     height: units.gu(75)
     
-    headerColor: "#57365E"
-    backgroundColor: "#A55263"
-    footerColor: "#D75669"
+    headerColor: "#414141"
+    backgroundColor: "#696969"
+    footerColor: "#929292"
 
     PageStack {
         id: stack
