@@ -102,14 +102,6 @@ Page {
             }
         }
 
-        TextField {
-            id: tags
-            anchors.left: parent.left
-            anchors.right: parent.right
-            placeholderText: i18n.tr("Tags...")
-            visible: false
-        }
-
         TextArea {
             id: description
             placeholderText: "Memory"
@@ -117,6 +109,13 @@ Page {
             maximumLineCount: 5
             anchors.left: parent.left
             anchors.right: parent.right
+        }
+
+        TextField {
+            id: tags
+            anchors.left: parent.left
+            anchors.right: parent.right
+            placeholderText: i18n.tr("Tags... (separed by a comma)")
         }
 
         // Photos
@@ -185,7 +184,8 @@ Page {
                                     folderPath = newFolder
                                     file = "";
                                 } else {
-                                    if(fileName.split(".").pop() === "png") {
+                                    if(fileName.split(".").pop() === "png"
+                                            || fileName.split(".").pop() === "jpg") {
                                         file = "/" + fileName
                                         PopupUtils.close(dialogue)
                                     }

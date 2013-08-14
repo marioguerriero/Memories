@@ -24,6 +24,7 @@ Page {
             onTriggered: {
                 editing = true
                 dateField.text = date.text
+                tagsField.text = tags.text
                 locationField.text = location.text
                 weatherField.text = weather.text
             }
@@ -69,7 +70,7 @@ Page {
                         var component = Qt.createComponent("Memory.qml")
                         var new_memory = component.createObject(toolbar,
                                                           { "title": memory.title,
-                                                            "tags" : "tags.text",
+                                                            "tags" : tagsField.text,
                                                             "description": memoryArea.text,
                                                             "date": dateField.text,
                                                             "location": locationField.text,
@@ -157,10 +158,24 @@ Page {
             visible: (length > 0) && (text != "") || editing
         }
 
+        TextField {
+            id: tagsField
+            anchors.left: parent.left
+            anchors.right: parent.right
+            placeholderText: i18n.tr("Tags... (separed by a comma)")
+            visible: !memoryArea.readOnly
+        }
+
+        Label {
+            id: tags
+            visible: (text != "") && !editing
+        }
+
         Label {
             id: location
             visible: (text != "") && !editing
         }
+
         // Location
         WorkerScript {
             id: searchWorker
@@ -246,7 +261,8 @@ Page {
                                     folderPath = newFolder
                                     file = "";
                                 } else {
-                                    if(fileName.split(".").pop() === "png") {
+                                    if(fileName.split(".").pop() === "png"
+                                            || fileName.split(".").pop() === "jpg") {
                                         file = "/" + fileName
                                         PopupUtils.close(dialogue)
                                     }
@@ -363,6 +379,7 @@ Page {
         date.text = memory.date
         title = memory.title
         memoryArea.text = memory.description
+        tags.text = memory.tags
         location.text = memory.location
         weather.text = memory.weather
         // Clean photo views

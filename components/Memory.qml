@@ -29,4 +29,8 @@ QtObject {
     property string location;
     property string weather;
     property string photos; // A list of photos divided by a '||'
+
+    function getTags() {
+        return tags.split(",")
+    }
 }

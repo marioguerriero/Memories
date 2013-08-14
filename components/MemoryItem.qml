@@ -17,6 +17,6 @@ ListItem.MultiValue {
         if(!memory)
             return
         item.text = memory.title
-        values = [ memory.date, memory.location ]
+        values = [ memory.location, memory.date, memory.tags ]
     }
 }
