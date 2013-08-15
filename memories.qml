@@ -175,8 +175,8 @@ MainView {
             for(var n = 0; n < tags.length; n++) {
                 var tag = tags[n].replace(" ", "")
                 //tags[n].replace(" ", "")
-                print(tag)
-                model.get(i).visible = false
+                //print(tag)
+                //model.get(i).visible = false
             }
         }
     }

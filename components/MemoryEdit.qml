@@ -108,8 +108,8 @@ Page {
             enabled: false
         }
 
-        locked: false
-        opened: false
+        locked: true
+        opened: true
     }
 
     // Page content
@@ -174,18 +174,14 @@ Page {
 
                 onFileChanged: {
                     var path = folderPath + file
-
-                    var component = Qt.createComponent("PhotoItem.qml")
+                    photoGrid.addPhotos(path)
+                    /*var component = Qt.createComponent("./PhotoItem.qml")
                     var params = {
                         "source": path,
-                        "editing": true,
                     }
 
                     var shape = component.createObject(photoGrid, params)
-
-                    photoContainer.children.append += shape
-
-                    PopupUtils.close(dialogue)
+                    photoGrid.children.append += shape*/
                 }
 
                 Label {
@@ -273,14 +269,14 @@ Page {
                     for(var i = 0; i < photo_list.length; i++) {
                         if(photo_list[i] == "")
                             return
-                        var component = Qt.createComponent("PhotoItem.qml")
+                        var component = Qt.createComponent("./PhotoItem.qml")
                         var params = {
                             "source": photo_list[i],
                         }
                         // Add to photoViewGrid...
                         var shape = component.createObject(photoGrid, params)
                         photoGrid.children.append += shape
-                    }se
+                    }
                 }
                 function clean() {
                     for(var k = photoGrid.children.length; k > 1 ; k--)

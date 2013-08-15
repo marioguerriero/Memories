@@ -130,7 +130,6 @@ Page {
             objectName: "photoViewGrid"
             columns: (mainView.width - units.gu(4)) / units.gu(8) - 1
             spacing: 12
-            visible: memoryArea.readOnly
         }
     }
 
@@ -153,9 +152,10 @@ Page {
         for(var i = 0; i < photo_list.length; i++) {
             if(photo_list[i] == "")
                 return
-            var component = Qt.createComponent("PhotoItem.qml")
+            var component = Qt.createComponent("./PhotoItem.qml")
             var params = {
                 "source": photo_list[i],
+                "editing": false
             }
             // Add to photoViewGrid...
             var shape = component.createObject(photoViewGrid, params)
