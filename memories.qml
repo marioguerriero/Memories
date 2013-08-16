@@ -46,7 +46,21 @@ MainView {
 
         Page {
             id: home
-            title: i18n.tr("Memories")
+            title: {
+                var string = i18n.tr("Memories")
+                var title = ""
+                var length = string.length
+                var pixel = 3 // The approximative size of each character
+                var dif = mainView.width / (length*pixel) // -1 as it is for spacing
+
+                for(var n = 0; n < string.length; n++) {
+                    if(dif < length && n >= (dif-3))
+                        title = string.substring(0, dif-2) + "..."
+                    else
+                        title = string
+                }
+                return title
+            }
             visible: false
 
             Label {

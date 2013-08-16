@@ -7,12 +7,50 @@ import Qt.labs.folderlistmodel 1.0
 Page {
     id: memoryEditPage
     title: i18n.tr("New Memory")
+
+    function setTitle(text) {
+        var string = text
+        var title = ""
+        var length = string.length
+        var pixel = 1 // The approximative size of each character
+        var dif = mainView.width / (length*pixel) + units.gu(1) // -1 as it is for spacing
+
+        for(var n = 0; n < string.length; n++) {
+            if(dif < length && n >= dif)
+                title = string.substring(0, dif-2) + "..."
+            else
+                title = string
+        }
+        memoryEditPage.title = title
+    }
+    /*function setTitle(text) {
+        var string = text
+        var title = ""
+        var length = string.length
+        var pixel = 1 // The approximative size of each character
+        var dif = mainView.width / (length*pixel) // -3 as it is for spacing
+
+        for(var n = 0; n < string.length; n++) {
+            if(dif < length && n >= (dif-3))
+                title = string.substring(0, dif-2) + "..."
+            else
+                title = string
+        }
+        memoryEditPage.title = title
+    }
+    onWidthChanged: {
+        if(memory && editing)
+            memoryEditPage.setTitle(i18n.tr("Editing: ") + memory.title)
+        else
+            memoryEditPage.setTitle(i18n.tr("New Memory"))
+    }*/
+
     visible: false
 
     // Some functions
     function clear() {
-        editing = true
-        title = i18n.tr("New Memory")
+        editing = false
+        setTitle(i18n.tr("New Memory"))
         titleField.text = ""
         dateField.text = ""
         descriptionArea.text = ""
@@ -29,7 +67,7 @@ Page {
         memory = mem
         editing = true
         titleField.text = memory.title
-        title = "Editing: " + titleField.text
+        setTitle(i18n.tr("Editing: ") + titleField.text)
         dateField.text = memory.date
         descriptionArea.text = memory.description
         tagsField.text = memory.tags
@@ -162,7 +200,7 @@ Page {
 
         // Photos
         Component {
-            id: photoDialog
+            id: photoSelectDialog
 
             Dialog {
                 id: dialogue
@@ -175,13 +213,6 @@ Page {
                 onFileChanged: {
                     var path = folderPath + file
                     photoGrid.addPhotos(path)
-                    /*var component = Qt.createComponent("./PhotoItem.qml")
-                    var params = {
-                        "source": path,
-                    }
-
-                    var shape = component.createObject(photoGrid, params)
-                    photoGrid.children.append += shape*/
                 }
 
                 Label {
@@ -236,6 +267,12 @@ Page {
                     delegate: fileDelegate
                 }
                 Button {
+                    text: i18n.tr("Take from Camera")
+                    onClicked: {
+
+                    }
+                }
+                Button {
                     text: i18n.tr("Cancel")
                     onClicked: PopupUtils.close(dialogue)
                 }
@@ -261,7 +298,7 @@ Page {
                     objectName: "LocationField"
                     iconSource: "../resources/images/import-image.png"
                     onClicked: {
-                        PopupUtils.open(photoDialog)
+                        PopupUtils.open(photoSelectDialog)
                     }
                 }
                 function addPhotos(photos) {

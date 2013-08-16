@@ -7,6 +7,42 @@ import Qt.labs.folderlistmodel 1.0
 Page {
     id: page
     title: ""
+    function setTitle(text) {
+        var string = text
+        var title = ""
+        var length = string.length
+        var pixel = 1 // The approximative size of each character
+        var dif = mainView.width / (length*pixel) + units.gu(1) // -1 as it is for spacing
+
+        for(var n = 0; n < string.length; n++) {
+            if(dif < length && n >= dif)
+                title = string.substring(0, dif-2) + "..."
+            else
+                title = string
+        }
+        page.title = title
+    }
+        /*
+    function setTitle(text) {
+        var string = text
+        var title = ""
+        var length = string.length
+        var pixel = mainView.width / (length) // The approximative size of each character
+        var dif = (mainView.width) / (pixel)// -3 as it is for spacing
+        print((mainView.width/length))
+        for(var n = 0; n < string.length; n++) {
+            if(dif < length && n >= dif-3)
+                title = string.substring(0, dif-2) + "..."
+            else
+                title = string
+        }
+        page.title = title
+    }
+    onWidthChanged: {
+        if(memory)
+            page.setTitle(memory.title)
+    }*/
+
     visible: false
 
     property bool editing: false
@@ -84,19 +120,12 @@ Page {
             fill: parent
         }
 
-        UbuntuShape {
-            id: dateShape
-            objectName: "dateShape"
+        Label {
+            id: dateLabel
+            objectName: "dateLabel"
             width: parent.width
-            height: 35
-            visible: !editing
-
-            property alias text : label.text
-
-            Label {
-                id: label
-                anchors.centerIn: parent
-            }
+            height: units.gu(3)
+            color: UbuntuColors.orange
         }
 
         TextArea {
@@ -139,8 +168,8 @@ Page {
         if(memory == null)
             return;
 
-        dateShape.text = memory.date
-        title = memory.title
+        dateLabel.text = memory.date
+        setTitle(memory.title)
         memoryArea.text = memory.description
         tags.text = memory.tags
         location.text = memory.location

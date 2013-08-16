@@ -12,10 +12,10 @@ UbuntuShape {
         source: camera
         anchors {
             top: parent.top
-            horizontalCenter: parent.horizontalCenter
+            bottom: parent.bottom
+            right: parent.right
+            left: parent.left
         }
-//        width: parent.width
-//        height: parent.width
 
         focus: visible
 
@@ -25,7 +25,7 @@ UbuntuShape {
            FIXME: This should come from a system configuration option so that we
            don't have to have a different codebase for each different device we want
            to run on */
-        orientation: device.naturalOrientation === "portrait"  ? -90 : 0
+        //orientation: device.naturalOrientation === "portrait"  ? -90 : 0
     }
 
     Camera {
@@ -49,7 +49,7 @@ UbuntuShape {
         }
     }
 
-    DeviceOrientation {
-        id: device
-    }
+    //DeviceOrientation {
+    //    id: device
+    //}
 }
