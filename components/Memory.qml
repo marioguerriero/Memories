@@ -19,7 +19,7 @@ QtObject {
     }
 
     function remove() {
-        removeMemory(memory)
+        homePage.removeMemory(memory)
     }
 
     property string title;

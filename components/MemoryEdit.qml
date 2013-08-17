@@ -78,6 +78,7 @@ Page {
                 if (!enabled) return;
 
                 // If editing
+                var model = homePage.model
                 var index
                 if(editing) {
                     for(var i = 0; i < model.count; i++) {
@@ -120,7 +121,7 @@ Page {
                 if(editing)
                     model.move(model.count-1, index, 1)
                 memoryEditPage.clear()
-                stack.push(home);
+                stack.push(homePage);
             }
             enabled: false
         }
@@ -249,14 +250,16 @@ Page {
                     delegate: fileDelegate
                 }
                 Button {
-                    text: i18n.tr("Take from Camera")
-                    onClicked: {
-
-                    }
+                    text: i18n.tr("Cancel")
+                    gradient: UbuntuColors.greyGradient
+                    onClicked: PopupUtils.close(dialogue)
                 }
                 Button {
-                    text: i18n.tr("Cancel")
-                    onClicked: PopupUtils.close(dialogue)
+                    text: i18n.tr("Take from Camera")
+                    onClicked: {
+                        PopupUtils.close(dialogue)
+                        stack.push(cameraPage)
+                    }
                 }
             }
         }

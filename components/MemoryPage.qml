@@ -14,7 +14,7 @@ Page {
         var title = ""
         var length = string.length
         var pixel = 1 // The approximative size of each character
-        var dif = mainView.width / (length*pixel) + units.gu(1) // -1 as it is for spacing
+        var dif = mainView.width / (length*pixel) + units.gu(4) // -1 as it is for spacing
 
         for(var n = 0; n < string.length; n++) {
             if(dif < length && n >= dif)
@@ -148,7 +148,7 @@ Page {
             text: "Are you sure you want to delete this memory?"
             Button {
                 text: "Cancel"
-                color: UbuntuColors.orange
+                gradient: UbuntuColors.greyGradient
                 onClicked: PopupUtils.close(dialogue)
             }
             Button {
@@ -158,7 +158,7 @@ Page {
                     PopupUtils.close(dialogue)
                     memory.remove()
                     stack.clear()
-                    stack.push(home)
+                    stack.push(homePage)
                 }
             }
         }

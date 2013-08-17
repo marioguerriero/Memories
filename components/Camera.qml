@@ -6,6 +6,7 @@ UbuntuShape {
     width: parent.width
     height: parent.height
     anchors.top: parent.top
+    anchors.fill: parent
 
     VideoOutput {
         id: videoPreview
