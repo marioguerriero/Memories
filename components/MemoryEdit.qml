@@ -9,19 +9,11 @@ Page {
     title: i18n.tr("New Memory")
 
     function setTitle(text) {
-        var string = text
-        var title = ""
-        var length = string.length
-        var pixel = 1 // The approximative size of each character
-        var dif = mainView.width / (length*pixel) + units.gu(1) // -1 as it is for spacing
-
-        for(var n = 0; n < string.length; n++) {
-            if(dif < length && n >= dif)
-                title = string.substring(0, dif-2) + "..."
-            else
-                title = string
+        if (text.length > parent.width / units.gu(2)) {
+            text = text.substring(0, parent.width / units.gu(2.3));
+            text += "...";
         }
-        memoryEditPage.title = title
+        memoryEditPage.title = text
     }
 
     visible: false

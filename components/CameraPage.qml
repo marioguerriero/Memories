@@ -19,4 +19,12 @@ Page {
             camera: camera
         }*/
     }
+
+    function start() {
+        camera.start()
+    }
+
+    function stop() {
+        camera.stop()
+    }
 }

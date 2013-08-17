@@ -8,21 +8,13 @@ import Friends 0.1
 
 Page {
     id: page
-    title: ""
+    title: ""   
     function setTitle(text) {
-        var string = text
-        var title = ""
-        var length = string.length
-        var pixel = 1 // The approximative size of each character
-        var dif = mainView.width / (length*pixel) + units.gu(4) // -1 as it is for spacing
-
-        for(var n = 0; n < string.length; n++) {
-            if(dif < length && n >= dif)
-                title = string.substring(0, dif-2) + "..."
-            else
-                title = string
+        if (text.length > parent.width / units.gu(2)) {
+            text = text.substring(0, parent.width / units.gu(2.3));
+            text += "...";
         }
-        page.title = title
+        page.title = text
     }
 
     visible: false

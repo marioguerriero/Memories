@@ -4,21 +4,7 @@ import U1db 1.0 as U1db
 
 Page {
     id: home
-    title: {
-        var string = i18n.tr("Memories")
-        var title = ""
-        var length = string.length
-        var pixel = 3 // The approximative size of each character
-        var dif = mainView.width / (length*pixel) // -1 as it is for spacing
-
-        for(var n = 0; n < string.length; n++) {
-            if(dif < length && n >= (dif-3))
-                title = string.substring(0, dif-2) + "..."
-            else
-                title = string
-        }
-        return title
-    }
+    title: i18n.tr("Memories")
     visible: false
 
     Label {
