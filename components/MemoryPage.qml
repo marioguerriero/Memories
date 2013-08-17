@@ -3,6 +3,8 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Qt.labs.folderlistmodel 1.0
+import Ubuntu.OnlineAccounts 0.1
+import Friends 0.1
 
 Page {
     id: page
@@ -22,26 +24,6 @@ Page {
         }
         page.title = title
     }
-        /*
-    function setTitle(text) {
-        var string = text
-        var title = ""
-        var length = string.length
-        var pixel = mainView.width / (length) // The approximative size of each character
-        var dif = (mainView.width) / (pixel)// -3 as it is for spacing
-        print((mainView.width/length))
-        for(var n = 0; n < string.length; n++) {
-            if(dif < length && n >= dif-3)
-                title = string.substring(0, dif-2) + "..."
-            else
-                title = string
-        }
-        page.title = title
-    }
-    onWidthChanged: {
-        if(memory)
-            page.setTitle(memory.title)
-    }*/
 
     visible: false
 
@@ -50,26 +32,97 @@ Page {
         editing = false
     }
 
+    // Social network sharing utilities
+    ListModel {
+        id: accountsModel
+    }
+
+    FriendsDispatcher {
+        id: friends
+        onSendComplete: {
+            if (success) {
+                console.log ("Send completed successfully");
+            } else {
+                console.log ("Send failed: " + errorMessage.split("str: str:")[1]);
+                // TODO: show some error dialog/widget
+            }
+        }
+    }
+
+    AccountServiceModel {
+        id: accounts
+        serviceType: "microblogging"
+        Component.onCompleted: {
+            for(var i=0; i<accounts.count; i++) {
+                var displayName = accounts.get(i, "displayName");
+                var accountId = accounts.get(i, "accountId");
+                var serviceName = accounts.get(i, "serviceName");
+                var features = friends.featuresForProtocol(serviceName.toLowerCase().replace(".",""));
+                if(features.indexOf("send") > -1) {
+                    console.log (serviceName + " Supports send");
+                     /* FIXME: we should get the iconName and serviceName from the accountService
+                     but I am not sure we can access that from JS */
+                    accountsModel.append({
+                        "displayName": displayName,
+                        "id": accountId,
+                        "provider": serviceName,
+                        "iconName": serviceName.toLowerCase().replace(".",""),
+                        "sendEnabled": true
+                    });
+                }
+            }
+        }
+    }
+
+    Component {
+        id: popoverComponent
+
+        Popover {
+            id: popover
+
+            ListView {
+                width: parent.width
+                height: parent.height
+                anchors.fill: parent
+                model: accountsModel
+                delegate: ListItem.MultiValue {
+                    text: provider
+                    values: [ displayName ]
+                    property real accountId: id
+                    property string serviceName: provider
+                    icon: {
+                        return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName+ ".png"
+                    }
+                    onClicked: {
+                        var share_string = page.memory.getShareString()
+                        friends.sendForAccountAsync(accountId, share_string)
+                    }
+                }
+            }
+        }
+    }
+
     tools: ToolbarItems {
 
         ToolbarButton {
-            text: i18n.tr("Edit")
-            iconSource: icon("edit")
-            visible: !editing
+            id: shareButton
+            objectName: "shareButton"
+            text: i18n.tr("Share")
+            iconSource: icon("share")
+            visible: accountsModel.count > 0
 
             onTriggered: {
-                memoryEditPage.setMemory(memory)
-                stack.push(memoryEditPage);
+                PopupUtils.open(popoverComponent, shareButton)
             }
         }
 
         ToolbarButton {
-            text: i18n.tr("Cancel")
-            iconSource: icon("cancel")
-            visible: editing
+            text: i18n.tr("Edit")
+            iconSource: icon("edit")
 
             onTriggered: {
-                editing = false
+                memoryEditPage.setMemory(memory)
+                stack.push(memoryEditPage);
             }
         }
 

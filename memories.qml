@@ -16,7 +16,7 @@ MainView {
      This property enables the application to change orientation 
      when the device is rotated. The default is false.
     */
-    //automaticOrientation: true
+    automaticOrientation: true
     
     width: units.gu(50)
     height: units.gu(75)
@@ -93,13 +93,14 @@ MainView {
                 anchors.fill: parent
                 model: model
                 delegate: MemoryItem {
-                    memory:mem
+                    memory: mem
                 }
             }
             Scrollbar {
                 flickableItem: list
                 align: Qt.AlignTrailing
             }
+
             tools: ToolbarItems {
 
                 ToolbarButton {
@@ -199,4 +200,7 @@ MainView {
     function icon(name) {
         return "/usr/share/icons/ubuntu-mobile/actions/scalable/" + name + ".svg"
     }
+    /*function icon(name) {
+        return "/usr/share/icons/ubuntu-mobile/apps/144/" + name + ".png"
+    }*/
 }

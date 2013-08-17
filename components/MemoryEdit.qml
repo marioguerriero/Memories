@@ -23,27 +23,6 @@ Page {
         }
         memoryEditPage.title = title
     }
-    /*function setTitle(text) {
-        var string = text
-        var title = ""
-        var length = string.length
-        var pixel = 1 // The approximative size of each character
-        var dif = mainView.width / (length*pixel) // -3 as it is for spacing
-
-        for(var n = 0; n < string.length; n++) {
-            if(dif < length && n >= (dif-3))
-                title = string.substring(0, dif-2) + "..."
-            else
-                title = string
-        }
-        memoryEditPage.title = title
-    }
-    onWidthChanged: {
-        if(memory && editing)
-            memoryEditPage.setTitle(i18n.tr("Editing: ") + memory.title)
-        else
-            memoryEditPage.setTitle(i18n.tr("New Memory"))
-    }*/
 
     visible: false
 
@@ -52,7 +31,7 @@ Page {
         editing = false
         setTitle(i18n.tr("New Memory"))
         titleField.text = ""
-        dateField.text = ""
+        dateField.setCurrentDate()
         descriptionArea.text = ""
         tagsField.text = ""
         locationField.text = ""
@@ -129,7 +108,7 @@ Page {
                 var memory = component.createObject(toolbar,
                                                 {   "title": titleField.text,
                                                     "tags" : tagsField.text,
-                                                    "description": descriptionArea.text,
+                                                    "description": descriptionArea.displayText,
                                                     "date": dt,
                                                     "location": locationField.text,
                                                     "weather": "",
@@ -166,6 +145,9 @@ Page {
             anchors.right: parent.right
             text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
             placeholderText: i18n.tr("Date...")
+            function setCurrentDate () {
+                text = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
+            }
         }
 
         TextField {
@@ -376,7 +358,7 @@ Page {
                         //noCityError.visible = false
                     });
                 } else {
-                    console.log(messageObject.error.msg+" / "+messageObject.error.request.url)
+                    console.log(messageObject.error.msg + " / " + messageObject.error.request.url)
                 }
                 if (!citiesModel.count) {
                     // DO NOTHING!

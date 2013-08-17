@@ -33,4 +33,30 @@ QtObject {
     function getTags() {
         return tags.split(",")
     }
+
+    function getShareString() {
+        var max_length = 140
+        var hashtag = "#memories"
+        var string = ""
+        // Add the title
+        string += title
+        // Add the description (if exists)
+        if(description) {
+            string += (": " + description)
+            if(string.length > 100) {
+                string = string.substring(0, 98) + "..."
+            }
+        }
+        // Add the location (if exists)
+        if(location)
+            string += " @ " + location
+        // Add the date
+        string += " " + date
+        // Add a nice hashtag
+        string += " " + hashtag
+        // Finally return the ready to be posted string
+        if(string.length > max_length)
+            string = string.substring(0, max_length - hashtag.length - 4) + "... " + hashtag
+        return string
+    }
 }
