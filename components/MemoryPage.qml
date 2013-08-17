@@ -80,13 +80,36 @@ Page {
         Popover {
             id: popover
 
-            ListView {
+            Repeater {
                 width: parent.width
                 height: parent.height
                 anchors.fill: parent
                 model: accountsModel
                 delegate: ListItem.MultiValue {
-                    text: provider
+                    // HACK because of there is a bug with custom colors
+                    Label {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            left: parent.left
+                            margins: units.gu(2)
+                        }
+                        text: provider
+                        fontSize: "medium"
+                        color: Theme.palette.normal.overlayText
+                    }
+                    /*Grid {
+                        columns: 1
+                        Label {
+                            text: provider
+                            fontSize: "medium"
+                            color: Theme.palette.normal.overlayText
+                        }
+                        Label {
+                            text: displayName
+                            fontSize: "small"
+                            color: UbuntuColors.warmGrey
+                        }
+                    }*/
                     values: [ displayName ]
                     property real accountId: id
                     property string serviceName: provider

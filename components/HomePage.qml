@@ -117,7 +117,6 @@ Page {
         for(var i = 0; i < memories.length; i++) {
             newMemoryObject(memories[i])
         }
-        filter("")
     }
 
     function newMemoryObject(args) {
@@ -143,14 +142,17 @@ Page {
 
     // Search and filter functions
     function filter(filter) {
+        var memories = []
         for(var i = 0; i < memoryModel.count; i++) {
-            var tags = memoryModel.get(i).mem.getTags()
+            var memory = memoryModel.get(i).mem
+            var tags = memory.getTags()
             for(var n = 0; n < tags.length; n++) {
                 var tag = tags[n].replace(" ", "")
                 //tags[n].replace(" ", "")
-                //print(tag)
-                //memoryModel.get(i).visible = false
+                if(tag == filter)
+                    memories.push(memory)
             }
         }
+        return memories
     }
 }

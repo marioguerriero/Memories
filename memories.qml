@@ -21,33 +21,6 @@ MainView {
     height: units.gu(75)
 
     property bool wideAspect: width > units.gu(80)
-    state: wideAspect ? "wide" : ""
-    states: [
-        State {
-            name: "wide"
-            PropertyChanges {
-                target: stack
-                width: units.gu(40)
-                anchors {
-                    fill: null
-                    top: parent.top
-                    bottom: parent.bottom
-                }
-            }
-            PropertyChanges {
-                target: homePage
-                x: stack.width
-                width: stack.parent.width - x
-                anchors {
-                    left: undefined
-                    right: undefined
-                    bottom: undefined
-                }
-                clip: true
-                visible: true
-            }
-        }
-    ]
 
     headerColor: "#414141"
     backgroundColor: "#696969"
