@@ -5,7 +5,7 @@ import Ubuntu.Components.ListItems 0.1
 Sidebar {
     id: root
     color: "#555555"
-    width: units.gu(25)
+    width: units.gu(35)
 
     ListModel {
         id: tagsModel

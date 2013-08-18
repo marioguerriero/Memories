@@ -58,12 +58,4 @@ MainView {
     function icon(name) {
         return "/usr/share/icons/ubuntu-mobile/actions/scalable/" + name + ".svg"
     }
-
-    function contains(list, obj) {
-        for (var i = 0; i < list.length; i++) {
-            if (list[i] === obj)
-                return true
-        }
-        return false
-    }
 }
