@@ -31,7 +31,12 @@ QtObject {
     property string photos; // A list of photos divided by a '||'
 
     function getTags() {
-        return tags.split(",")
+        var list = []
+
+        for(var n = 0; n < tags.split(",").length; n++)
+            list.push(tags.split(",")[n].replace(" ", ""))
+
+        return list
     }
 
     function getShareString() {

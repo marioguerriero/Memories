@@ -11,7 +11,7 @@ Sidebar {
         id: tagsModel
     }
 
-    property string currentCategory: ""
+    property string currentCategory: nullCategory
     property string nullCategory: "null"
 
     ListView {
@@ -32,18 +32,39 @@ Sidebar {
             }
         }
         model: tagsModel
-        delegate: Standard {
+        delegate: SingleValue {
             text: tag
             selected: (text == currentCategory)
-            onClicked: currentCategory = text
+            value: {
+                var count = 0
+
+                for(var i = 0; i < memoryModel.count; i++) {
+                    var memory = memoryModel.get(i).mem
+                    var tags = memory.getTags()
+                    for(var n = 0; n < tags.length; n++) {
+                        if(tags[n] == tag)
+                            count++
+                    }
+                }
+
+                return count
+            }
+            onClicked: {
+                currentCategory = text
+                filter(text)
+            }
         }
     }
     Scrollbar {
         flickableItem: listView
     }
 
+    property var tagsList: [] // Used to get counts
     function appendTags(tags) {
+        // Clear tagsList and tagsModel
         tagsModel.clear()
+        tagsList.length = 0
+
         var added_tags = []
         var tag = undefined
         for(var n = 0; n < tags.length; n++) {
@@ -55,6 +76,7 @@ Sidebar {
                 tagsModel.append({"tag": tag})
                 added_tags.push(tag)
             }
+            tagsList.push(tag)
         }
     }
 
