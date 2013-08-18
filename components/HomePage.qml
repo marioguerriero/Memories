@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Layouts 0.1
 import U1db 1.0 as U1db
 
 Page {
@@ -13,6 +14,22 @@ Page {
         anchors.centerIn: parent
         fontSize: "large"
         text: i18n.tr("No memories!")
+    }
+
+    // Filter sidebar
+    FilterSidebar {
+        id: sidebar
+        objectName: "filterSidebar"
+        visible: !label.visible
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+        }
+        expanded: {
+            if(wideAspect)
+                appendTags(getTags())
+            return wideAspect
+        }
     }
 
     // List
@@ -29,22 +46,34 @@ Page {
         id: memoryModel
         onRowsInserted: {
             label.visible = false
+            sidebar.appendTags(getTags())
         }
         onRowsRemoved: {
             label.visible = (memoryModel.count == 0)
+            sidebar.appendTags(getTags())
         }
     }
-    ListView {
-        id: list
-        anchors.fill: parent
-        model: memoryModel
-        delegate: MemoryItem {
-            memory: mem
+
+    Item {
+        anchors {
+            top: parent.top
+            bottom: parent.bottom
+            left: sidebar.right
+            right: parent.right
         }
-    }
-    Scrollbar {
-        flickableItem: list
-        align: Qt.AlignTrailing
+        ListView {
+            id: list
+            anchors.fill: parent
+            clip: true
+            model: memoryModel
+            delegate: MemoryItem {
+                memory: mem
+            }
+        }
+        Scrollbar {
+            flickableItem: list
+            align: Qt.AlignTrailing
+        }
     }
 
     tools: ToolbarItems {
@@ -140,5 +169,18 @@ Page {
             }
         }
         return memories
+    }
+
+    function getTags() {
+        var tags = []
+        for(var i = 0; i < memoryModel.count; i++) {
+            var memory = memoryModel.get(i).mem
+            var memoryTags = memory.getTags()
+            for(var n = 0; n < memoryTags.length; n++) {
+                var tag = memoryTags[n].replace(" ", "")
+                tags.push(tag)
+            }
+        }
+        return tags
     }
 }
