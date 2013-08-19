@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1
 import "components"
 import "components/MD5.js" as Crypto
 MainView {
@@ -32,7 +33,13 @@ MainView {
             homePage.reloadSettings()
             push(homePage)
             homePage.loadMemories()
+            // Is there a password??
+            if(homePage.password != homePage.nullPassword)
+                PopupUtils.open(Qt.resolvedUrl("./components/UnlockDialog.qml"), homePage);
+            else
+                homePage.locked = false
         }
+
         Component.onDestruction: {
             homePage.saveMemories()
         }

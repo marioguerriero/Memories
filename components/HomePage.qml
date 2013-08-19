@@ -9,6 +9,9 @@ Page {
     title: i18n.tr("Memories")
     visible: false
 
+    // Used to get the locked status while there is a password
+    property bool locked: true
+
     Label {
         id: label
         objectName: "label"
@@ -21,7 +24,7 @@ Page {
     FilterSidebar {
         id: sidebar
         objectName: "filterSidebar"
-        visible: !label.visible
+        visible: !label.visible && !locked
         anchors {
             top: parent.top
             bottom: parent.bottom
@@ -65,6 +68,7 @@ Page {
         ListView {
             id: list
             anchors.fill: parent
+            visible: !locked
             clip: true
             model: memoryModel
             delegate: MemoryItem {
@@ -101,7 +105,10 @@ Page {
             Button {
                 text: i18n.tr("Save")
                 color: UbuntuColors.orange
-                onClicked: PopupUtils.close(dialogue)
+                onClicked: {
+                    saveSetting("password", passwordField.text)
+                    PopupUtils.close(dialogue)
+                }
             }
         }
     }
@@ -140,10 +147,11 @@ Page {
                         checked: (password != "")
                         onClicked: {
                             PopupUtils.close(popover)
+                            print(checked)
                             if(checked)
                                 PopupUtils.open(passwordEditDialog)
                             else
-                                saveSetting("password", "")
+                                saveSetting("password", nullPassword)
                         }
                     }
 
@@ -159,11 +167,13 @@ Page {
             id: dialogue
             title: i18n.tr("Protect your memories")
             text: i18n.tr("Set a password to keep unwanted people away from you records.")
+
             TextField {
                 id: passwordField
                 placeholderText: i18n.tr("Password...")
                 echoMode: TextInput.Password
             }
+
             Button {
                 text: i18n.tr("Cancel")
                 gradient: UbuntuColors.greyGradient
@@ -171,10 +181,14 @@ Page {
                     PopupUtils.close(dialogue)
                 }
             }
+
             Button {
                 text: i18n.tr("Save")
                 color: UbuntuColors.orange
-                onClicked: PopupUtils.close(dialogue)
+                onClicked: {
+                    saveSetting("password", passwordField.text)
+                    PopupUtils.close(dialogue)
+                }
             }
         }
     }
@@ -272,6 +286,7 @@ Page {
 
     // Settings
     property string password
+    property string nullPassword: ""
 
     U1db.Database {
         id: settingsDatabase
