@@ -112,4 +112,8 @@ Flickable {
     onPhotosChanged: {
         repeater.model = photos
     }
+
+    function addPhoto(path) {
+        photoRow.addPhoto(path)
+    }
 }

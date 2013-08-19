@@ -3,10 +3,10 @@ import Ubuntu.Components 0.1
 import QtMultimedia 5.0
 
 UbuntuShape {
-    width: parent.width
+    /*width: parent.width
     height: parent.height
     anchors.top: parent.top
-    anchors.fill: parent
+    anchors.fill: parent*/
 
     VideoOutput {
         id: videoPreview
@@ -29,28 +29,36 @@ UbuntuShape {
         //orientation: device.naturalOrientation === "portrait"  ? -90 : 0
     }
 
+    property alias imagePath: camera.imagePath
     Camera {
         id: camera
+        cameraState: Camera.UnloadedStatus
         flash.mode: Camera.FlashAuto
         captureMode: Camera.CaptureStillImage
         focus.focusMode: Camera.FocusAuto
         exposure.exposureMode: Camera.ExposureAuto
 
+        property string imagePath: ""
+
         imageCapture {
             //resolution: Qt.size(640, 480)
 
             onImageSaved: {
-                debugLog("Picture saved as " + path);
-                decoder.decode(path);
+                camera.imagePath = path
+                print("Picture saved as " + path)
             }
-        }
-
-        function capture() {
-            return camera.imageCapture.capture()
         }
     }
 
-    //DeviceOrientation {
-    //    id: device
-    //}
+    function start() {
+        camera.start()
+    }
+
+    function stop() {
+        camera.stop()
+    }
+
+    function capture() {
+        camera.imageCapture.capture()
+    }
 }

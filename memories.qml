@@ -57,9 +57,17 @@ MainView {
             id: homePage
         }
 
-        /*CameraPage {
+        CameraPage {
             id: cameraPage
-        }*/
+        }
+
+        onCurrentPageChanged: {
+            // Stop Camera when you don't need it
+            if(currentPage != cameraPage)
+                cameraPage.stop()
+            else
+                cameraPage.start()
+        }
     }
 
     // Helper functions

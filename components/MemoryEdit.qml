@@ -47,6 +47,11 @@ Page {
         photoLayout.photos = memory.getPhotoList()
     }
 
+    function addPhoto(path) {
+        photoLayout.addPhoto(path)
+
+    }
+
     // Toolbar
     ToolbarItems {
         id: toolbar

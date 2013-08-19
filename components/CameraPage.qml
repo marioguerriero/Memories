@@ -1,6 +1,5 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import QtMultimedia 5.0
 
 Page {
     id: cameraPage
@@ -10,14 +9,13 @@ Page {
 
     Camera {
         id: camera
-        flash.mode: Camera.FlashOff
-        captureMode: Camera.CaptureStillImage
-        focus.focusMode: Camera.FocusAuto
-        //focus.focusPointMode: focusRing.opacity > 0 ? Camera.FocusPointCustom : Camera.FocusPointAuto
+        anchors.fill: parent
 
-        /*property AdvancedCameraSettings advanced: AdvancedCameraSettings {
-            camera: camera
-        }*/
+        onImagePathChanged: {
+            memoryEditPage.addPhoto(imagePath)
+            stack.pop()
+            stack.push(memoryEditPage)
+        }
     }
 
     function start() {
@@ -26,5 +24,18 @@ Page {
 
     function stop() {
         camera.stop()
+    }
+
+    tools: ToolbarItems {
+
+        ToolbarButton {
+            id: snapButton
+            text: i18n.tr("Snaps")
+            iconSource: "../resources/images/camera.svg"
+
+            onTriggered: {
+                camera.capture()
+            }
+        }
     }
 }
