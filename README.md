@@ -2,7 +2,7 @@
 
 Keep track of your best moments with your hands
 
-![Memories 14.08.2013](https://raw.github.com/Mefrio/Memories/master/resources/gh-page/memories-14-08-2013.png)
+![Memories 20.08.2013](https://raw.github.com/Mefrio/Memories/master/resources/gh-page/memories-20-08-2013.png)
 
 ### Installation ###
 
@@ -22,5 +22,6 @@ To run, simply open in Qt Creator/Ubuntu SDK, and click the run button!
  * Camera support
  * Localization support
  * Social Networks sharing
+ * Protect your memories with a password
  * Sync with UbuntuOne personal cloud database
  * Basic memory management (add, remove and edit)
