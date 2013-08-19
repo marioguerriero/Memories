@@ -15,9 +15,12 @@ To run, simply open in Qt Creator/Ubuntu SDK, and click the run button!
 
 ### Features ###
  
- * Memory tags
- * Use Markdown/HTML instead of simple text for memory content
+ * Adaptive layout so that the app looks good on every device
+ * Tags support to allow to filter memories
+ * Markdown/HTML instead of simple text for memory content
  * Associate photos with your memories
+ * Camera support
  * Localization support
+ * Social Networks sharing
  * Sync with UbuntuOne personal cloud database
  * Basic memory management (add, remove and edit)
