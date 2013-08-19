@@ -66,4 +66,9 @@ QtObject {
             string = string.substring(0, max_length - hashtag.length - 4) + "... " + hashtag
         return string
     }
+
+    function getPhotoList() {
+        var array = photos.split("||")
+        return array.slice(0, array.length-1)
+    }
 }

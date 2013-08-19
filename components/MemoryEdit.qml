@@ -28,7 +28,7 @@ Page {
         tagsField.text = ""
         locationField.text = ""
         //weatherField.text = ""
-        photoGrid.clean()
+        photoLayout.photos = []
     }
 
     property Memory memory
@@ -44,7 +44,7 @@ Page {
         tagsField.text = memory.tags
         locationField.text = memory.location
         //weatherField.text = memory.weather
-        photoGrid.addPhotos(memory.photos)
+        photoLayout.photos = memory.getPhotoList()
     }
 
     // Toolbar
@@ -91,9 +91,8 @@ Page {
 
                 // Photos
                 var photos = ""
-                for(var i = 0; i < photoContainer.children.length; i++) {
-                    var photo_path = photoContainer.children[i].source
-                    print(photo_path)
+                for(var i = 0; i < photoLayout.photos.length; i++) {
+                    var photo_path = photoLayout.photos[i]
                     if(photo_path)
                         photos += photo_path + "||"
                 }
@@ -174,134 +173,21 @@ Page {
         }
 
         // Photos
-        Component {
-            id: photoSelectDialog
-
-            Dialog {
-                id: dialogue
-                title: i18n.tr("Add a Photo")
-                text: i18n.tr("Locate the photo file.")
-
-                property string folderPath: "/home"
-                property string file: ""
-
-                onFileChanged: {
-                    var path = folderPath + file
-                    photoGrid.addPhotos(path)
-                }
-
-                Label {
-                    id: folder
-                    text: folderPath + file
-                }
-
-                ListView {
-                    clip: true
-                    height: units.gu(30)
-                    FolderListModel {
-                        id: folderModel
-                        folder: folderPath
-                        showDotAndDotDot: true
-                    }
-
-                    Component {
-                        id: fileDelegate
-                        ListItem.Standard {
-                            text: fileName
-                            onClicked: {
-                                var split = folder.text.split("/")
-                                if(fileName == "..") {
-                                    if(split.length > 2) {
-                                        for(var i = 1, newFolder = ""; i < split.length - 1; i++) {
-                                            newFolder = newFolder + "/" + split[i]
-                                        }
-                                    } else {
-                                        newFolder = "/"
-                                    }
-                                } else if(fileName == ".") {
-                                    newFolder = "/"
-                                }else {
-                                    if(folder.text != "/") newFolder = folder.text + "/" + fileName
-                                    else newFolder = "/" + fileName
-                                }
-                                if(folderModel.isFolder(index)) {
-                                    folderPath = newFolder
-                                    file = "";
-                                } else {
-                                    if(fileName.split(".").pop() === "png"
-                                            || fileName.split(".").pop() === "jpg") {
-                                        file = "/" + fileName
-                                        PopupUtils.close(dialogue)
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    model: folderModel
-                    delegate: fileDelegate
-                }
-                Button {
-                    text: i18n.tr("Cancel")
-                    gradient: UbuntuColors.greyGradient
-                    onClicked: PopupUtils.close(dialogue)
-                }
-                Button {
-                    text: i18n.tr("Take from Camera")
-                    onClicked: {
-                        PopupUtils.close(dialogue)
-                        stack.push(cameraPage)
-                    }
-                }
-            }
-        }
-
         Rectangle {
             id: photoContainer
             width: parent.width
             height: units.gu(8)
             color: "transparent"
-            default property alias children : photoGrid.children
 
-            Grid {
-                id: photoGrid
-                objectName: "photoGrid"
-                columns: (mainView.width - units.gu(4)) / units.gu(8) - 1
-                spacing: 12
-                Button {
-                    id: photoButton
-                    width: units.gu(8)
-                    height: units.gu(8)
-                    objectName: "LocationField"
-                    iconSource: "../resources/images/import-image.png"
-                    onClicked: {
-                        PopupUtils.open(photoSelectDialog)
-                    }
-                }
-                function addPhotos(photos) {
-                    var photo_list = photos.split("||")
-                    for(var i = 0; i < photo_list.length; i++) {
-                        if(photo_list[i] == "")
-                            return
-                        var component = Qt.createComponent("./PhotoItem.qml")
-                        var params = {
-                            "source": photo_list[i],
-                        }
-                        // Add to photoViewGrid...
-                        var shape = component.createObject(photoGrid, params)
-                        photoGrid.children.append += shape
-                    }
-                }
-                function clean() {
-                    for(var k = photoGrid.children.length; k > 1 ; k--)
-                        photoGrid.children[k-1].destroy()
-                }
+            PhotoLayout {
+                id: photoLayout
+                editable: true
             }
 
             TextField {
                 id: locationField
                 objectName: "LocationField"
-                anchors.top: photoGrid.bottom
+                anchors.top: photoLayout.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.topMargin: units.gu(1)

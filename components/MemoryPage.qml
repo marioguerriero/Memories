@@ -89,24 +89,11 @@ Page {
                         fontSize: "medium"
                         color: Theme.palette.normal.overlayText
                     }
-                    /*Grid {
-                        columns: 1
-                        Label {
-                            text: provider
-                            fontSize: "medium"
-                            color: Theme.palette.normal.overlayText
-                        }
-                        Label {
-                            text: displayName
-                            fontSize: "small"
-                            color: UbuntuColors.warmGrey
-                        }
-                    }*/
                     values: [ displayName ]
                     property real accountId: id
                     property string serviceName: provider
                     icon: {
-                        return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName+ ".png"
+                        return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName + ".png"
                     }
                     onClicked: {
                         var share_string = page.memory.getShareString()
@@ -191,9 +178,13 @@ Page {
         Label {
             id: dateLabel
             objectName: "dateLabel"
-            width: parent.width
-            height: units.gu(3)
             color: UbuntuColors.orange
+            fontSize: "medium"
+        }
+
+        Label {
+            id: locationLabel
+            visible: (text != "") && !editing
         }
 
         TextArea {
@@ -205,28 +196,33 @@ Page {
             visible: (length > 0) && (text != "") || editing
         }
 
+        ListItem.ThinDivider { }
+
+        Label {
+            text: i18n.tr("Tags")
+
+            fontSize: "large"
+            font.bold: true
+        }
+
         Label {
             id: tags
             visible: (text != "") && !editing
         }
 
-        Label {
-            id: location
-            visible: (text != "") && !editing
-        }
-
-        Label {
+        /*Label {
             id: weather
             //visible: (text != "") && !editing
             visible: false // for now
-        }
+        }*/
+
+        ListItem.ThinDivider { }
 
         // Photos
-        Grid {
-            id: photoViewGrid
-            objectName: "photoViewGrid"
-            columns: (mainView.width - units.gu(4)) / units.gu(8) - 1
-            spacing: 12
+        PhotoLayout {
+            id: photoLayout
+            editable: false
+            iconSize: units.gu(12)
         }
     }
 
@@ -240,24 +236,9 @@ Page {
         setTitle(memory.title)
         memoryArea.text = memory.description
         tags.text = memory.tags
-        location.text = memory.location
-        weather.text = memory.weather
-        // Clean photo views
-        photoViewGrid.children = ""
-        // Append photos
-        var photo_list = memory.photos.split("||")
-        for(var i = 0; i < photo_list.length; i++) {
-            if(photo_list[i] == "")
-                return
-            var component = Qt.createComponent("./PhotoItem.qml")
-            var params = {
-                "source": photo_list[i],
-                "editing": false
-            }
-            // Add to photoViewGrid...
-            var shape = component.createObject(photoViewGrid, params)
-            photoViewGrid.children.append += shape
-        }
+        locationLabel.text = memory.location
+        //weather.text = memory.weather
+        photoLayout.photos = memory.getPhotoList()
     }
 
 }

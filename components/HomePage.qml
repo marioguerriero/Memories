@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import Ubuntu.Layouts 0.1
+import Ubuntu.Components.ListItems 0.1
+import Ubuntu.Components.Popups 0.1
 import U1db 1.0 as U1db
 
 Page {
@@ -80,15 +81,125 @@ Page {
         }
     }
 
+    // Password manager
+    Component {
+        id: passwordEnterDialog
+        Dialog {
+            id: dialogue
+            title: i18n.tr("Add your password")
+            text: i18n.tr()
+            TextField {
+                id: passwordField
+                placeholderText: i18n.tr("Password...")
+                echoMode: TextInput.Password
+            }
+            Button {
+                text: i18n.tr("Cancel")
+                gradient: UbuntuColors.greyGradient
+                onClicked: PopupUtils.close(dialogue)
+            }
+            Button {
+                text: i18n.tr("Save")
+                color: UbuntuColors.orange
+                onClicked: PopupUtils.close(dialogue)
+            }
+        }
+    }
+
+    Component {
+        id: popoverComponent
+
+        Popover {
+            id: popover
+
+            property alias passwordChecked: passwordCheckbox.checked
+
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                Standard {
+                    //FIXME: Hack because of Suru theme!
+                    Label {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            left: parent.left
+                            margins: units.gu(2)
+                        }
+
+                        text: i18n.tr("Protect memories with password")
+                        fontSize: "medium"
+                        color: Theme.palette.normal.overlayText
+                    }
+
+                    control: CheckBox {
+                        id: passwordCheckbox
+                        checked: (password != "")
+                        onClicked: {
+                            PopupUtils.close(popover)
+                            if(checked)
+                                PopupUtils.open(passwordEditDialog)
+                            else
+                                saveSetting("password", "")
+                        }
+                    }
+
+                    showDivider: false
+                }
+            }
+        }
+    }
+
+    Component {
+        id: passwordEditDialog
+        Dialog {
+            id: dialogue
+            title: i18n.tr("Protect your memories")
+            text: i18n.tr("Set a password to keep unwanted people away from you records.")
+            TextField {
+                id: passwordField
+                placeholderText: i18n.tr("Password...")
+                echoMode: TextInput.Password
+            }
+            Button {
+                text: i18n.tr("Cancel")
+                gradient: UbuntuColors.greyGradient
+                onClicked: {
+                    PopupUtils.close(dialogue)
+                }
+            }
+            Button {
+                text: i18n.tr("Save")
+                color: UbuntuColors.orange
+                onClicked: PopupUtils.close(dialogue)
+            }
+        }
+    }
+
+    // Toolbar
     tools: ToolbarItems {
 
         ToolbarButton {
+            id: newButton
             text: i18n.tr("New")
             iconSource: icon("add")
 
             onTriggered: {
                 memoryEditPage.clear()
                 stack.push(memoryEditPage)
+            }
+        }
+
+        ToolbarButton {
+            id: optionsButton
+            text: i18n.tr("Options")
+            iconSource: icon("settings")
+
+            onTriggered: {
+                PopupUtils.open(popoverComponent, optionsButton)
             }
         }
 
@@ -157,6 +268,48 @@ Page {
                 return
             }
         }
+    }
+
+    // Settings
+    property string password
+
+    U1db.Database {
+        id: settingsDatabase
+        path: "memories"
+    }
+
+    U1db.Document {
+        id: settings
+
+        database: settingsDatabase
+        docId: 'settings'
+        create: true
+
+        defaults: {
+            password: ""
+        }
+    }
+
+    function getSetting(name) {
+        var tempContents = {};
+        tempContents = settings.contents
+        return tempContents.hasOwnProperty(name) ? tempContents[name] : settings.defaults[name]
+    }
+
+    function saveSetting(name, value) {
+        if (getSetting(name) !== value) {
+            print(name, "=>", value)
+            var tempContents = {}
+            tempContents = settings.contents
+            tempContents[name] = value
+            settings.contents = tempContents
+
+            reloadSettings()
+        }
+    }
+
+    function reloadSettings() {
+        password = getSetting("password")
     }
 
     // Search and filter functions

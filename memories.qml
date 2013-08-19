@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import "components"
-
+import "components/MD5.js" as Crypto
 MainView {
     id: mainView
 
@@ -29,6 +29,7 @@ MainView {
     PageStack {
         id: stack
         Component.onCompleted: {
+            homePage.reloadSettings()
             push(homePage)
             homePage.loadMemories()
         }

@@ -6,19 +6,22 @@ MouseArea {
     id: photoItem
     width: units.gu(8)
     height: units.gu(8)
-    hoverEnabled: true
 
+    property real iconSize: units.gu(8)
     property alias source : image.source
     property bool editing: true
 
     UbuntuShape {
+        height: iconSize
+        width: iconSize
+
         MouseArea {
             id: closeItem
             objectName: "closeItem"
             width: units.gu(3)
             height: units.gu(3)
 
-            visible: false
+            visible: editing
 
             Image {
                 width: parent.width
@@ -39,10 +42,6 @@ MouseArea {
 
     onClicked: {
         // Nothing for now
-    }
-
-    onHoveredChanged: {
-        closeItem.visible = photoItem.containsMouse && editing
     }
 
     Component {
