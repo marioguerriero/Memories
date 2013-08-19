@@ -30,6 +30,8 @@ QtObject {
     property string weather;
     property string photos; // A list of photos divided by a '||'
 
+    property bool visible: true
+
     function getTags() {
         var list = []
 

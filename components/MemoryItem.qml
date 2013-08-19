@@ -12,11 +12,27 @@ ListItem.MultiValue {
     }
 
     property Memory memory;
+    property bool memoryVisible: memory.visible
 
     onMemoryChanged: {
         if(!memory)
             return
         item.text = memory.title
         values = [ memory.location, memory.date, memory.tags ]
+    }
+
+    onMemoryVisibleChanged: {
+        if(memoryVisible)
+            show()
+        else
+            hide()
+    }
+
+    function show() {
+        visible = true
+    }
+
+    function hide() {
+        visible = false
     }
 }

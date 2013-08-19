@@ -68,6 +68,10 @@ Page {
             model: memoryModel
             delegate: MemoryItem {
                 memory: mem
+                height: {
+                    if(!memory.visible)
+                        return 0
+                }
             }
         }
         Scrollbar {
@@ -156,19 +160,24 @@ Page {
     }
 
     // Search and filter functions
-    function filter(filter) {
-        var memories = []
+    function clearFilter() {
+        for(var i = 0; i < memoryModel.count; i++) {
+            var memory = memoryModel.get(i).mem
+            memory.visible = true
+        }
+    }
+
+    function filterByTag(filter) {
+        clearFilter()
         for(var i = 0; i < memoryModel.count; i++) {
             var memory = memoryModel.get(i).mem
             var tags = memory.getTags()
+            memory.visible = false
             for(var n = 0; n < tags.length; n++) {
-                var tag = tags[n].replace(" ", "")
-                //tags[n].replace(" ", "")
-                if(tag == filter)
-                    memories.push(memory)
+                if(tags[n] == filter)
+                    memory.visible = true
             }
         }
-        return memories
     }
 
     function getTags() {

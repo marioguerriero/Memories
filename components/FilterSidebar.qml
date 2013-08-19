@@ -24,7 +24,10 @@ Sidebar {
             Standard {
                 text: i18n.tr("All")
                 selected: (currentCategory == nullCategory)
-                onClicked: currentCategory = nullCategory
+                onClicked: {
+                    currentCategory = nullCategory
+                    clearFilter()
+                }
             }
 
             Header {
@@ -50,8 +53,8 @@ Sidebar {
                 return count
             }
             onClicked: {
-                currentCategory = text
-                filter(text)
+                currentCategory = tag
+                filterByTag(tag)
             }
         }
     }
