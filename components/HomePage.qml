@@ -52,6 +52,7 @@ Page {
         onRowsInserted: {
             label.visible = false
             sidebar.appendTags(getTags())
+            gridLayout.addMemories(getMemories())
         }
         onRowsRemoved: {
             label.visible = (memoryModel.count == 0)
@@ -83,6 +84,11 @@ Page {
         Scrollbar {
             flickableItem: list
             align: Qt.AlignTrailing
+        }
+        GridLayout {
+            id: gridLayout
+            anchors.fill: parent
+            visible: false
         }
     }
 
@@ -325,7 +331,7 @@ Page {
     }
 
     function reloadSettings() {
-        password = getSetting("password")
+        password = getSetting("password") ? true : nullPassword
     }
 
     // Search and filter functions
@@ -360,5 +366,14 @@ Page {
             }
         }
         return tags
+    }
+
+    function getMemories() {
+        var memories = []
+        for(var i = 0; i < memoryModel.count; i++) {
+            var memory = memoryModel.get(i).mem
+            memories.push(memory)
+        }
+        return memories
     }
 }
