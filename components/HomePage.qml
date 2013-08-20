@@ -88,6 +88,7 @@ Page {
         GridLayout {
             id: gridLayout
             anchors.fill: parent
+            visible: false
         }
     }
 
@@ -330,7 +331,8 @@ Page {
     }
 
     function reloadSettings() {
-        password = getSetting("password") ? true : nullPassword
+        var tmp = getSetting("password")
+        password =  tmp ? tmp : nullPassword
     }
 
     // Search and filter functions
