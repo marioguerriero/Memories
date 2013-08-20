@@ -88,7 +88,6 @@ Page {
         GridLayout {
             id: gridLayout
             anchors.fill: parent
-            visible: false
         }
     }
 
