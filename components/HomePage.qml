@@ -3,6 +3,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Popups 0.1
 import U1db 1.0 as U1db
+import "./MD5.js" as Crypto
 
 Page {
     id: home
@@ -106,7 +107,7 @@ Page {
                 text: i18n.tr("Save")
                 color: UbuntuColors.orange
                 onClicked: {
-                    saveSetting("password", passwordField.text)
+                    saveSetting("password", Crypto.MD5(passwordField.text))
                     PopupUtils.close(dialogue)
                 }
             }
@@ -186,7 +187,7 @@ Page {
                 text: i18n.tr("Save")
                 color: UbuntuColors.orange
                 onClicked: {
-                    saveSetting("password", passwordField.text)
+                    saveSetting("password", Crypto.MD5(passwordField.text))
                     PopupUtils.close(dialogue)
                 }
             }
