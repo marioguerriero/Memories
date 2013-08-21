@@ -28,6 +28,7 @@ To run, simply open in Qt Creator/Ubuntu SDK, and click the run button!
  * Markdown/HTML instead of simple text for memory content
  * Associate photos with your memories
  * Camera support
+ * Alternative view types for the home page
  * Localization support
  * Social Networks sharing
  * Protect your memories with a password
