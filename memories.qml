@@ -3,6 +3,7 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import "components"
 import "components/MD5.js" as Crypto
+
 MainView {
     id: mainView
 
@@ -18,7 +19,7 @@ MainView {
     */
     automaticOrientation: true
     
-    width: units.gu(100)
+    width: units.gu(110)
     height: units.gu(75)
 
     property bool wideAspect: width > units.gu(80)

@@ -70,7 +70,7 @@ Page {
         ListView {
             id: list
             anchors.fill: parent
-            visible: !locked
+            visible: !locked && !showGrid
             clip: true
             model: memoryModel
             delegate: MemoryItem {
@@ -88,7 +88,7 @@ Page {
         GridLayout {
             id: gridLayout
             anchors.fill: parent
-            visible: false
+            visible: showGrid
         }
     }
 
@@ -159,6 +159,32 @@ Page {
                                 PopupUtils.open(passwordEditDialog)
                             else
                                 saveSetting("password", nullPassword)
+                        }
+                    }
+
+                    showDivider: false
+                }
+
+                Standard {
+                    //FIXME: Hack because of Suru theme!
+                    Label {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            left: parent.left
+                            margins: units.gu(2)
+                        }
+
+                        text: i18n.tr("Grid Layout")
+                        fontSize: "medium"
+                        color: Theme.palette.normal.overlayText
+                    }
+
+                    control: CheckBox {
+                        id: showGridCheckbox
+                        checked: showGrid
+                        onClicked: {
+                            PopupUtils.close(popover)
+                            saveSetting("showGrid", checked)
                         }
                     }
 
@@ -295,6 +321,8 @@ Page {
     property string password
     property string nullPassword: ""
 
+    property bool showGrid: false
+
     U1db.Database {
         id: settingsDatabase
         path: "memories"
@@ -333,6 +361,8 @@ Page {
     function reloadSettings() {
         var tmp = getSetting("password")
         password =  tmp ? tmp : nullPassword
+
+        showGrid = getSetting("showGrid") ? "undefined" : false
     }
 
     // Search and filter functions

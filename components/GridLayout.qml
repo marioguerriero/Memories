@@ -8,15 +8,17 @@ Flickable {
     anchors {
         left: parent.left
         right: parent.right
+        topMargin: units.gu(2)
         leftMargin: units.gu(2)
         rightMargin: units.gu(2)
     }
+
     clip: true
 
     height: memoryGrid.height
 
     contentWidth: memoryGrid.width
-    interactive: contentWidth > width
+    //interactive: contentWidth > width
 
     flickableDirection: Flickable.VerticalFlick
 
@@ -28,86 +30,70 @@ Flickable {
 
     Grid {
         id: memoryGrid
-        spacing: units.gu(2)
-        columns: (flickable.width - memories.length * spacing) / (itemSize)
+        spacing: units.gu(6)
+        columns: calculateColumns()
+        //columns: (flickable.width - memories.length * spacing - (flickable.anchors.rightMargin + flickable.anchors.rightMargin)) / (itemSize)
+
+        // Used to get columns value according to the window width
+        function calculateColumns() {
+            var tmp = (flickable.width - memories.length * spacing - (flickable.anchors.rightMargin + flickable.anchors.rightMargin))
+            return tmp / (itemSize)
+        }
 
         Repeater {
             id: repeater
             model: [ ]
 
             delegate: UbuntuShape {
+                id: shape
                 height: itemSize
                 width: itemSize
 
-                property int idx;
+                property int idx
                 property Memory memory: modelData
 
-                /*image: Image {
-                    source: memory.getPhotoList()[1]
-                    fillMode: Image.PreserveAspectCrop
-                }*/
+                color: UbuntuColors.orange
 
                 CrossFadeImage {
                     id: crossFade
                     anchors.fill: parent
-                    anchors.bottomMargin: parent.height / 2
-                    source: memory.getPhotoList()[0]
+                    //anchors.topMargin: units.gu(2)
+                    //anchors.bottomMargin: units.gu(2)
+                    source: memory.getPhotoList()[0] ? memory.getPhotoList()[0] : ""
                     fadeDuration: 1000
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: print("")//parent.source = "http://design.ubuntu.com/wp-content/uploads/canonical-logo1.png"
+                        onClicked: parent.source = "http://design.ubuntu.com/wp-content/uploads/canonical-logo1.png"
                     }
                 }
 
-                Rectangle {
-                    anchors.fill: parent
-                    anchors.top: crossFade.bottom
-                    anchors.topMargin: parent.height / 2
-                    radius: units.gu(1)
-                    clip: true
-                    gradient: UbuntuColors.orangeGradient
                 Column {
-                    //anchors.bottom: image.bottom
-
-                    //anchors.topMargin: parent.bottom
+                    anchors.top: shape.bottom
                     anchors.leftMargin: units.gu(1)
                     anchors.rightMargin: units.gu(1)
-
-                    spacing: units.gu(1)
                     clip: true
 
                     Label {
-                        text: memory.date
+                        text: truncate(memory.title, itemSize * 1.5) // * 2.5 because of the large size
+                        fontSize: "large"
                     }
 
                     Label {
-                        text: memory.location
+                        text: truncate(memory.location + ", " + memory.date, itemSize * 2.9) // * 2.5 because of the small size
+                        fontSize: "small"
                     }
+                }
 
-                    Label {
-                        text: memory.title
-                    }
-                }
-                }
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: {
-                        idx = index;
-                        memoryGrid.showMemory(idx);
-                    }
+                    onClicked: parent.showMemory(memory)
                 }
 
-                UbuntuNumberAnimation on opacity { from: 0; to: 100; }
-
+                function showMemory(memory) {
+                    memoryPage.memory = memory
+                    stack.push(memoryPage);
+                }
             }
-        }
-
-        function showMemory(index) {
-            console.log("Not implemented feature.");
-        }
-
-        function selectMemory() {
-            PopupUtils.open(Qt.resolvedUrl("./PhotoChooser.qml"), memoryGrid);
         }
 
         function addMemories(list) {
@@ -129,9 +115,19 @@ Flickable {
 
     onMemoriesChanged: {
         repeater.model = memories
+        memoryGrid.columns = (flickable.width - memories.length * spacing - (flickable.anchors.rightMargin + flickable.anchors.rightMargin)) / (itemSize)
     }
 
     function addMemories(list) {
         memoryGrid.addMemories(list)
     }
+
+    function truncate(text, width) {
+        if (text.length > width / units.gu(2)) {
+            text = text.substring(0, width / units.gu(2.3));
+            text += "...";
+        }
+        return text
+    }
+
 }
