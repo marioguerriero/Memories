@@ -11,7 +11,7 @@ Page {
     visible: false
 
     // Used to get the locked status while there is a password
-    property bool locked: true
+    property bool locked: (password != nullPassword)
 
     Label {
         id: label
@@ -19,6 +19,7 @@ Page {
         anchors.centerIn: parent
         fontSize: "large"
         text: i18n.tr("No memories!")
+        visible: (memoryModel.count == 0)
     }
 
     // Filter sidebar
@@ -50,12 +51,10 @@ Page {
     ListModel {
         id: memoryModel
         onRowsInserted: {
-            label.visible = false
             sidebar.appendTags(getTags())
             gridLayout.addMemories(getMemories())
         }
         onRowsRemoved: {
-            label.visible = (memoryModel.count == 0)
             sidebar.appendTags(getTags())
             gridLayout.addMemories(getMemories())
         }

@@ -27,10 +27,11 @@ Flickable {
     property int itemSize: units.gu(18)
 
     property int currentIndex: 0
+
     onWidthChanged: {
-        print("")
         memoryGrid.columns = memoryGrid.calculateColumns()
     }
+
     Grid {
         id: memoryGrid
         spacing: units.gu(6)

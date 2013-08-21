@@ -3,3 +3,9 @@ memories
 memoriesdb
 manifest.json
 memories.qmlproject.user
+
+code
+ubuntu-ui-extras/*
+units/*
+info/*
+ubuntu-ui-extras
