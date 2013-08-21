@@ -158,14 +158,6 @@ Flickable {
                     item.visible = false
             }
         }
-//        for(var i = 0; i < memories.length; i++) {
-//            var memory = memories[i]
-//            var tags = memory.getTags()
-//            for(var n = 0; n < tags.length; n++) {
-//                if(tags[n] == filter)
-//                    memoryGrid.removeMemory(i)
-//            }
-//        }
     }
 
 }

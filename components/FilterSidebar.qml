@@ -13,6 +13,7 @@ Sidebar {
     }
 
     property string currentCategory: nullCategory
+    property string lastCategory: ""
     property string nullCategory: "null"
 
     ListView {
@@ -26,8 +27,10 @@ Sidebar {
                 text: i18n.tr("All")
                 selected: (currentCategory == nullCategory)
                 onClicked: {
+                    lastCategory = currentCategory
                     currentCategory = nullCategory
-                    clearFilter()
+                    if(lastCategory != currentCategory)
+                        clearFilter()
                 }
             }
 
@@ -54,8 +57,10 @@ Sidebar {
                 return count
             }
             onClicked: {
+                lastCategory = currentCategory
                 currentCategory = tag
-                filterByTag(tag)
+                if(lastCategory != currentCategory)
+                    filterByTag(tag)
             }
         }
     }
