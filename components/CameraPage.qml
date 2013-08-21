@@ -7,6 +7,23 @@ Page {
     title: i18n.tr("Camera")
     visible: false
 
+    states: [
+        State {
+            when: showToolbar
+            PropertyChanges {
+                target: tools
+                locked: true
+                opened: true
+            }
+
+            PropertyChanges {
+                target: parent
+                anchors.bottomMargin: units.gu(-2)
+            }
+        }
+
+    ]
+
     Camera {
         id: camera
         anchors.fill: parent

@@ -10,6 +10,23 @@ Page {
     title: i18n.tr("Memories")
     visible: false
 
+    states: [
+        State {
+            when: showToolbar
+            PropertyChanges {
+                target: tools
+                locked: true
+                opened: true
+            }
+
+            PropertyChanges {
+                target: parent
+                anchors.bottomMargin: units.gu(-2)
+            }
+        }
+
+    ]
+
     // Used to get the locked status while there is a password
     property bool locked: (password != nullPassword)
 

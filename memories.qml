@@ -23,6 +23,7 @@ MainView {
     height: units.gu(75)
 
     property bool wideAspect: width > units.gu(80)
+    property bool showToolbar: height > units.gu(75)
 
     headerColor: "#414141"
     backgroundColor: "#696969"

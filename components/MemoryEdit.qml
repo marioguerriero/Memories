@@ -18,6 +18,23 @@ Page {
 
     visible: false
 
+    states: [
+        State {
+            when: showToolbar
+            PropertyChanges {
+                target: tools
+                locked: true
+                opened: true
+            }
+
+            PropertyChanges {
+                target: parent
+                anchors.bottomMargin: units.gu(-2)
+            }
+        }
+
+    ]
+
     // Some functions
     function clear() {
         editing = false
@@ -122,8 +139,8 @@ Page {
             enabled: false
         }
 
-        locked: true
-        opened: true
+        locked: false
+        opened: false
     }
 
     // Page content

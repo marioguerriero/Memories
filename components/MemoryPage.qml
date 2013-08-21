@@ -19,6 +19,23 @@ Page {
 
     visible: false
 
+    states: [
+        State {
+            when: showToolbar
+            PropertyChanges {
+                target: tools
+                locked: true
+                opened: true
+            }
+
+            PropertyChanges {
+                target: parent
+                anchors.bottomMargin: units.gu(-2)
+            }
+        }
+
+    ]
+
     property bool editing: false
     onParentNodeChanged: {
         editing = false
