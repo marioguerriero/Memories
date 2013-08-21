@@ -32,7 +32,6 @@ Flickable {
         id: memoryGrid
         spacing: units.gu(6)
         columns: calculateColumns()
-        //columns: (flickable.width - memories.length * spacing - (flickable.anchors.rightMargin + flickable.anchors.rightMargin)) / (itemSize)
 
         // Used to get columns value according to the window width
         function calculateColumns() {
@@ -57,13 +56,30 @@ Flickable {
                 CrossFadeImage {
                     id: crossFade
                     anchors.fill: parent
-                    //anchors.topMargin: units.gu(2)
-                    //anchors.bottomMargin: units.gu(2)
-                    source: memory.getPhotoList()[0] ? memory.getPhotoList()[0] : ""
+                    fillMode: Image.PreserveAspectCrop
+
                     fadeDuration: 1000
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: parent.source = "http://design.ubuntu.com/wp-content/uploads/canonical-logo1.png"
+                    source: parseSources()
+
+                    property var photos: photos = memory.getPhotoList()
+                    property int index: 0
+                    function parseSources() {
+                        if(photos.length == 0)
+                            return
+                        source = photos[index]
+                        if(index == photos.length - 1)
+                            index = 0
+                        else
+                            index++
+                    }
+                    // Change the source each interval
+                    Timer {
+                        interval: 2500
+                        running: true
+                        repeat: true
+                        onTriggered: {
+                            crossFade.parseSources()
+                        }
                     }
                 }
 
@@ -97,9 +113,6 @@ Flickable {
         }
 
         function addMemories(list) {
-            // Clean the list before add anything else
-            memories = []
-
             for(var n = 0; n < list.length; n++)
                 memories.push(list[n]);
             // Update the model manually, since push() doesn't trigger
@@ -115,10 +128,11 @@ Flickable {
 
     onMemoriesChanged: {
         repeater.model = memories
-        memoryGrid.columns = (flickable.width - memories.length * spacing - (flickable.anchors.rightMargin + flickable.anchors.rightMargin)) / (itemSize)
+        memoryGrid.columns = (flickable.width - memories.length * memoryGrid.spacing - (flickable.anchors.rightMargin + flickable.anchors.rightMargin)) / (itemSize)
     }
 
     function addMemories(list) {
+        memories = []
         memoryGrid.addMemories(list)
     }
 
@@ -128,6 +142,30 @@ Flickable {
             text += "...";
         }
         return text
+    }
+
+    function filterByTag(filter) {
+        for(var i = 0; i < repeater.count; i++) {
+            var item = repeater.itemAt(i)
+            var memory = item.memory
+            var tags = memory.getTags()
+            for(var n = 0; n < tags.length; n++) {
+                if(tags[n] == filter) {
+                    item.visible = true
+                    break
+                }
+                else
+                    item.visible = false
+            }
+        }
+//        for(var i = 0; i < memories.length; i++) {
+//            var memory = memories[i]
+//            var tags = memory.getTags()
+//            for(var n = 0; n < tags.length; n++) {
+//                if(tags[n] == filter)
+//                    memoryGrid.removeMemory(i)
+//            }
+//        }
     }
 
 }

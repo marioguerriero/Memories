@@ -57,6 +57,7 @@ Page {
         onRowsRemoved: {
             label.visible = (memoryModel.count == 0)
             sidebar.appendTags(getTags())
+            gridLayout.addMemories(getMemories())
         }
     }
 
@@ -371,6 +372,7 @@ Page {
             var memory = memoryModel.get(i).mem
             memory.visible = true
         }
+        gridLayout.addMemories(getMemories())
     }
 
     function filterByTag(filter) {
@@ -384,6 +386,8 @@ Page {
                     memory.visible = true
             }
         }
+        // Filter the grid layout too
+        gridLayout.filterByTag(filter)
     }
 
     function getTags() {
