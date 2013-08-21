@@ -27,7 +27,10 @@ Flickable {
     property int itemSize: units.gu(18)
 
     property int currentIndex: 0
-
+    onWidthChanged: {
+        print("")
+        memoryGrid.columns = memoryGrid.calculateColumns()
+    }
     Grid {
         id: memoryGrid
         spacing: units.gu(6)
@@ -38,6 +41,7 @@ Flickable {
             var tmp = (flickable.width - memories.length * spacing - (flickable.anchors.rightMargin + flickable.anchors.rightMargin))
             return tmp / (itemSize)
         }
+
 
         Repeater {
             id: repeater
