@@ -1,4 +1,4 @@
-Source: memories
+Source: memories-app
 Section: unknown
 Priority: extra
 Maintainer: Mario Guerriero <mario@elementaryos.org>
@@ -8,16 +8,46 @@ Homepage: https://github.com/Mefrio/Memories
 #Vcs-Git: git://git.debian.org/collab-maint/memories.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/memories.git;a=summary
 
-Package: memories
+Package: memories-app
 Architecture: all
-Depends: ${misc:Depends},qtdeclarative5-qtquick2-plugin,qtdeclarative5-u1db1.0,qtdeclarative5-ubuntu-ui-toolkit-plugin|qt-components-ubuntu,${shlibs:Depends},qmlscene
+Depends: ${misc:Depends},
+         ${shlibs:Depends},
+         qtdeclarative5-qtquick2-plugin,
+         qtdeclarative5-u1db1.0,
+         qtdeclarative5-ubuntu-ui-toolkit-plugin|qt-components-ubuntu,
+         qmlscene
 Description: Keep track of your best moments with your hands
  Memories is an Ubuntu Touch application which allows you to manage
  all your best life's moments. In includes features like:
-  * Memory tags
-  * Use Markdown/HTML instead of simple text for memory content
-  * Associate photos with your memories
-  * Localization support
-  * Weather detection in your location
-  * Sync with UbuntuOne personal cloud database
-  * Basic memory management (add, remove and edit)
+ * Adaptive layout so that the app looks good on every device
+ * Tags support to allow to filter memories
+ * Markdown/HTML instead of simple text for memory content
+ * Associate photos with your memories
+ * Camera support
+ * Localization support
+ * Social Networks sharing
+ * Protect your memories with a password
+ * Sync with UbuntuOne personal cloud database
+ * Basic memory management (add, remove and edit)
+ 
+Package: memories-app-autopilot
+Architecture: all
+Depends: ${misc:Depends},
+         memories-app (>= ${source:Version}),
+         libautopilot-qt,
+         libqt5test5,
+         ubuntu-ui-toolkit-autopilot,
+Description: Keep track of your best moments with your hands
+ Memories is an Ubuntu Touch application which allows you to manage
+ all your best life's moments. In includes features like:
+ * Adaptive layout so that the app looks good on every device
+ * Tags support to allow to filter memories
+ * Markdown/HTML instead of simple text for memory content
+ * Associate photos with your memories
+ * Camera support
+ * Localization support
+ * Social Networks sharing
+ * Protect your memories with a password
+ * Sync with UbuntuOne personal cloud database
+ * Basic memory management (add, remove and edit)
+ This package contains autopilot test for memories-app

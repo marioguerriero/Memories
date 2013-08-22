@@ -1,0 +1,14 @@
+memories.qml /usr/share/memories
+components /usr/share/memories
+components/MemoryPage.qml /usr/share/memories
+components/Memory.qml /usr/share/memories
+components/MemoryItem.qml /usr/share/memories
+components/NewMemory.qml /usr/share/memories
+components/Toolbar.qml /usr/share/memories
+resources /usr/share/memories
+resources/gh-page /usr/share/memories
+resources/gh-page/memories-9-8-13.png /usr/share/memories
+resources/images /usr/share/memories
+resources/images/location.png /usr/share/memories
+resources/images/sun.png /usr/share/memories
+memories.desktop /usr/share/applications

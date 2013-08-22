@@ -1,0 +1,6 @@
+tests /usr/share/memories
+tests/unit /usr/share/memories
+tests/unit/tst_hellocomponent.qml /usr/share/memories
+tests/autopilot /usr/share/memories
+tests/autopilot/uitests /usr/share/memories
+tests/autopilot/run /usr/share/memories
