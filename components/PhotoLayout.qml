@@ -70,7 +70,7 @@ Flickable {
                     width: units.gu(3)
                     height: units.gu(3)
 
-                    visible: editing
+                    visible: editable
 
                     Image {
                         width: parent.width

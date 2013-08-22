@@ -186,7 +186,7 @@ Page {
     // Page content
     Column {
         id: col
-        spacing: units.gu(1)
+        spacing: units.gu(2)
         anchors {
             margins: units.gu(2)
             fill: parent
@@ -201,12 +201,16 @@ Page {
 
         Label {
             id: locationLabel
+            fontSize: "large"
+            font.bold: true
         }
 
         Text {
             id: memoryArea
             anchors.right: parent.right
             anchors.left: parent.left
+            width: parent.width
+            wrapMode: Text.WordWrap
             color: "white"
             font.pointSize: units.gu(1.5)
         }
@@ -215,8 +219,7 @@ Page {
 
         Label {
             text: i18n.tr("Tags")
-
-            fontSize: "x-large"
+            fontSize: "large"
             font.bold: true
         }
 
