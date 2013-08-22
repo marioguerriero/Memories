@@ -92,10 +92,10 @@ Page {
             model: memoryModel
             delegate: MemoryItem {
                 memory: mem
-                height: {
+                /*height: {
                     if(!memory.visible)
                         return 0
-                }
+                }*/
             }
         }
         Scrollbar {

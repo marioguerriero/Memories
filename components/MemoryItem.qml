@@ -12,8 +12,6 @@ ListItem.MultiValue {
     }
 
     property Memory memory;
-    property bool memoryVisible: memory.visible
-
     onMemoryChanged: {
         if(!memory)
             return
@@ -21,6 +19,7 @@ ListItem.MultiValue {
         values = [ memory.location, memory.date, memory.tags ]
     }
 
+    /*property bool memoryVisible: memory.visible
     onMemoryVisibleChanged: {
         if(memoryVisible)
             show()
@@ -34,5 +33,5 @@ ListItem.MultiValue {
 
     function hide() {
         visible = false
-    }
+    }*/
 }

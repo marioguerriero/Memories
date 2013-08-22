@@ -122,7 +122,7 @@ Page {
                 var memory = component.createObject(toolbar,
                                                 {   "title": titleField.text,
                                                     "tags" : tagsField.text,
-                                                    "description": descriptionArea.displayText,
+                                                    "description": descriptionArea.text,
                                                     "date": dt,
                                                     "location": locationField.text,
                                                     "weather": "",
@@ -133,8 +133,9 @@ Page {
                               })
                 if(editing)
                     model.move(model.count-1, index, 1)
-                memoryEditPage.clear()
+
                 stack.push(homePage);
+                memoryEditPage.clear()
             }
             enabled: false
         }
@@ -183,7 +184,6 @@ Page {
             maximumLineCount: 5
             anchors.left: parent.left
             anchors.right: parent.right
-            textFormat: TextEdit.AutoText
         }
 
         TextField {

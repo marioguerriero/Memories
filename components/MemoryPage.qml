@@ -196,21 +196,19 @@ Page {
             id: dateLabel
             objectName: "dateLabel"
             color: UbuntuColors.orange
-            fontSize: "medium"
+            fontSize: "large"
         }
 
         Label {
             id: locationLabel
-            visible: (text != "") && !editing
         }
 
-        TextArea {
+        Text {
             id: memoryArea
             anchors.right: parent.right
             anchors.left: parent.left
-            textFormat: TextEdit.RichText
-            readOnly: !editing
-            visible: (length > 0) && (text != "") || editing
+            color: "white"
+            font.pointSize: units.gu(1.5)
         }
 
         ListItem.ThinDivider { }
@@ -218,13 +216,13 @@ Page {
         Label {
             text: i18n.tr("Tags")
 
-            fontSize: "large"
+            fontSize: "x-large"
             font.bold: true
         }
 
         Label {
             id: tags
-            visible: (text != "") && !editing
+            fontSize: "medium"
         }
 
         /*Label {
