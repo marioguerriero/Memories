@@ -34,3 +34,7 @@ To run, simply open in Qt Creator/Ubuntu SDK, and click the run button!
  * Protect your memories with a password
  * Sync with UbuntuOne personal cloud database
  * Basic memory management (add, remove and edit)
+
+# License
+
+GPLv3 - See `LICENSE` for more information.

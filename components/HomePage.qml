@@ -105,7 +105,7 @@ Page {
         GridLayout {
             id: gridLayout
             anchors.fill: parent
-            visible: showGrid
+            visible: showGrid && !locked
         }
     }
 
