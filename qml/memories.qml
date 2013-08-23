@@ -3,7 +3,6 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Memories 0.1
 import "components"
-import "components/MD5.js" as Crypto
 
 MainView {
     id: mainView

@@ -16,11 +16,14 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${Qt5Network_INCLUDE_DIRS}
     ${Qt5Quick_INCLUDE_DIRS}
+    ${Qt5PrintSupport_INCLUDE_DIRS}
 )
 
 target_link_libraries(${LIB}
+    ${Qt5Core_LIBRARIES}
     ${Qt5Network_LIBRARIES}
     ${Qt5Quick_LIBRARIES}
+    ${Qt5PrintSupport_LIBRARIES}
 )
 
 # copy qmldir file into build directory for shadow builds
@@ -43,4 +46,9 @@ add_custom_command(
     COMMAND "rm" "-f" "plugins.qmltypes" ";" "qmlplugindump" "Memories" "0.1" "${CMAKE_SOURCE_DIR}/modules" ">" "plugins.qmltypes"
     "&&" "cp" "${CMAKE_CURRENT_BINARY_DIR}/plugins.qmltypes" "${CMAKE_SOURCE_DIR}/modules/Memories/"
     WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
+)
+
+install(TARGETS ${LIB} DESTINATION ${MODULES_DIR})
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/qmldir ${CMAKE_CURRENT_BINARY_DIR}/plugins.qmltypes
+        DESTINATION ${MODULES_DIR}
 )

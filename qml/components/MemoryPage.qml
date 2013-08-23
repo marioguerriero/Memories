@@ -124,6 +124,16 @@ Page {
     tools: ToolbarItems {
 
         ToolbarButton {
+            id: exportButton
+            objectName: "exportButton"
+            text: i18n.tr("Export")
+            iconSource: icon("document-export")
+            onTriggered: {
+                memory.exportAsPdf()
+            }
+        }
+
+        ToolbarButton {
             id: shareButton
             objectName: "shareButton"
             text: i18n.tr("Share")
