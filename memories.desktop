@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Memories
-Comment=Keep track of your best moments with your hands
-Exec=/usr/bin/qmlscene $@ /usr/share/memories/memories.qml
-Icon=qmlscene
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true
