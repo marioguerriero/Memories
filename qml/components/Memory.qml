@@ -71,4 +71,11 @@ QtObject {
         var array = photos.split("||")
         return array.slice(0, array.length-1)
     }
+
+    function exportAsPdf() {
+        var fileName = utils.homePath() + "/" + name + ".pdf";
+
+        if (utils.exportAsPdf(fileName, toJSon()))
+            console.log("Saved PDF: " + fileName);
+    }
 }

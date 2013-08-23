@@ -5,9 +5,10 @@ manifest.json
 memories.qmlproject.user
 
 code
-code-units/*
-ubuntu-ui-extras/*
-units
-units/*
-info/*
+code-units/
+ubuntu-ui-extras/
+units/
+info/
 ubuntu-ui-extras
+build/
+*.user
