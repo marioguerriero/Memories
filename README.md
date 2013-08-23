@@ -16,10 +16,17 @@ To install Ubuntu UI Extras, you will need [Code Units](https://github.com/iBeli
 
 Once Code Units is installed, you can get the Ubuntu UI Extras by running
 
+    cd qml
     code install ubuntu-ui-extras
     code use ubuntu-ui-extras
 
-To run, simply open in Qt Creator/Ubuntu SDK, and click the run button!
+To build build and run the run the following commands
+    
+    mkdir build
+    cd build
+    cmake ..
+    make
+    qmlscene -I ../modules ../qml/memories.qml
 
 ### Features ###
  
