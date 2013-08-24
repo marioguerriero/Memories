@@ -180,10 +180,89 @@ Page {
             id: descriptionArea
             objectName: "descriptionArea"
             placeholderText: i18n.tr("Memory...")
-            autoSize: true
+            //autoSize: true
             maximumLineCount: 5
             anchors.left: parent.left
             anchors.right: parent.right
+        }
+
+        Rectangle {
+            id: rect
+            width: descriptionArea.width
+            color: "transparent"
+            visible: descriptionArea.highlighted
+
+            // Animate on visible changed
+            ParallelAnimation {
+                id: animateShow
+                NumberAnimation {
+                    target: rect;
+                    properties: "height";
+                    from: 0
+                    to: units.gu(4)
+                    duration: UbuntuAnimation.FastDuration
+                }
+            }
+            onVisibleChanged: animateShow.start()
+
+            Row {
+                spacing: units.gu(1)
+                Button {
+                    height: units.gu(4)
+                    width: units.gu(4)
+                    iconSource: image("bold.png")
+                    onClicked: {
+                        var open = "<b>"
+                        var close = "</b>"
+                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
+                        descriptionArea.cursorPosition -= close.length
+                    }
+                }
+                Button {
+                    height: units.gu(4)
+                    width: units.gu(4)
+                    iconSource: image("italic.png")
+                    onClicked: {
+                        var open = "<i>"
+                        var close = "</i>"
+                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
+                        descriptionArea.cursorPosition -= close.length
+                    }
+                }
+                Button {
+                    height: units.gu(4)
+                    width: units.gu(4)
+                    iconSource: image("underline.png")
+                    onClicked: {
+                        var open = "<u>"
+                        var close = "</u>"
+                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
+                        descriptionArea.cursorPosition -= close.length
+                    }
+                }
+                Button {
+                    height: units.gu(4)
+                    width: units.gu(4)
+                    iconSource: image("substring.png")
+                    onClicked: {
+                        var open = "<sub>"
+                        var close = "</sub>"
+                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
+                        descriptionArea.cursorPosition -= close.length
+                    }
+                }
+                Button {
+                    height: units.gu(4)
+                    width: units.gu(4)
+                    iconSource: image("supstring.png")
+                    onClicked: {
+                        var open = "<sup>"
+                        var close = "</sup>"
+                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
+                        descriptionArea.cursorPosition -= close.length
+                    }
+                }
+            }
         }
 
         TextField {
