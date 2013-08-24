@@ -32,7 +32,7 @@ To build build and run the run the following commands
  
  * Adaptive layout so that the app looks good on every device
  * Tags support to allow to filter memories
- * Markdown/HTML instead of simple text for memory content
+ * HTML instead of simple text for memory content
  * Associate photos with your memories
  * Camera support
  * Alternative view types for the home page
