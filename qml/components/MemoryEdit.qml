@@ -189,6 +189,7 @@ Page {
         Rectangle {
             id: rect
             width: descriptionArea.width
+            height: 0
             color: "transparent"
             visible: descriptionArea.highlighted
 
@@ -208,7 +209,7 @@ Page {
             Row {
                 spacing: units.gu(1)
                 Button {
-                    height: units.gu(4)
+                    height: parent.height
                     width: units.gu(4)
                     iconSource: image("bold.png")
                     onClicked: {

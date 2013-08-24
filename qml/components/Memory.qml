@@ -74,9 +74,8 @@ QtObject {
 
     function exportAsPdf() {
         var fileName = utils.homePath() + "/" + title + ".pdf";
-        print(fileName)
-        print(toJSON())
+
         if (utils.exportAsPdf(fileName, toJSON()))
-            console.log("Saved PDF: " + fileName);
+            print("Saved PDF: " + fileName);
     }
 }

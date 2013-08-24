@@ -12,3 +12,6 @@ info/
 ubuntu-ui-extras
 build/
 *.user
+
+modules/Memories/libMemoriesPlugin.so
+modules/Memories/plugins.qmltypes

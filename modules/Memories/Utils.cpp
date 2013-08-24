@@ -104,7 +104,7 @@ bool Utils::exportAsPdf(const QString &fileName, const QJsonObject &contents) {
 
     QJsonArray photos = contents["photos"].toArray();
     for (int i = 0; i < photos.count(); i++)
-        stream << QString("<img src='%1' height=150 width=150/>").arg(photos[i].toString());
+        stream << QString("<img src='%1' height=125 width=125>").arg(photos[i].toString());
 
     doc.setHtml(html);
 
