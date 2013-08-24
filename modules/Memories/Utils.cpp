@@ -93,24 +93,18 @@ bool Utils::exportAsPdf(const QString &fileName, const QJsonObject &contents) {
     QTextStream stream(&html);
 
     stream << QString("<h1>%1</h1>").arg(contents["title"].toString());
-    stream << QString(tr("<h2>Ingredients</h2>"));
+    stream << QString("<h2>%1</h2>").arg(contents["date"].toString());
+    stream << QString("<h3>%1</h3>").arg(contents["location"].toString());
 
-    /*stream << "<ul>";
-    QJsonArray ingredients = contents["tags"].toArray();
-    for (int i = 0; i < ingredients.count(); i++) {
-        QJsonObject ingredient = ingredients[i].toObject();
-        stream << QString("<li>%1 %2 %3</li>").arg(ingredient["quantity"].toDouble())
-                .arg(ingredient["type"].toString(), ingredient["name"].toString());
-    }
-    stream << "</ul>";
+    stream << QString("<hr>");
 
-    stream << QString(tr("<h2>Directions</h2>"));
-    stream << QString("<p>%1</p>").arg(contents["directions"].toString());
+    stream << QString("%1").arg(contents["description"].toString());
 
-    stream << QString(tr("<h2>Photos</h2><br />"));
+    stream << QString("<br><br><br><br>");
+
     QJsonArray photos = contents["photos"].toArray();
     for (int i = 0; i < photos.count(); i++)
-        stream << QString("<img src='%1' />").arg(photos[i].toString());*/
+        stream << QString("<img src='%1' height=150 width=150/>").arg(photos[i].toString());
 
     doc.setHtml(html);
 

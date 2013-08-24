@@ -66,7 +66,7 @@ Flickable {
                     fadeDuration: 1000
                     source: parseSources()
 
-                    property var photos: photos = memory.getPhotoList()
+                    property var photos: photos = memory.photos
                     property int index: 0
                     function parseSources() {
                         if(photos.length == 0)

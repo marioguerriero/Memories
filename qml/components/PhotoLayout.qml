@@ -75,8 +75,10 @@ Flickable {
                     Image {
                         width: parent.width
                         height: parent.height
-                        source: image("close_badge.png")
+                        anchors.fill: parent
+                        source: "../../resources/images/close_badge.png"
                     }
+
                     onClicked: {
                         photos.splice(photo.idx, 1);
                         repeater.model = photos

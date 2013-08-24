@@ -42,6 +42,6 @@ To build build and run the run the following commands
  * Sync with UbuntuOne personal cloud database
  * Basic memory management (add, remove and edit)
 
-# License
+### License ###
 
 GPLv3 - See `LICENSE` for more information.

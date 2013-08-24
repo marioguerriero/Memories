@@ -266,7 +266,7 @@ Page {
         tags.text = memory.tags
         locationLabel.text = memory.location
         //weather.text = memory.weather
-        photoLayout.photos = memory.getPhotoList()
+        photoLayout.photos = memory.photos
     }
 
 }

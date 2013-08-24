@@ -28,7 +28,7 @@ QtObject {
     property string date;
     property string location;
     property string weather;
-    property string photos; // A list of photos divided by a '||'
+    property var photos: []
 
     property bool visible: true
 

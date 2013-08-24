@@ -61,7 +61,7 @@ Page {
         tagsField.text = memory.tags
         locationField.text = memory.location
         //weatherField.text = memory.weather
-        photoLayout.photos = memory.getPhotoList()
+        photoLayout.photos = memory.photos
     }
 
     function addPhoto(path) {
@@ -112,12 +112,12 @@ Page {
                     dt = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
 
                 // Photos
-                var photos = ""
+                /*var photos = ""
                 for(var i = 0; i < photoLayout.photos.length; i++) {
                     var photo_path = photoLayout.photos[i]
                     if(photo_path)
                         photos += photo_path + "||"
-                }
+                }*/
 
                 var memory = component.createObject(toolbar,
                                                 {   "title": titleField.text,
@@ -126,7 +126,7 @@ Page {
                                                     "date": dt,
                                                     "location": locationField.text,
                                                     "weather": "",
-                                                    "photos": photos
+                                                    "photos": photoLayout.photos
                                                 })
                 model.append ({
                                   "mem": memory
