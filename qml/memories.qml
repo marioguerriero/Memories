@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.HUD 1.0 as HUD
 import Memories 0.1
 import "components"
 
@@ -28,6 +29,38 @@ MainView {
     headerColor: "#414141"
     backgroundColor: "#696969"
     footerColor: "#929292"
+
+    // HUD
+    HUD.HUD {
+        applicationIdentifier: "memories"
+        HUD.Context {
+            HUD.Action {
+                label: i18n.tr("Quit")
+                keywords: i18n.tr("Quit;Exit")
+                onTriggered: Qt.quit()
+            }
+            HUD.Action {
+                label: i18n.tr("New Memory")
+                keywords: i18n.tr("New;Add")
+                onTriggered : newMemory()
+            }
+            HUD.Action {
+                label: i18n.tr("Grid Layout")
+                keywords: i18n.tr("Grid")
+                onTriggered : homePage.saveSetting("showGrid", true)
+            }
+            HUD.Action {
+                label: i18n.tr("List Layout")
+                keywords: i18n.tr("List")
+                onTriggered : homePage.saveSetting("showGrid", false)
+            }
+            HUD.Action {
+                label: i18n.tr("Set a Password")
+                keywords: i18n.tr("Password")
+                onTriggered : homePage.editPassword()
+            }
+        }
+    }
 
     PageStack {
         id: stack
@@ -78,6 +111,11 @@ MainView {
     }
 
     // Helper functions
+    function newMemory() {
+        memoryEditPage.clear()
+        stack.push(memoryEditPage)
+    }
+
     function icon(name) {
         return "/usr/share/icons/ubuntu-mobile/actions/scalable/" + name + ".svg"
     }

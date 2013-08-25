@@ -251,10 +251,7 @@ Page {
             text: i18n.tr("New")
             iconSource: icon("add")
 
-            onTriggered: {
-                memoryEditPage.clear()
-                stack.push(memoryEditPage)
-            }
+            onTriggered: newMemory()
         }
 
         ToolbarButton {
@@ -426,5 +423,10 @@ Page {
             memories.push(memory)
         }
         return memories
+    }
+
+    // Utils functions
+    function editPassword() {
+        PopupUtils.open(passwordEditDialog)
     }
 }
