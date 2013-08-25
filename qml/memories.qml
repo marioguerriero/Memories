@@ -12,13 +12,13 @@ MainView {
     objectName: "mainView"
     
     // Note! applicationName needs to match the .desktop filename
-    applicationName: "Memories"
-    
+    applicationName: "memories"
+
     /* 
      This property enables the application to change orientation 
      when the device is rotated. The default is false.
     */
-    automaticOrientation: true
+    //automaticOrientation: true
     
     width: units.gu(110)
     height: units.gu(75)
@@ -32,7 +32,7 @@ MainView {
 
     // HUD
     HUD.HUD {
-        applicationIdentifier: "memories"
+        applicationIdentifier: applicationName
         HUD.Context {
             HUD.Action {
                 label: i18n.tr("Quit")

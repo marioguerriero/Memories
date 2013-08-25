@@ -24,7 +24,6 @@ Page {
                 anchors.bottomMargin: units.gu(-2)
             }
         }
-
     ]
 
     // Used to get the locked status while there is a password

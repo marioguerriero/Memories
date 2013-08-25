@@ -127,7 +127,7 @@ Page {
             id: exportButton
             objectName: "exportButton"
             text: i18n.tr("Export")
-            iconSource: icon("document-export")
+            iconSource: image("export-document.png")
             onTriggered: {
                 memory.exportAsPdf()
             }
