@@ -124,6 +124,15 @@ Page {
     tools: ToolbarItems {
 
         ToolbarButton {
+            text: i18n.tr("Favorite")
+            iconSource: memory.favorite ? icon("favorite-selected") : icon("favorite-unselected")
+
+            onTriggered: {
+                memory.favorite = !memory.favorite;
+            }
+        }
+
+        ToolbarButton {
             id: exportButton
             objectName: "exportButton"
             text: i18n.tr("Export")

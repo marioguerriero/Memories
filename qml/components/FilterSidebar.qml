@@ -15,6 +15,7 @@ Sidebar {
     property string currentCategory: nullCategory
     property string lastCategory: ""
     property string nullCategory: "null"
+    property string favoritesCategory: "Favorites"
 
     ListView {
         id: listView
@@ -31,6 +32,29 @@ Sidebar {
                     currentCategory = nullCategory
                     if(lastCategory != currentCategory)
                         clearFilter()
+                }
+            }
+
+            SingleValue {
+                text: i18n.tr("Favorites")
+                selected: (currentCategory == favoritesCategory)
+                value: {
+                    var count = 0
+
+                    for(var i = 0; i < memoryModel.count; i++) {
+                        var memory = memoryModel.get(i).mem
+                        if(memory.favorite)
+                                count++
+                    }
+
+                    return count
+                }
+                visible: value > 0
+                onClicked: {
+                    lastCategory = currentCategory
+                    currentCategory = favoritesCategory
+                    if(lastCategory != currentCategory)
+                        filterFavorites()
                 }
             }
 

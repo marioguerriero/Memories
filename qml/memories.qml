@@ -10,16 +10,16 @@ MainView {
 
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
-    
+
     // Note! applicationName needs to match the .desktop filename
     applicationName: "memories"
 
-    /* 
-     This property enables the application to change orientation 
+    /*
+     This property enables the application to change orientation
      when the device is rotated. The default is false.
     */
     //automaticOrientation: true
-    
+
     width: units.gu(110)
     height: units.gu(75)
 

@@ -165,4 +165,12 @@ Flickable {
         }
     }
 
+    function filterFavorites() {
+        for(var i = 0; i < repeater.count; i++) {
+            var item = repeater.itemAt(i)
+            var memory = item.memory
+            item.visible = memory.favorite
+        }
+    }
+
 }

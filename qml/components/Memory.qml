@@ -14,7 +14,8 @@ QtObject {
             date: date,
             location: location,
             weather: weather,
-            photos: photos
+            photos: photos,
+            favorite: favorite
         }
     }
 
@@ -29,6 +30,7 @@ QtObject {
     property string location;
     property string weather;
     property var photos: []
+    property bool favorite
 
     property bool visible: true
 

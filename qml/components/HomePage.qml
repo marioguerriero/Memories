@@ -402,6 +402,16 @@ Page {
         gridLayout.filterByTag(filter)
     }
 
+    function filterFavorites() {
+        clearFilter()
+        for(var i = 0; i < memoryModel.count; i++) {
+            var memory = memoryModel.get(i).mem
+            memory.visible = memory.favorite
+        }
+        // Filter the grid layout too
+        gridLayout.filterFavorites()
+    }
+
     function getTags() {
         var tags = []
         for(var i = 0; i < memoryModel.count; i++) {
