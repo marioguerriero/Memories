@@ -10,17 +10,8 @@ Keep track of your best moments with your hands
 
  * Ubuntu SDK
  * U1db - qtdeclarative5-u1db1.0
- * Ubuntu UI Extras (see below)
 
-To install Ubuntu UI Extras, you will need [Code Units](https://github.com/iBeliever/code-units), a small utility to download bits of code.
-
-Once Code Units is installed, you can get the Ubuntu UI Extras by running
-
-    cd qml
-    code install ubuntu-ui-extras
-    code use ubuntu-ui-extras
-
-To build build and run the run the following commands
+To build build and test the run the following commands
     
     mkdir build
     cd build

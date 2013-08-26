@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtTest 1.0
 import Ubuntu.Components 0.1
-import "../../components"
+import "../../qml/components"
 
 // See more details @ http://qt-project.org/doc/qt-5.0/qtquick/qml-testcase.html
 
@@ -10,7 +10,7 @@ import "../../components"
 
 Item {
     // The objects
-    HelloComponent {
+    /*HelloComponent {
         id: objectUnderTest
     }
     
@@ -45,5 +45,5 @@ Item {
             
             compare(expected,objectUnderTest.text,"expected did not equal result");
         }
-    }
+    }*/
 }

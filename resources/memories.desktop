@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=Memories
 Comment=Keep track of your best moments with your hands
-Exec=/usr/bin/qmlscene -I /usr/share/memories/modules /usr/share/memories/qml/memories.qml
+Exec=export APP_ID=memories && /usr/bin/qmlscene -I /usr/share/memories/modules /usr/share/memories/qml/memories.qml
 Icon=qmlscene
 Terminal=false
 Type=Application
