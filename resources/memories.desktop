@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Memories
-Comment=Keep track of your best moments with your hands
-Exec=export APP_ID=memories && /usr/bin/qmlscene -I /usr/share/memories/modules /usr/share/memories/qml/memories.qml
-Icon=/usr/share/memories/resources/icons/Memories.svg
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true
