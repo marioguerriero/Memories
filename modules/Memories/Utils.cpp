@@ -46,8 +46,7 @@ QString Utils::homePath() const {
 }
 
 QString Utils::imagePath() const {
-    QString home = Utils::homePath();
-    return home + "/" + QStandardPaths::displayName(QStandardPaths::PicturesLocation);
+    return QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).at(0);
 }
 
 bool Utils::fileExists(const QString& path) const {

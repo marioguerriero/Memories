@@ -189,7 +189,6 @@ Page {
                         checked: (password != "")
                         onClicked: {
                             PopupUtils.close(popover)
-                            print(checked)
                             if(checked)
                                 PopupUtils.open(passwordEditDialog)
                             else
@@ -396,7 +395,6 @@ Page {
             var memory = memoryModel.get(i).mem
             var tags = memory.getTags()
             memory.visible = false
-            print(memory.visible)
             for(var n = 0; n < tags.length; n++) {
                 if(tags[n] == filter)
                     memory.visible = true
