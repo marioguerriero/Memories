@@ -20,6 +20,7 @@
 import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
+import U1db 1.0 as U1db
 import Ubuntu.HUD 1.0 as HUD
 import Memories 0.1
 import "components"
@@ -51,7 +52,7 @@ MainView {
 
     // HUD
     HUD.HUD {
-        //applicationIdentifier: applicationName
+        applicationIdentifier: applicationName
         HUD.Context {
             HUD.Action {
                 label: i18n.tr("Quit")
@@ -121,6 +122,24 @@ MainView {
                 cameraPage.stop()
             else
                 cameraPage.start()
+        }
+    }
+
+    // Memories managment
+    U1db.Database {
+        id: storage
+        path: "memoriesdb"
+    }
+
+    U1db.Document {
+        id: memoriesDatabase
+
+        database: storage
+        docId: 'memories'
+        create: true
+
+        defaults: {
+            memories: [{}]
         }
     }
 

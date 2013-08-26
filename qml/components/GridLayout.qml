@@ -27,17 +27,11 @@ Flickable {
     anchors {
         left: parent.left
         right: parent.right
-        //topMargin: units.gu(2)
-        //leftMargin: units.gu(2)
-        //rightMargin: units.gu(2)
     }
 
     clip: true
 
     height: memoryGrid.height
-
-    contentWidth: memoryGrid.width
-    //interactive: contentWidth > width
 
     flickableDirection: Flickable.VerticalFlick
 
@@ -91,7 +85,10 @@ Flickable {
                     fillMode: Image.PreserveAspectCrop
 
                     fadeDuration: 1000
-                    source: parseSources()
+                    source: {
+                        var tmp = parseSources()
+                        return tmp ? tmp : ""
+                    }
 
                     property var photos: photos = memory.photos
                     property int index: 0
@@ -127,7 +124,16 @@ Flickable {
                     }
 
                     Label {
-                        text: truncate(memory.location + ", " + memory.date, itemSize * 2.9) // * 2.5 because of the small size
+                        text: {
+                            var text = ""
+                            if(memory.location && memory.date)
+                                text = memory.location + ", " + memory.date
+                            else if(memory.location && !memory.date)
+                                text = memory.location
+                            else if(!memory.location && memory.date)
+                                text = memory.date
+                            return truncate(text, itemSize * 2.9) // * 2.5 because of the small size
+                        }
                         fontSize: "small"
                     }
                 }

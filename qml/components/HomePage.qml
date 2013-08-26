@@ -286,35 +286,19 @@ Page {
         opened: false
     }
 
-    // Memories managment
-    U1db.Database {
-        id: storage
-        path: "memoriesdb"
-    }
 
-    U1db.Document {
-        id: memoriesDatabase
-
-        database: storage
-        docId: 'memories'
-        create: true
-
-        defaults: {
-            memories: [{}]
-        }
-    }
 
     function saveMemories() {
-        print("Saving Memories...")
+        print("Saving...")
 
         var memories = []
 
-        for(var i = 0; i < memoryModel.count; i++) {
+        for (var i = 0; i < memoryModel.count; i++) {
             var memory = memoryModel.get(i).mem
             memories.push(memory.toJSON())
         }
 
-        var tempContents = {}
+        var tempContents = []
         tempContents = memoriesDatabase.contents
         tempContents.memories = JSON.stringify(memories)
         memoriesDatabase.contents = tempContents
@@ -412,6 +396,7 @@ Page {
             var memory = memoryModel.get(i).mem
             var tags = memory.getTags()
             memory.visible = false
+            print(memory.visible)
             for(var n = 0; n < tags.length; n++) {
                 if(tags[n] == filter)
                     memory.visible = true

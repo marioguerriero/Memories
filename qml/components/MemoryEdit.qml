@@ -153,6 +153,8 @@ Page {
                 if(editing)
                     model.move(model.count-1, index, 1)
 
+                memory.save()
+
                 stack.push(homePage);
                 memoryEditPage.clear()
             }
