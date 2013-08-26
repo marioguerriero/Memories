@@ -328,7 +328,7 @@ Page {
                 objectName: "SearchResultList"
                 visible: false
                 clip: true
-                height: units.gu(35)
+                height: units.gu(30)
                 width: parent.width
                 anchors.top: locationField.bottom
                 model:  citiesModel

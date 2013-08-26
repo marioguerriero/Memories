@@ -150,11 +150,15 @@ Flickable {
             // Update the model manually, since push() doesn't trigger
             // the *Changed event
             repeater.model = memories
+            // Update widget's columns
+            memoryGrid.columns = memoryGrid.calculateColumns()
         }
 
         function removeMemory(index) {
             memories.splice(index, 1);
             repeater.model = memories
+            // Update widget's columns
+            memoryGrid.columns = memoryGrid.calculateColumns()
         }
     }
 
