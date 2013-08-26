@@ -15,3 +15,5 @@ build/
 
 modules/Memories/libMemoriesPlugin.so
 modules/Memories/plugins.qmltypes
+
+resources/memories.desktop

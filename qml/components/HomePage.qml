@@ -309,7 +309,7 @@ Page {
 
         var memories = []
 
-        for (var i = 0; i < memoryModel.count; i++) {
+        for(var i = 0; i < memoryModel.count; i++) {
             var memory = memoryModel.get(i).mem
             memories.push(memory.toJSON())
         }

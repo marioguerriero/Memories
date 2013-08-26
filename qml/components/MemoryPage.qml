@@ -144,7 +144,7 @@ Page {
 
         ToolbarButton {
             text: i18n.tr("Favorite")
-            iconSource: memory.favorite ? icon("favorite-selected") : icon("favorite-unselected")
+            iconSource: memory ? (memory.favorite ? icon("favorite-selected") : icon("favorite-unselected")) : ""
 
             onTriggered: {
                 memory.favorite = !memory.favorite;

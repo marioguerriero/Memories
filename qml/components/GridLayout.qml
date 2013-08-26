@@ -27,9 +27,9 @@ Flickable {
     anchors {
         left: parent.left
         right: parent.right
-        topMargin: units.gu(2)
-        leftMargin: units.gu(2)
-        rightMargin: units.gu(2)
+        //topMargin: units.gu(2)
+        //leftMargin: units.gu(2)
+        //rightMargin: units.gu(2)
     }
 
     clip: true
@@ -62,6 +62,14 @@ Flickable {
             return tmp / (itemSize)
         }
 
+        anchors {
+            left: parent.left
+            right: parent.right
+            top: parent.top
+            topMargin: units.gu(2)
+            leftMargin: units.gu(2)
+            rightMargin: units.gu(2)
+        }
 
         Repeater {
             id: repeater

@@ -51,7 +51,7 @@ MainView {
 
     // HUD
     HUD.HUD {
-        applicationIdentifier: applicationName
+        //applicationIdentifier: applicationName
         HUD.Context {
             HUD.Action {
                 label: i18n.tr("Quit")

@@ -36,21 +36,28 @@ ListItem.MultiValue {
             return
         item.text = memory.title
         values = [ memory.location, memory.date, memory.tags ]
+        // Make it a bit nicer
+        var val = []
+        for(var n = 0; n < values.length; n++)
+            if(values[n] != "")
+                val.push(values[n])
+        values = val
     }
 
-    /*property bool memoryVisible: memory.visible
+    property bool memoryVisible: memory.visible
     onMemoryVisibleChanged: {
         if(memoryVisible)
             show()
         else
             hide()
     }
-
     function show() {
+        height = units.gu(6.3)
         visible = true
     }
 
     function hide() {
+        height = 0
         visible = false
-    }*/
+    }
 }
