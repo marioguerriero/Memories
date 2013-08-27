@@ -110,7 +110,8 @@ Flickable {
         }
 
         function showPhoto(index) {
-            console.log("Not implemented feature.")
+            galleryPage.photos = photos
+            stack.push(galleryPage)
         }
 
         function selectPhoto() {

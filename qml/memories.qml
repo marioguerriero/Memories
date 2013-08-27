@@ -112,6 +112,10 @@ MainView {
             id: homePage
         }
 
+        GalleryPage {
+            id: galleryPage
+        }
+
         CameraPage {
             id: cameraPage
         }
