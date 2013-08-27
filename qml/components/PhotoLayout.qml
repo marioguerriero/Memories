@@ -77,7 +77,7 @@ Flickable {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        idx = index;
+                        print(index)
                         photoRow.showPhoto(idx);
                     }
                 }
@@ -99,7 +99,7 @@ Flickable {
                     }
 
                     onClicked: {
-                        photos.splice(photo.idx, 1);
+                        photos.splice(index, 1);
                         repeater.model = photos
                     }
                 }

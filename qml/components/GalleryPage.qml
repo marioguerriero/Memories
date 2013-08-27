@@ -78,7 +78,7 @@ Page {
                 right: parent.right
             }
 
-            height: photoRow.height
+            height: row.height
 
             anchors.fill: parent
             contentWidth: mainView.width * repeater.model.length
