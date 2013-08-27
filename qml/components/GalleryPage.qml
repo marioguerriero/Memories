@@ -24,7 +24,7 @@ Page {
     id: gallery
     visible: false
 
-    property var photos: [icon("favorite-selected"), icon("contact"), icon("camcorder")]
+    property var photos: []
     onPhotosChanged: repeater.model = photos
 
     states: [
@@ -103,5 +103,15 @@ Page {
                 }
             }
         }
+    }
+
+    function showPhoto(index) {
+        //print(index, repeater.itemAt(index).x, repeater.count)
+        //flickable.contentX = repeater.itemAt(index).x
+
+        var unit = mainView.width
+        animate.from = flickable.contentX
+        animate.to = unit * index
+        animate.start()
     }
 }

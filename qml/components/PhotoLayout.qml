@@ -77,8 +77,7 @@ Flickable {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        print(index)
-                        photoRow.showPhoto(idx);
+                        photoRow.showPhoto(index);
                     }
                 }
 
@@ -111,6 +110,7 @@ Flickable {
 
         function showPhoto(index) {
             galleryPage.photos = photos
+            galleryPage.showPhoto(index)
             stack.push(galleryPage)
         }
 
