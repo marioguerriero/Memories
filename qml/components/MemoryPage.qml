@@ -157,7 +157,8 @@ Page {
             text: i18n.tr("Export")
             iconSource: image("export-document.png")
             onTriggered: {
-                memory.exportAsPdf()
+                exported = memory.exportAsPdf()
+                PopupUtils.open(exportDialog)
             }
         }
 
@@ -194,6 +195,25 @@ Page {
 
         locked: false
         opened: false
+    }
+
+    // Export confirmation dialog
+    property bool exported: false
+    Component {
+        id: exportDialog
+
+        Dialog {
+            id: exportDialogue
+
+            title: exported ? i18n.tr("Memory exported successfully") : i18n.tr("An error occurred!")
+            text: exported ? memory.title + i18n.tr(" was exported in ") + memory.exportPath : i18n.tr("Please try again")
+
+            Button {
+                text: i18n.tr("Close")
+                color: UbuntuColors.orange
+                onClicked: PopupUtils.close(exportDialogue)
+            }
+        }
     }
 
     // Delete dialog

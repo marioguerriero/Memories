@@ -2,6 +2,7 @@
  * This file is part of Memories.
  *
  * Copyright 2013 (C) Giulio Collura <random.cpp@gmail.com>
+ *                    Mario Guerriero <mefrio.g@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +18,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#ifndef SAUCYBACON_PLUGIN_H
-#define SAUCYBACON_PLUGIN_H
+#ifndef MEMORIES_PLUGIN_H
+#define MEMORIES_PLUGIN_H
 
 #include <QtQml/QQmlEngine>
 #include <QtQml/QQmlExtensionPlugin>
@@ -52,5 +53,5 @@ class MemoriesPlugin : public QQmlExtensionPlugin
 public:
     void registerTypes(const char *uri);
 };
-#endif // SAUCYBACON_PLUGIN_H
+#endif // MEMORIES_PLUGIN_H
 

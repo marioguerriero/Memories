@@ -290,17 +290,17 @@ Page {
     function saveMemories() {
         print("Saving...")
 
-        var memories = []
+//        var memories = []
 
-        for (var i = 0; i < memoryModel.count; i++) {
-            var memory = memoryModel.get(i).mem
-            memories.push(memory.toJSON())
-        }
+//        for (var i = 0; i < memoryModel.count; i++) {
+//            var memory = memoryModel.get(i).mem
+//            memories.push(memory.toJSON())
+//        }
 
-        var tempContents = []
-        tempContents = memoriesDatabase.contents
-        tempContents.memories = JSON.stringify(memories)
-        memoriesDatabase.contents = tempContents
+//        var tempContents = []
+//        tempContents = memoriesDatabase.contents
+//        tempContents.memories = JSON.stringify(memories)
+//        memoriesDatabase.contents = tempContents
     }
 
     function loadMemories() {

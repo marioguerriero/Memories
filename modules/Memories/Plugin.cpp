@@ -2,6 +2,7 @@
  * This file is part of Memories.
  *
  * Copyright 2013 (C) Giulio Collura <random.cpp@gmail.com>
+ *                    Mario Guerriero <mefrio.g@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

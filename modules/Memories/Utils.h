@@ -2,6 +2,7 @@
  * This file is part of SaucyBacon.
  *
  * Copyright 2013 (C) Giulio Collura <random.cpp@gmail.com>
+ *                    Mario Guerriero <mefrio.g@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,22 +22,27 @@
 #define UTILS_H
 
 #include <QObject>
+#include <QStandardPaths>
 
 class Utils : public QObject
 {
     Q_OBJECT
 
+    Q_ENUMS(StandardLocation)
+
 public:
     explicit Utils(QObject *parent = 0);
     ~Utils();
 
-    Q_INVOKABLE bool createDir(const QString& dirName);
-    Q_INVOKABLE QString homePath() const;
-    Q_INVOKABLE QString imagePath() const;
-    Q_INVOKABLE bool fileExists(const QString& path) const;
+    enum StandardLocation {
+        DocumentsLocation = QStandardPaths::DocumentsLocation,
+        PicturesLocation = QStandardPaths::PicturesLocation,
+        HomeLocation = QStandardPaths::HomeLocation
+    };
 
-    Q_INVOKABLE bool write(const QString& dirName, const QString& fileName, const QString& contents);
-    Q_INVOKABLE QString read(const QString& dirName, const QString& fileName);
+    Q_INVOKABLE QString standardLocation(StandardLocation location) const;
+    Q_INVOKABLE QString homePath() const;
+    Q_INVOKABLE bool fileExists(const QString& path) const;
 
     Q_INVOKABLE bool exportAsPdf(const QString& fileName, const QJsonObject& contents);
 

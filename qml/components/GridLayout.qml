@@ -52,7 +52,7 @@ Flickable {
 
         // Used to get columns value according to the window width
         function calculateColumns() {
-            var tmp = (flickable.width - memories.length * spacing - (flickable.anchors.leftMargin + flickable.anchors.rightMargin))
+            var tmp = (flickable.width - memories.length * spacing + (anchors.leftMargin + anchors.rightMargin))
             return tmp / (itemSize)
         }
 

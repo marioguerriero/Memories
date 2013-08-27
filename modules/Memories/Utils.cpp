@@ -2,6 +2,7 @@
  * This file is part of Memories.
  *
  * Copyright 2013 (C) Giulio Collura <random.cpp@gmail.com>
+ *                    Mario Guerriero <mefrio.g@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,7 +22,6 @@
 
 #include <QtCore>
 #include <QTextDocument>
-#include <QStandardPaths>
 #include <QtPrintSupport/QPrinter>
 
 Utils::Utils(QObject *parent) :
@@ -33,57 +33,13 @@ Utils::~Utils() {
 
 }
 
-bool Utils::createDir(const QString &dirName) {
-    QDir dir(dirName);
-    if (!dir.exists())
-        dir.mkpath(".");
-
-    return dir.exists();
-}
-
-QString Utils::homePath() const {
-    return QDir::homePath();
-}
-
-QString Utils::imagePath() const {
-    return QStandardPaths::standardLocations(QStandardPaths::PicturesLocation).at(0);
+QString Utils::standardLocation(StandardLocation location) const {
+    return QStandardPaths::standardLocations((QStandardPaths::StandardLocation)location).at(0);
 }
 
 bool Utils::fileExists(const QString& path) const {
     QFile file(path);
     return file.exists();
-}
-
-bool Utils::write(const QString& dirName, const QString& fileName, const QString& contents) {
-    if (!createDir(dirName))
-        return false;
-    QString path = QDir(dirName).absoluteFilePath(fileName);
-    path = QDir::cleanPath(path);
-
-    QFile file(path);
-
-    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        QTextStream stream(&file);
-        stream << contents << endl;
-        file.close();
-        return true;
-    } else {
-        return false;
-    }
-}
-
-QString Utils::read(const QString& dirName, const QString& fileName) {
-    QString path = QDir(dirName).absoluteFilePath(fileName);
-    path = QDir::cleanPath(path);
-    QFile file(path);
-
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QString contents = QString(file.readAll());
-        return contents;
-    } else {
-        // Return an empty string if the file doesn't exists or it's impossible to read
-        return QString();
-    }
 }
 
 bool Utils::exportAsPdf(const QString &fileName, const QJsonObject &contents) {

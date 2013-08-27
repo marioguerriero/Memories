@@ -18,6 +18,7 @@
 **/
 
 import QtQuick 2.0
+import Memories 0.1
 
 // It is used only to get informations about memories
 
@@ -50,6 +51,8 @@ QtObject {
     property string weather;
     property var photos: []
     property bool favorite
+
+    property string exportPath: utils.standardLocation(Utils.DocumentsLocation)
 
     property bool visible: true
 
@@ -94,9 +97,11 @@ QtObject {
     }
 
     function exportAsPdf() {
-        var fileName = utils.homePath() + "/" + title + ".pdf";
-
-        if (utils.exportAsPdf(fileName, toJSON()))
-            print("Saved PDF: " + fileName);
+        var fileName = exportPath + "/" + title + ".pdf"
+        return utils.exportAsPdf(fileName, toJSON())
     }
+
+    function save() {
+    }
+
 }
