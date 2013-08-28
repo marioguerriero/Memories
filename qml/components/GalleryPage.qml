@@ -107,8 +107,6 @@ Page {
 
     function showPhoto(index) {
         var unit = mainView.width
-        animate.from = flickable.contentX
-        animate.to = unit * index
-        animate.start()
+        flickable.contentX =  unit * index
     }
 }
