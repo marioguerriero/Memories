@@ -106,9 +106,6 @@ Page {
     }
 
     function showPhoto(index) {
-        //print(index, repeater.itemAt(index).x, repeater.count)
-        //flickable.contentX = repeater.itemAt(index).x
-
         var unit = mainView.width
         animate.from = flickable.contentX
         animate.to = unit * index

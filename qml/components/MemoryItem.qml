@@ -25,6 +25,8 @@ ListItem.MultiValue {
     id: item
     progression: true
 
+    icon: memory.photos[0] ? memory.photos[0] : Qt.resolvedUrl("../../resources/images/empty.png")//mainView.icon("")
+
     onClicked: {
         memoryPage.memory = memory
         stack.push(memoryPage);
