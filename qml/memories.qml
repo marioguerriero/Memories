@@ -121,8 +121,6 @@ MainView {
                 var features = friends.featuresForProtocol(serviceName.toLowerCase().replace(".",""));
                 if(features.indexOf("send") > -1) {
                     console.log (serviceName + " Supports send");
-                     /* FIXME: we should get the iconName and serviceName from the accountService
-                     but I am not sure we can access that from JS */
                     accountsModel.append({
                         "displayName": displayName,
                         "id": accountId,

@@ -190,65 +190,63 @@ Page {
         interactive: contentHeight > height
 
         flickableDirection: Flickable.VerticalFlick
-    Column {
-        id: col
-        spacing: units.gu(2)
-        anchors {
-            margins: units.gu(2)
-            fill: parent
+
+        Column {
+            id: col
+            spacing: units.gu(2)
+            anchors.margins: units.gu(2)
+
+            Label {
+                id: dateLabel
+                objectName: "dateLabel"
+                color: UbuntuColors.orange
+                fontSize: "large"
+            }
+
+            Label {
+                id: locationLabel
+                fontSize: "large"
+                font.bold: true
+            }
+
+            Text {
+                id: memoryArea
+                anchors.right: parent.right
+                anchors.left: parent.left
+                width: parent.width
+                wrapMode: Text.WordWrap
+                color: "white"
+                font.pointSize: units.gu(1.5)
+            }
+
+            ListItem.ThinDivider { }
+
+            Label {
+                text: i18n.tr("Tags")
+                fontSize: "large"
+                font.bold: true
+            }
+
+            Label {
+                id: tags
+                fontSize: "medium"
+            }
+
+            /*Label {
+                id: weather
+                //visible: (text != "") && !editing
+                visible: false // for now
+            }*/
+
+            ListItem.ThinDivider { }
+
+            // Photos
+            PhotoLayout {
+                id: photoLayout
+                editable: false
+                iconSize: units.gu(12)
+            }
         }
-
-        Label {
-            id: dateLabel
-            objectName: "dateLabel"
-            color: UbuntuColors.orange
-            fontSize: "large"
-        }
-
-        Label {
-            id: locationLabel
-            fontSize: "large"
-            font.bold: true
-        }
-
-        Text {
-            id: memoryArea
-            anchors.right: parent.right
-            anchors.left: parent.left
-            width: parent.width
-            wrapMode: Text.WordWrap
-            color: "white"
-            font.pointSize: units.gu(1.5)
-        }
-
-        ListItem.ThinDivider { }
-
-        Label {
-            text: i18n.tr("Tags")
-            fontSize: "large"
-            font.bold: true
-        }
-
-        Label {
-            id: tags
-            fontSize: "medium"
-        }
-
-        /*Label {
-            id: weather
-            //visible: (text != "") && !editing
-            visible: false // for now
-        }*/
-
-        ListItem.ThinDivider { }
-
-        // Photos
-        PhotoLayout {
-            id: photoLayout
-            editable: false
-            iconSize: units.gu(12)
-        }
-    }
     }
     property Memory memory;
 
