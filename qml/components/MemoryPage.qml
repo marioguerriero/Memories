@@ -179,6 +179,7 @@ Page {
         anchors {
             left: parent.left
             right: parent.right
+            margins: units.gu(2)
             fill: parent
         }
 
@@ -194,7 +195,6 @@ Page {
         Column {
             id: col
             spacing: units.gu(2)
-            anchors.margins: units.gu(2)
 
             Label {
                 id: dateLabel

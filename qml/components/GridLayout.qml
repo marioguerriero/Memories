@@ -48,7 +48,6 @@ Flickable {
     Grid {
         id: memoryGrid
         spacing: units.gu(6)
-        //columns: calculateColumns()
 
         // Used to get columns value according to the window width
         function calculateColumns() {
