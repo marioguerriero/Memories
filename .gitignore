@@ -17,3 +17,6 @@ modules/Memories/libMemoriesPlugin.so
 modules/Memories/plugins.qmltypes
 
 resources/memories.desktop
+
+tests/autopilot/uitests/*.pyc
+tests/autopilot/uitests/main/*.pyc

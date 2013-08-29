@@ -1,6 +1,6 @@
 # -*- Mode: Python; coding: utf-8; indent-tabs-mode: nil; tab-width: 4 -*-
 
-"""Ubuntu Touch App autopilot tests."""
+"""Memories autopilot tests."""
 
 from os import remove
 import os.path

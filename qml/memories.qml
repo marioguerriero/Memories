@@ -22,6 +22,9 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import U1db 1.0 as U1db
 import Ubuntu.HUD 1.0 as HUD
+import Ubuntu.OnlineAccounts 0.1
+import Friends 0.1
+
 import Memories 0.1
 import "components"
 
@@ -82,6 +85,57 @@ MainView {
         }
     }
 
+    // Friends social network support
+    ListModel {
+        id: accountsModel
+    }
+
+    FriendsDispatcher {
+        id: friends
+        onSendComplete: {
+            if (success) {
+                console.log ("Send completed successfully");
+            } else {
+                console.log ("Send failed: " + errorMessage.split("str: str:")[1]);
+                // TODO: show some error dialog/widget
+            }
+        }
+        onUploadComplete: {
+            if (success) {
+                console.log ("Upload completed successfully");
+            } else {
+                console.log ("Upload failed: " + errorMessage);
+                // TODO: show some error dialog/widget
+            }
+        }
+    }
+
+    AccountServiceModel {
+        id: accounts
+        serviceType: "microblogging"
+        Component.onCompleted: {
+            for(var i=0; i<accounts.count; i++) {
+                var displayName = accounts.get(i, "displayName");
+                var accountId = accounts.get(i, "accountId");
+                var serviceName = accounts.get(i, "serviceName");
+                var features = friends.featuresForProtocol(serviceName.toLowerCase().replace(".",""));
+                if(features.indexOf("send") > -1) {
+                    console.log (serviceName + " Supports send");
+                     /* FIXME: we should get the iconName and serviceName from the accountService
+                     but I am not sure we can access that from JS */
+                    accountsModel.append({
+                        "displayName": displayName,
+                        "id": accountId,
+                        "provider": serviceName,
+                        "iconName": serviceName.toLowerCase().replace(".",""),
+                        "sendEnabled": true
+                    });
+                }
+            }
+        }
+    }
+
+    // Pages
     PageStack {
         id: stack
         Component.onCompleted: {

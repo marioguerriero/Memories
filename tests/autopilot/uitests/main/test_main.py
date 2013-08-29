@@ -7,7 +7,7 @@ from textwrap import dedent
 from testtools.matchers import Is, Not, Equals
 from testtools import skip
 import os
-from uitests import HelloWorldTestCase
+from uitests.main import HelloWorldTestCase
 
 
 class GenericTests(HelloWorldTestCase):

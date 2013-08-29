@@ -19,6 +19,7 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
+import Ubuntu.Components.Popups 0.1
 
 Page {
     id: gallery
@@ -43,6 +44,20 @@ Page {
         }
 
     ]
+
+    // Share Popover
+    Component {
+        id: shareComponent
+
+        SharePopover {
+            id: sharePopover
+            onSend: {
+                var photo = "file://" /* :S */ + photos[getCurrentPhoto()]
+                friends.uploadForAccountAsync(id, photo, memoryPage.memory.title)
+                PopupUtils.close(sharePopover)
+            }
+        }
+    }
 
     Rectangle {
         anchors.fill: parent
@@ -106,7 +121,24 @@ Page {
     }
 
     function showPhoto(index) {
-        var unit = mainView.width
-        flickable.contentX =  unit * index
+        flickable.contentX =  mainView.width * index
+    }
+
+    function getCurrentPhoto() {
+        return flickable.contentX / mainView.width
+    }
+
+    tools: ToolbarItems {
+        ToolbarButton {
+            id: shareButton
+            objectName: "shareButton"
+            visible: false //accountsModel.count > 0 // It seems it is not yet implemented in Friends
+            text: i18n.tr("Share")
+            iconSource: icon("share")
+
+            onTriggered: {
+                PopupUtils.open(shareComponent, shareButton)
+            }
+        }
     }
 }

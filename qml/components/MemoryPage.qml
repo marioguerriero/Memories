@@ -22,8 +22,6 @@ import Ubuntu.Components 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
 import Ubuntu.Components.Popups 0.1
 import Qt.labs.folderlistmodel 1.0
-import Ubuntu.OnlineAccounts 0.1
-import Friends 0.1
 
 Page {
     id: page
@@ -60,82 +58,15 @@ Page {
         editing = false
     }
 
-    // Social network sharing utilities
-    ListModel {
-        id: accountsModel
-    }
-
-    FriendsDispatcher {
-        id: friends
-        onSendComplete: {
-            if (success) {
-                console.log ("Send completed successfully");
-            } else {
-                console.log ("Send failed: " + errorMessage.split("str: str:")[1]);
-                // TODO: show some error dialog/widget
-            }
-        }
-    }
-
-    AccountServiceModel {
-        id: accounts
-        serviceType: "microblogging"
-        Component.onCompleted: {
-            for(var i=0; i<accounts.count; i++) {
-                var displayName = accounts.get(i, "displayName");
-                var accountId = accounts.get(i, "accountId");
-                var serviceName = accounts.get(i, "serviceName");
-                var features = friends.featuresForProtocol(serviceName.toLowerCase().replace(".",""));
-                if(features.indexOf("send") > -1) {
-                    console.log (serviceName + " Supports send");
-                     /* FIXME: we should get the iconName and serviceName from the accountService
-                     but I am not sure we can access that from JS */
-                    accountsModel.append({
-                        "displayName": displayName,
-                        "id": accountId,
-                        "provider": serviceName,
-                        "iconName": serviceName.toLowerCase().replace(".",""),
-                        "sendEnabled": true
-                    });
-                }
-            }
-        }
-    }
-
+    // Friends Popover
     Component {
-        id: popoverComponent
-
-        Popover {
-            id: popover
-
-            Repeater {
-                width: parent.width
-                height: parent.height
-                anchors.fill: parent
-                model: accountsModel
-                delegate: ListItem.MultiValue {
-                    // HACK because of there is a bug with custom colors
-                    Label {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            left: parent.left
-                            margins: units.gu(2)
-                        }
-                        text: provider
-                        fontSize: "medium"
-                        color: Theme.palette.normal.overlayText
-                    }
-                    values: [ displayName ]
-                    property real accountId: id
-                    property string serviceName: provider
-                    icon: {
-                        return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName + ".png"
-                    }
-                    onClicked: {
-                        var share_string = page.memory.getShareString()
-                        friends.sendForAccountAsync(accountId, share_string)
-                    }
-                }
+        id: shareComponent
+        SharePopover {
+            id: sharePopover
+            onSend: {
+                var share_string = page.memory.getShareString()
+                friends.sendForAccountAsync(id, share_string)
+                PopupUtils.close(sharePopover)
             }
         }
     }
@@ -170,7 +101,7 @@ Page {
             visible: accountsModel.count > 0
 
             onTriggered: {
-                PopupUtils.open(popoverComponent, shareButton)
+                PopupUtils.open(shareComponent, shareButton)
             }
         }
 
