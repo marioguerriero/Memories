@@ -173,6 +173,23 @@ Page {
     }
 
     // Page content
+    Flickable {
+        id: flickable
+
+        anchors {
+            left: parent.left
+            right: parent.right
+            fill: parent
+        }
+
+        clip: true
+
+        height: col.height
+
+        contentHeight: col.height
+        interactive: contentHeight > height
+
+        flickableDirection: Flickable.VerticalFlick
     Column {
         id: col
         spacing: units.gu(2)
@@ -232,7 +249,7 @@ Page {
             iconSize: units.gu(12)
         }
     }
-
+    }
     property Memory memory;
 
     onMemoryChanged: {
