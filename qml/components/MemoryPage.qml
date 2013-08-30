@@ -195,6 +195,7 @@ Page {
         Column {
             id: col
             spacing: units.gu(2)
+            width: parent.width
 
             Label {
                 id: dateLabel

@@ -37,13 +37,9 @@ Flickable {
 
     // Component properties
     property var memories: [ ]
-    property int itemSize: units.gu(18)
+    property int itemSize: units.gu(18.5)
 
     property int currentIndex: 0
-
-    onWidthChanged: {
-        memoryGrid.columns = memoryGrid.calculateColumns()
-    }
 
     Grid {
         id: memoryGrid
@@ -51,8 +47,10 @@ Flickable {
 
         // Used to get columns value according to the window width
         function calculateColumns() {
-            var tmp = (flickable.width - (columns * spacing) - (anchors.leftMargin + anchors.rightMargin))
-            return tmp / (itemSize)
+            print(columns)
+            var width = wideAspect ? flickable.width : mainView.width
+            var tmp = (width - ((columns * spacing) + (anchors.leftMargin + anchors.rightMargin)))
+            return ++Math.round(tmp / (itemSize))
         }
         onWidthChanged: columns = calculateColumns()
 

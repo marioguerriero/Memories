@@ -27,33 +27,42 @@ Popover {
 
     signal send(var id)
 
-    Repeater {
-        width: parent.width
-        height: parent.height
-        anchors.fill: parent
-        model: accountsModel
-        delegate: MultiValue {
-            // HACK because of there is a bug with custom colors
-            Label {
-                anchors {
-                    verticalCenter: parent.verticalCenter
-                    left: parent.left
-                    margins: units.gu(2)
+    Item {
+        height: childrenRect.height
+
+        ListView {
+            anchors {
+                top: parent.top
+                left: parent.left
+                right: parent.right
+            }
+
+            height: childrenRect.height
+            interactive: false
+
+            model: accountsModel
+
+            delegate: MultiValue {
+                // HACK because of there is a bug with custom colors
+                Label {
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        margins: units.gu(2)
+                    }
+                    text: provider
+                    fontSize: "medium"
+                    color: Theme.palette.normal.overlayText
                 }
-                text: provider
-                fontSize: "medium"
-                color: Theme.palette.normal.overlayText
-            }
-            values: [ displayName ]
-            property real accountId: id
-            property string serviceName: provider
-            icon: {
-                return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName + ".png"
-            }
-            onClicked: {
-                send(accountId)
-                //var share_string = page.memory.getShareString()
-                //friends.sendForAccountAsync(accountId, share_string)
+                values: [ displayName ]
+                property real accountId: id
+                property string serviceName: provider
+                icon: {
+                    return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName + ".png"
+                }
+                onClicked: {
+                    send(accountId)
+                }
             }
         }
     }
