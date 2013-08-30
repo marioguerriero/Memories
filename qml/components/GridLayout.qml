@@ -47,10 +47,9 @@ Flickable {
 
         // Used to get columns value according to the window width
         function calculateColumns() {
-            print(columns)
             var width = wideAspect ? flickable.width : mainView.width
             var tmp = (width - ((columns * spacing) + (anchors.leftMargin + anchors.rightMargin)))
-            return ++Math.round(tmp / (itemSize))
+            return Math.round(tmp / (itemSize))
         }
         onWidthChanged: columns = calculateColumns()
 

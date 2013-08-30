@@ -88,7 +88,8 @@ QtObject {
         // Finally return the ready to be posted string
         if(string.length > max_length)
             string = string.substring(0, max_length - hashtag.length - 4) + "... " + hashtag
-        return string
+        print(string.replace(/<(?:.|\n)*?>/gm, ''))
+        return string.replace(/<(?:.|\n)*?>/gm, '')
     }
 
     function getPhotoList() {
