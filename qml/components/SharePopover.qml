@@ -51,28 +51,29 @@ Popover {
             delegate: Item{
                 width: parent.width
                 height: childrenRect.height
+
                 MultiValue {
-                // HACK because of there is a bug with custom colors
-                Label {
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        left: parent.left
-                        margins: units.gu(2)
+                    // HACK because of there is a bug with custom colors
+                    Label {
+                        anchors {
+                            verticalCenter: parent.verticalCenter
+                            left: parent.left
+                            margins: units.gu(2)
+                        }
+                        text: provider
+                        fontSize: "medium"
+                        color: Theme.palette.normal.overlayText
                     }
-                    text: provider
-                    fontSize: "medium"
-                    color: Theme.palette.normal.overlayText
+                    values: [ displayName ]
+                    property real accountId: id
+                    property string serviceName: provider
+                    icon: {
+                        return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName + ".png"
+                    }
+                    onClicked: {
+                        send(accountId)
+                    }
                 }
-                values: [ displayName ]
-                property real accountId: id
-                property string serviceName: provider
-                icon: {
-                    return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName + ".png"
-                }
-                onClicked: {
-                    send(accountId)
-                }
-            }
             }
         }
     }

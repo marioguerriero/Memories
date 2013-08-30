@@ -205,6 +205,7 @@ Page {
             maximumLineCount: 5
             anchors.left: parent.left
             anchors.right: parent.right
+            onHighlightedChanged: rect.show = highlighted
         }
 
         Rectangle {
@@ -212,7 +213,10 @@ Page {
             width: descriptionArea.width
             height: 0
             color: "transparent"
-            visible: descriptionArea.highlighted
+            visible: false
+            //visible: descriptionArea.highlighted
+
+            property bool show
 
             // Animate on visible changed
             ParallelAnimation {
@@ -224,13 +228,33 @@ Page {
                     to: units.gu(4)
                     duration: UbuntuAnimation.FastDuration
                 }
+                onStarted: rect.visible = true
             }
-            onVisibleChanged: animateShow.start()
+            ParallelAnimation {
+                id: animateHide
+                NumberAnimation {
+                    target: rect;
+                    properties: "height";
+                    from: rect.height
+                    to: 0
+                    duration: UbuntuAnimation.FastDuration
+                }
+                onRunningChanged: if(!animateHide.running) rect.visible = false
+            }
+            onShowChanged: {
+                if(show)
+                    animateShow.start()
+                else
+                    animateHide.start()
+            }
+
+            //onVisibleChanged: animateShow.start()
 
             Row {
+                height: rect.height
                 spacing: units.gu(1)
                 Button {
-                    height: parent.height
+                    height: rect.height
                     width: units.gu(4)
                     iconSource: image("bold.png")
                     onClicked: {
@@ -241,7 +265,7 @@ Page {
                     }
                 }
                 Button {
-                    height: units.gu(4)
+                    height: rect.height
                     width: units.gu(4)
                     iconSource: image("italic.png")
                     onClicked: {
@@ -252,7 +276,7 @@ Page {
                     }
                 }
                 Button {
-                    height: units.gu(4)
+                    height: rect.height
                     width: units.gu(4)
                     iconSource: image("underline.png")
                     onClicked: {
@@ -263,7 +287,7 @@ Page {
                     }
                 }
                 Button {
-                    height: units.gu(4)
+                    height: rect.height
                     width: units.gu(4)
                     iconSource: image("substring.png")
                     onClicked: {
@@ -274,7 +298,7 @@ Page {
                     }
                 }
                 Button {
-                    height: units.gu(4)
+                    height: rect.height
                     width: units.gu(4)
                     iconSource: image("supstring.png")
                     onClicked: {
