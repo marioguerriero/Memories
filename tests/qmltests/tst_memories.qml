@@ -10,12 +10,12 @@ import "../../qml/components"
 
 Item {
     // The objects
-    /*HelloComponent {
+    /*MemoriesComponent {
         id: objectUnderTest
     }
     
     TestCase {
-        name: "HelloComponent"
+        name: "memories"
         
         function init() {
             console.debug(">> init");

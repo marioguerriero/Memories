@@ -18,5 +18,6 @@ modules/Memories/plugins.qmltypes
 
 resources/memories.desktop
 
-tests/autopilot/uitests/*.pyc
-tests/autopilot/uitests/main/*.pyc
+tests/autopilot/Memories/*.pyc
+tests/autopilot/Memories/emulators/*.pyc
+tests/autopilot/Memories/tests/*.pyc

@@ -23,6 +23,7 @@ import Ubuntu.Components.Popups 0.1
 
 Flickable {
     id: flickable
+    objectName: "gridLayout"
 
     anchors {
         left: parent.left

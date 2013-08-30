@@ -94,6 +94,7 @@ Page {
         property int index: 0
         ToolbarButton {
             id: clearButton
+            objectName: "clearBtn"
             text: i18n.tr("Clear")
             iconSource: icon("back")
 
