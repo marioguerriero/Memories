@@ -249,7 +249,6 @@ Page {
             }
 
             //onVisibleChanged: animateShow.start()
-
             Row {
                 height: rect.height
                 spacing: units.gu(1)
