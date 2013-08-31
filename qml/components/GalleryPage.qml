@@ -26,7 +26,11 @@ Page {
     visible: false
 
     property var photos: []
+    property var current
+
     onPhotosChanged: repeater.model = photos
+
+    onWidthChanged: showPhoto(current)
 
     states: [
         State {
@@ -72,6 +76,7 @@ Page {
                 animate.from = contentX
                 animate.to = repeater.itemAt(Math.round(contentX / unit)).x
                 animate.start()
+                current = getCurrentPhoto()
             }
 
             ParallelAnimation {
@@ -96,7 +101,6 @@ Page {
 
             anchors.fill: parent
             contentWidth: mainView.width * repeater.model.length
-            //interactive: contentWidth > width
 
             flickableDirection: Flickable.HorizontalFlick
 
@@ -120,6 +124,7 @@ Page {
     }
 
     function showPhoto(index) {
+        current = index
         flickable.contentX =  mainView.width * index
     }
 
