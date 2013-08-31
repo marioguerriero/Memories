@@ -76,7 +76,7 @@ Page {
                 animate.from = contentX
                 animate.to = repeater.itemAt(Math.round(contentX / unit)).x
                 animate.start()
-                current = getCurrentPhoto()
+                current = Math.round(getCurrentPhoto())
             }
 
             ParallelAnimation {
