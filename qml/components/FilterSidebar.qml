@@ -44,6 +44,7 @@ Sidebar {
 
             Standard {
                 text: i18n.tr("All")
+                objectName: "noFilter"
                 selected: (currentCategory == nullCategory)
                 onClicked: {
                     lastCategory = currentCategory
@@ -55,6 +56,7 @@ Sidebar {
 
             SingleValue {
                 text: i18n.tr("Favorites")
+                objectName: "favoritesFilter"
                 selected: (currentCategory == favoritesCategory)
                 value: {
                     var count = 0

@@ -24,7 +24,12 @@ import Ubuntu.Components.ListItems 0.1 as ListItem
 ListItem.MultiValue {
     id: item
     progression: true
-    icon: memory.photos[0] ? memory.photos[0] : Qt.resolvedUrl("../../resources/images/empty.png")
+    icon: {
+        var photo = memory.photos[0]
+        if(photo == "" || !utils.fileExists(photo))
+            return Qt.resolvedUrl("../../resources/images/empty.png")
+        return photo
+    }
 
     onClicked: {
         memoryPage.memory = memory

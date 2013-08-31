@@ -25,6 +25,7 @@ import Qt.labs.folderlistmodel 1.0
 
 Page {
     id: memoryEditPage
+    objectName: "memoryEdit"
     title: i18n.tr("New Memory")
 
     function setTitle(text) {
@@ -42,8 +43,8 @@ Page {
             when: showToolbar
             PropertyChanges {
                 target: tools
-                locked: true
                 opened: true
+                locked: true
             }
 
             PropertyChanges {

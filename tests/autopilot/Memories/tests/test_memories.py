@@ -31,7 +31,48 @@ class TestMemories(MemoriesTestCase):
 
     def tearDown(self):
         super(TestMemories, self).tearDown()
+    
+    """ Test the sidebar """
+    #def test_sidebar(self):
+        #no_filter = self.main_window.get_no_filter_item()
+        #favorites_filter = self.main_window.get_favorites_filter_item()
+
+        #click the new button
+        #self.pointing_device.click_object(favorites_filter)
+        #self.pointing_device.click_object(no_filter)
+        
+        #input value to convert from
+        #self.pointing_device.click_object(fromField)
+        #self.keyboard.type('1')
+    
+    """ Test the new memory page """
+    #def test_new_memory_page(self):
+    #    toolbar = self.ubuntusdk.open_toolbar()
+    #    toolbar.click_button("New")
+        # Show the toolbar        
+        #print self.ubuntusdk
+        #self.ubuntusdk._next_tab()
+        #self.ubuntusdk.toggle_toolbar()
+
+        #toolbar = self.ubuntusdk.get_toolbar()
+        #new_button = toolbar.get_children()[0]
+        
+        #new_button = self.main_window.get_new_button()
+        #new_button = toolbar.get_children()[0]#self.ubuntusdk.get_toolbar_button("New")
+        #click the new button
+        #self.ubuntusdk.click_toolbar_button("New")
+        
+        #self.ubuntusdk.click_toolbar_button("New")
+        
+        #self.pointing_device.click_object(new_button)
+        
+        #input value to convert from
+        #self.pointing_device.click_object(fromField)
+        #self.keyboard.type('1')
+        
+        #print new_button
         
     """ Test the grid layout """
-    def test_grid_layout(self):
-        grid = self.main_window.get_grid()
+    #def test_grid_layout(self):
+    #    grid = self.main_window.get_grid()
+    #    print grid

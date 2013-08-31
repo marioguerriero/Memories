@@ -20,10 +20,26 @@ class MainWindow(object):
 
     def __init__(self, app):
         self.app = app
-
+    
+    def get_home_page(self):
+        """Returns the home page"""
+        return self.app.select_single("HomePage", objectName="homePage")
+        
+    def get_edit_page(self):
+        """Returns the edit page"""
+        return self.app.select_single("MemoryEdit", objectName="memoryEdit")
+        
+    def get_no_filter_item(self):
+        """Returns the no filter item"""
+        return self.app.select_single("Standard", objectName="noFilter")
+        
+    def get_favorites_filter_item(self):
+        """Returns the favorites filter item object"""
+        return self.app.select_single("SingleValue", objectName="favoritesFilter")
+    
     def get_grid(self):
         """Returns the grid layout object"""
-        return self.app.select_single("Grid", objectName="gridLayout")
+        return self.app.select_single("GridLayout", objectName="gridLayout")
 
     def get_sidebar(self):
         """Returns the filter sidebar object"""

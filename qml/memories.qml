@@ -49,9 +49,9 @@ MainView {
     property bool wideAspect: width > units.gu(80)
     property bool showToolbar: height > units.gu(75)
 
-    headerColor: "#414141"
-    backgroundColor: "#696969"
-    footerColor: "#929292"
+    headerColor: "#464646"
+    backgroundColor: "#797979"
+    footerColor: "#808080"
 
     // HUD
     HUD.HUD {
@@ -137,11 +137,11 @@ MainView {
     PageStack {
         id: stack
         Component.onCompleted: {
-            homePage.reloadSettings()
-            push(homePage)
+            reloadSettings()
+            push(tabs)
             homePage.loadMemories()
             // Is there a password??
-            if(homePage.password != homePage.nullPassword)
+            if(password != nullPassword)
                 PopupUtils.open(Qt.resolvedUrl("./components/UnlockDialog.qml"), homePage);
             else
                 homePage.locked = false
@@ -152,16 +152,16 @@ MainView {
         }
 
         // Pages
-        MemoryEdit{
-            id: memoryEditPage
-        }
+        //HomePage {
+        //    id: homePage
+        //}
 
         MemoryPage {
             id: memoryPage
         }
 
-        HomePage {
-            id: homePage
+        MemoryEdit {
+            id: memoryEditPage
         }
 
         GalleryPage {
@@ -171,6 +171,74 @@ MainView {
         CameraPage {
             id: cameraPage
         }
+
+        Tabs {
+            id: tabs
+
+            Tab {
+                title: page.title
+                page: HomePage {
+                    id: homePage
+                    visible: true
+                }
+            }
+
+            Tab {
+                title: page.title
+                page: SettingsPage {
+                    id: settingsPage
+                }
+            }
+        }
+
+//        Tabs {
+//            id: tabs
+
+//            Tab {
+//                title: page.title
+//                page: MemoryEdit {
+//                    id: memoryEditPage
+//                }
+//            }
+
+//            Tab {
+//                title: page.title
+//                page: MemoryPage {
+//                    id: memoryPage
+//                }
+//            }
+
+//            Tab {
+//                title: page.title
+//                page: HomePage {
+//                    id: homePage
+//                }
+//            }
+
+//            Tab {
+//                title: page.title
+//                page: GalleryPage {
+//                    id: galleryPage
+//                }
+//            }
+
+//            Tab {
+//                title: page.title
+//                page: CameraPage {
+//                    id: cameraPage
+//                }
+//            }
+
+//            Tab {
+//                title: page.title
+//                visible: false
+//                page: Page {
+//                    visible: false
+//                    title:"test"
+//                    Rectangle {anchors.fill:parent; color:"red"}
+//                }
+//            }
+//        }
 
         onCurrentPageChanged: {
             // Stop Camera when you don't need it
@@ -197,6 +265,54 @@ MainView {
         defaults: {
             memories: [{}]
         }
+    }
+
+    // Settings
+    property string password
+    property string nullPassword: ""
+
+    property bool showGrid: false
+
+    U1db.Database {
+        id: settingsDatabase
+        path: "memories"
+    }
+
+    U1db.Document {
+        id: settings
+
+        database: settingsDatabase
+        docId: 'settings'
+        create: true
+
+        defaults: {
+            password: ""
+        }
+    }
+
+    function getSetting(name) {
+        var tempContents = {};
+        tempContents = settings.contents
+        return tempContents.hasOwnProperty(name) ? tempContents[name] : settings.defaults[name]
+    }
+
+    function saveSetting(name, value) {
+        if (getSetting(name) !== value) {
+            print(name, "=>", value)
+            var tempContents = {}
+            tempContents = settings.contents
+            tempContents[name] = value
+            settings.contents = tempContents
+
+            reloadSettings()
+        }
+    }
+
+    function reloadSettings() {
+        var tmp = getSetting("password")
+        password =  tmp ? tmp : nullPassword
+
+        showGrid = getSetting("showGrid") ? "undefined" : false
     }
 
     // from Memories library

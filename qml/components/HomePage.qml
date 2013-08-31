@@ -26,6 +26,7 @@ import "./MD5.js" as Crypto
 
 Page {
     id: home
+    objectName: "homePage"
     title: i18n.tr("Memories")
     visible: false
 
@@ -34,8 +35,8 @@ Page {
             when: showToolbar
             PropertyChanges {
                 target: tools
-                locked: true
                 opened: true
+                locked: true
             }
 
             PropertyChanges {
@@ -127,158 +128,14 @@ Page {
         }
     }
 
-    // Password manager
-    Component {
-        id: passwordEnterDialog
-        Dialog {
-            id: dialogue
-            title: i18n.tr("Add your password")
-            text: i18n.tr()
-            TextField {
-                id: passwordField
-                placeholderText: i18n.tr("Password...")
-                echoMode: TextInput.Password
-            }
-            Button {
-                text: i18n.tr("Cancel")
-                gradient: UbuntuColors.greyGradient
-                onClicked: PopupUtils.close(dialogue)
-            }
-            Button {
-                text: i18n.tr("Save")
-                color: UbuntuColors.orange
-                onClicked: {
-                    saveSetting("password", Crypto.MD5(passwordField.text))
-                    PopupUtils.close(dialogue)
-                }
-            }
-        }
-    }
-
-    Component {
-        id: popoverComponent
-
-        Popover {
-            id: popover
-
-            property alias passwordChecked: passwordCheckbox.checked
-
-            Column {
-                id: containerLayout
-                anchors {
-                    left: parent.left
-                    top: parent.top
-                    right: parent.right
-                }
-                Standard {
-                    //FIXME: Hack because of Suru theme!
-                    Label {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            left: parent.left
-                            margins: units.gu(2)
-                        }
-
-                        text: i18n.tr("Protect memories with password")
-                        fontSize: "medium"
-                        color: Theme.palette.normal.overlayText
-                    }
-
-                    control: CheckBox {
-                        id: passwordCheckbox
-                        checked: (password != "")
-                        onClicked: {
-                            PopupUtils.close(popover)
-                            if(checked)
-                                PopupUtils.open(passwordEditDialog)
-                            else
-                                saveSetting("password", nullPassword)
-                        }
-                    }
-
-                    showDivider: false
-                }
-
-                Standard {
-                    //FIXME: Hack because of Suru theme!
-                    Label {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            left: parent.left
-                            margins: units.gu(2)
-                        }
-
-                        text: i18n.tr("Grid Layout")
-                        fontSize: "medium"
-                        color: Theme.palette.normal.overlayText
-                    }
-
-                    control: CheckBox {
-                        id: showGridCheckbox
-                        checked: showGrid
-                        onClicked: {
-                            PopupUtils.close(popover)
-                            saveSetting("showGrid", checked)
-                        }
-                    }
-
-                    showDivider: false
-                }
-            }
-        }
-    }
-
-    Component {
-        id: passwordEditDialog
-        Dialog {
-            id: dialogue
-            title: i18n.tr("Protect your memories")
-            text: i18n.tr("Set a password to keep unwanted people away from you records.")
-
-            TextField {
-                id: passwordField
-                placeholderText: i18n.tr("Password...")
-                echoMode: TextInput.Password
-            }
-
-            Button {
-                text: i18n.tr("Cancel")
-                gradient: UbuntuColors.greyGradient
-                onClicked: {
-                    PopupUtils.close(dialogue)
-                }
-            }
-
-            Button {
-                text: i18n.tr("Save")
-                color: UbuntuColors.orange
-                onClicked: {
-                    saveSetting("password", Crypto.MD5(passwordField.text))
-                    PopupUtils.close(dialogue)
-                }
-            }
-        }
-    }
-
     // Toolbar
     tools: ToolbarItems {
-
         ToolbarButton {
             id: newButton
             text: i18n.tr("New")
             iconSource: icon("add")
 
             onTriggered: newMemory()
-        }
-
-        ToolbarButton {
-            id: optionsButton
-            text: i18n.tr("Options")
-            iconSource: icon("settings")
-
-            onTriggered: {
-                PopupUtils.open(popoverComponent, optionsButton)
-            }
         }
 
         locked: false
@@ -330,54 +187,6 @@ Page {
                 return
             }
         }
-    }
-
-    // Settings
-    property string password
-    property string nullPassword: ""
-
-    property bool showGrid: false
-
-    U1db.Database {
-        id: settingsDatabase
-        path: "memories"
-    }
-
-    U1db.Document {
-        id: settings
-
-        database: settingsDatabase
-        docId: 'settings'
-        create: true
-
-        defaults: {
-            password: ""
-        }
-    }
-
-    function getSetting(name) {
-        var tempContents = {};
-        tempContents = settings.contents
-        return tempContents.hasOwnProperty(name) ? tempContents[name] : settings.defaults[name]
-    }
-
-    function saveSetting(name, value) {
-        if (getSetting(name) !== value) {
-            print(name, "=>", value)
-            var tempContents = {}
-            tempContents = settings.contents
-            tempContents[name] = value
-            settings.contents = tempContents
-
-            reloadSettings()
-        }
-    }
-
-    function reloadSettings() {
-        var tmp = getSetting("password")
-        password =  tmp ? tmp : nullPassword
-
-        showGrid = getSetting("showGrid") ? "undefined" : false
     }
 
     // Search and filter functions

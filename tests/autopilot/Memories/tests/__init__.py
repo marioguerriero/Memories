@@ -25,6 +25,7 @@ from autopilot.platform import model
 from autopilot.testcase import AutopilotTestCase
 
 from Memories.emulators.main_window import MainWindow
+from Memories.emulators.ubuntusdk import ubuntusdk
 
 class MemoriesTestCase(AutopilotTestCase):
 

@@ -33,7 +33,6 @@ Page {
             when: showToolbar
             PropertyChanges {
                 target: tools
-                locked: true
                 opened: true
             }
 

@@ -46,7 +46,7 @@ Dialog {
         text: i18n.tr("Unlock")
         color: UbuntuColors.orange
         onClicked: {
-            if(Crypto.MD5(passwordField.text) == caller.password) {
+            if(Crypto.MD5(passwordField.text) == password) {
                 caller.locked = false
                 PopupUtils.close(dialogue)
             }
