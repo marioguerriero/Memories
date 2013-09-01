@@ -252,14 +252,14 @@ MainView {
     // Memories managment
     U1db.Database {
         id: storage
-        path: "memoriesdb"
+        path: "memories-storage"
     }
 
     U1db.Document {
         id: memoriesDatabase
 
         database: storage
-        docId: 'memories'
+        docId: "memories-settings"
         create: true
 
         defaults: {

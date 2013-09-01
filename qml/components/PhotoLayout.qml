@@ -38,7 +38,7 @@ Flickable {
     flickableDirection: Flickable.HorizontalFlick
 
     // Component properties
-    property var photos: [ ]
+    property var photos: []
     property bool editable: true
     property int iconSize: units.gu(8)
 
