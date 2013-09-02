@@ -251,64 +251,8 @@ Page {
             }
 
             //onVisibleChanged: animateShow.start()
-            Row {
-                height: rect.height
-                spacing: units.gu(1)
-                Button {
-                    height: rect.height
-                    width: units.gu(4)
-                    iconSource: image("bold.png")
-                    onClicked: {
-                        var open = "<b>"
-                        var close = "</b>"
-                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
-                        descriptionArea.cursorPosition -= close.length
-                    }
-                }
-                Button {
-                    height: rect.height
-                    width: units.gu(4)
-                    iconSource: image("italic.png")
-                    onClicked: {
-                        var open = "<i>"
-                        var close = "</i>"
-                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
-                        descriptionArea.cursorPosition -= close.length
-                    }
-                }
-                Button {
-                    height: rect.height
-                    width: units.gu(4)
-                    iconSource: image("underline.png")
-                    onClicked: {
-                        var open = "<u>"
-                        var close = "</u>"
-                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
-                        descriptionArea.cursorPosition -= close.length
-                    }
-                }
-                Button {
-                    height: rect.height
-                    width: units.gu(4)
-                    iconSource: image("substring.png")
-                    onClicked: {
-                        var open = "<sub>"
-                        var close = "</sub>"
-                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
-                        descriptionArea.cursorPosition -= close.length
-                    }
-                }
-                Button {
-                    height: rect.height
-                    width: units.gu(4)
-                    iconSource: image("supstring.png")
-                    onClicked: {
-                        var open = "<sup>"
-                        var close = "</sup>"
-                        descriptionArea.insert(descriptionArea.cursorPosition, open + close)
-                        descriptionArea.cursorPosition -= close.length
-                    }
-                }
+            TextTagsRow {
+                height: rect.height                
             }
         }
 

@@ -216,6 +216,7 @@ Page {
                 anchors.left: parent.left
                 width: parent.width
                 wrapMode: Text.WordWrap
+                onLinkActivated: Qt.openUrlExternally(link)
                 color: "white"
                 font.pointSize: units.gu(1.5)
             }

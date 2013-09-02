@@ -85,7 +85,7 @@ Flickable {
                     fadeDuration: 1000
                     source: {
                         var tmp = parseSources()
-                        return tmp ? tmp : ""
+                        return tmp ? tmp : Qt.resolvedUrl("../../resources/images/empty.png")
                     }
 
                     property var photos: photos = memory.photos
