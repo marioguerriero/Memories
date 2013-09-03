@@ -221,9 +221,10 @@ Page {
                 font.pointSize: units.gu(1.5)
             }
 
-            ListItem.ThinDivider { }
+            ListItem.ThinDivider { visible: tags.text.length > 0 }
 
             Label {
+                visible: tags.text.length > 0
                 text: i18n.tr("Tags")
                 fontSize: "large"
                 font.bold: true
@@ -231,6 +232,7 @@ Page {
 
             Label {
                 id: tags
+                visible: text.length > 0
                 fontSize: "medium"
             }
 

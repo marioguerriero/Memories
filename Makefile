@@ -18,4 +18,4 @@ check:
 	qmltestrunner -input tests/unit
 
 run:
-	/usr/bin/qmlscene $@ memories.qml
+	/usr/bin/qmlscene -I modules qml/memories.qml

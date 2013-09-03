@@ -30,4 +30,3 @@ add_subdirectory(modules)
 add_subdirectory(qml)
 add_subdirectory(resources)
 add_subdirectory(po)
-# TODO: add translations

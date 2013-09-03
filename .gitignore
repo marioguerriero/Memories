@@ -21,3 +21,5 @@ resources/memories.desktop
 tests/autopilot/Memories/*.pyc
 tests/autopilot/Memories/emulators/*.pyc
 tests/autopilot/Memories/tests/*.pyc
+
+po/*.mo
