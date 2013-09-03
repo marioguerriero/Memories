@@ -27,7 +27,7 @@ import Memories 0.1
 Dialog {
     id: dialogue
     title: i18n.tr("Add a Photo")
-    text: i18n.tr("Locate the photo file.")
+    text: i18n.tr("Select the photo file.")
 
     property string folderPath: utils.standardLocation(Utils.PicturesLocation)
     property string file: ""

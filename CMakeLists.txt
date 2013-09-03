@@ -8,6 +8,9 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(MODULES_DIR "${CMAKE_INSTALL_PREFIX}/share/memories/modules")
 
+# Include cmake modules
+list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
 # Find the QtWidgets library
 find_package(Qt5Core            REQUIRED)
 find_package(Qt5PrintSupport    REQUIRED)
@@ -26,5 +29,5 @@ file(TO_CMAKE_PATH "${QT_IMPORTS_DIR}" QT_IMPORTS_DIR)
 add_subdirectory(modules)
 add_subdirectory(qml)
 add_subdirectory(resources)
-
+add_subdirectory(po)
 # TODO: add translations

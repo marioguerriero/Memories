@@ -32,7 +32,7 @@ Dialog {
     Label {
         id: errorLabel
         color: "red"
-        text: i18n.tr("The password you entered is not good.")
+        text: i18n.tr("The password you entered is not valid.")
         visible: false
     }
 

@@ -34,7 +34,7 @@ Page {
         Dialog {
             id: dialogue
             title: i18n.tr("Protect your memories")
-            text: i18n.tr("Set a password to keep unwanted people away from you records.")
+            text: i18n.tr("Set a password to keep unwanted people away from you memories.")
 
             TextField {
                 id: passwordField

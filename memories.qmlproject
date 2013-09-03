@@ -3,14 +3,14 @@
 import QmlProject 1.1
 
 Project {
-    mainFile: "memories.qml"
+    mainFile: "qml/memories.qml"
     
     /* Include .qml, .js, and image files from current directory and subdirectories */
     QmlFiles {
-        directory: "."
+        directory: "qml/components"
     }
     JavaScriptFiles {
-        directory: "."
+        directory: "qml/components"
     }
     ImageFiles {
         directory: "."
