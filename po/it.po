@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memories\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-03 23:08+0200\n"
-"PO-Revision-Date: 2013-09-03 23:09+0100\n"
+"POT-Creation-Date: 2013-09-03 23:36+0200\n"
+"PO-Revision-Date: 2013-09-03 23:37+0100\n"
 "Last-Translator: Mario Guerriero <mefrio.g@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -17,46 +17,50 @@ msgstr ""
 "X-Launchpad-Export-Date: 2013-08-07 04:56+0000\n"
 "X-Generator: Poedit 1.5.4\n"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:61
+#: /home/mario/showdown/memories/po/../qml/memories.qml:57
+msgid "Keep track of your best moments with your hands"
+msgstr "Tieni traccia dei tuoi momenti migliori usando le tue mani"
+
+#: /home/mario/showdown/memories/po/../qml/memories.qml:64
 msgid "Quit"
 msgstr "Esci"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:62
+#: /home/mario/showdown/memories/po/../qml/memories.qml:65
 msgid "Quit;Exit"
 msgstr "Uscita"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:66
+#: /home/mario/showdown/memories/po/../qml/memories.qml:69
 #: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:29
 #: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:61
 msgid "New Memory"
 msgstr "Nuova memoria"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:67
+#: /home/mario/showdown/memories/po/../qml/memories.qml:70
 msgid "New;Add"
 msgstr "Nuovo;Aggiungi"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:71
+#: /home/mario/showdown/memories/po/../qml/memories.qml:74
 #: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:88
 msgid "Grid Layout"
 msgstr "Vista a griglia"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:72
+#: /home/mario/showdown/memories/po/../qml/memories.qml:75
 msgid "Grid"
 msgstr "Griglia"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:76
+#: /home/mario/showdown/memories/po/../qml/memories.qml:79
 msgid "List Layout"
 msgstr "Vista a lista"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:77
+#: /home/mario/showdown/memories/po/../qml/memories.qml:80
 msgid "List"
 msgstr "Lista"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:81
+#: /home/mario/showdown/memories/po/../qml/memories.qml:84
 msgid "Set a Password"
 msgstr "Imposta una password"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:82
+#: /home/mario/showdown/memories/po/../qml/memories.qml:85
 msgid "Password"
 msgstr "Password"
 

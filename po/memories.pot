@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-03 23:08+0200\n"
+"POT-Creation-Date: 2013-09-03 23:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,46 +17,50 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:61
+#: /home/mario/showdown/memories/po/../qml/memories.qml:57
+msgid "Keep track of your best moments with your hands"
+msgstr ""
+
+#: /home/mario/showdown/memories/po/../qml/memories.qml:64
 msgid "Quit"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:62
+#: /home/mario/showdown/memories/po/../qml/memories.qml:65
 msgid "Quit;Exit"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:66
+#: /home/mario/showdown/memories/po/../qml/memories.qml:69
 #: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:29
 #: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:61
 msgid "New Memory"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:67
+#: /home/mario/showdown/memories/po/../qml/memories.qml:70
 msgid "New;Add"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:71
+#: /home/mario/showdown/memories/po/../qml/memories.qml:74
 #: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:88
 msgid "Grid Layout"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:72
+#: /home/mario/showdown/memories/po/../qml/memories.qml:75
 msgid "Grid"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:76
+#: /home/mario/showdown/memories/po/../qml/memories.qml:79
 msgid "List Layout"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:77
+#: /home/mario/showdown/memories/po/../qml/memories.qml:80
 msgid "List"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:81
+#: /home/mario/showdown/memories/po/../qml/memories.qml:84
 msgid "Set a Password"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:82
+#: /home/mario/showdown/memories/po/../qml/memories.qml:85
 msgid "Password"
 msgstr ""
 

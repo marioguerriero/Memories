@@ -53,6 +53,9 @@ MainView {
     backgroundColor: "#797979"
     footerColor: "#808080"
 
+    // Translate the launcher description
+    property string description: i18n.tr("Keep track of your best moments with your hands")
+
     // HUD
     HUD.HUD {
         applicationIdentifier: applicationName
@@ -151,11 +154,6 @@ MainView {
             homePage.saveMemories()
         }
 
-        // Pages
-        //HomePage {
-        //    id: homePage
-        //}
-
         MemoryPage {
             id: memoryPage
         }
@@ -190,55 +188,6 @@ MainView {
                 }
             }
         }
-
-//        Tabs {
-//            id: tabs
-
-//            Tab {
-//                title: page.title
-//                page: MemoryEdit {
-//                    id: memoryEditPage
-//                }
-//            }
-
-//            Tab {
-//                title: page.title
-//                page: MemoryPage {
-//                    id: memoryPage
-//                }
-//            }
-
-//            Tab {
-//                title: page.title
-//                page: HomePage {
-//                    id: homePage
-//                }
-//            }
-
-//            Tab {
-//                title: page.title
-//                page: GalleryPage {
-//                    id: galleryPage
-//                }
-//            }
-
-//            Tab {
-//                title: page.title
-//                page: CameraPage {
-//                    id: cameraPage
-//                }
-//            }
-
-//            Tab {
-//                title: page.title
-//                visible: false
-//                page: Page {
-//                    visible: false
-//                    title:"test"
-//                    Rectangle {anchors.fill:parent; color:"red"}
-//                }
-//            }
-//        }
 
         onCurrentPageChanged: {
             // Stop Camera when you don't need it
