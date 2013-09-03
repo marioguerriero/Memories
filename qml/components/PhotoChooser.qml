@@ -53,7 +53,16 @@ Dialog {
         Component {
             id: fileDelegate
             ListItem.Standard {
-                text: fileName
+                Label {
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        margins: units.gu(2)
+                    }
+                    text: fileName
+                    fontSize: "medium"
+                    color: "white"
+                }
                 onClicked: {
                     var split = folder.text.split("/")
                     if(fileName == "..") {

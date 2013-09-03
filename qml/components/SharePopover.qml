@@ -52,18 +52,8 @@ Popover {
                 width: parent.width
                 height: childrenRect.height
 
-                MultiValue {
-                    // HACK because of there is a bug with custom colors
-                    Label {
-                        anchors {
-                            verticalCenter: parent.verticalCenter
-                            left: parent.left
-                            margins: units.gu(2)
-                        }
-                        text: provider
-                        fontSize: "medium"
-                        color: Theme.palette.normal.overlayText
-                    }
+                MultiValue {                   
+                    text: provider
                     values: [ displayName ]
                     property real accountId: id
                     property string serviceName: provider
