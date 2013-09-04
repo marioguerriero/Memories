@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: memories\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-04 15:57+0200\n"
-"PO-Revision-Date: 2013-09-04 15:57+0100\n"
-"Last-Translator: Mario Guerriero <mefrio.g@gmail.com>\n"
+"PO-Revision-Date: 2013-09-04 15:21-0600\n"
+"Last-Translator: Ángel Araya <al.arayaq@gmail.com>\n"
 "Language-Team: Español; Castellano <>\n"
 "Language: es_CR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Gtranslator 2.91.6\n"
 
 #: /home/mario/showdown/memories/po/../qml/memories.qml:57
 msgid "Keep track of your best moments with your hands"
@@ -75,6 +75,8 @@ msgid ""
 "Cannot comunicate with social networks. Please try again or check your "
 "Online Accounts settings."
 msgstr ""
+"No se puede comunicar con sus redes sociales. Por favor intente de nuevo o "
+"revise sus preferencias de Cuentas en Línea"
 
 #: /home/mario/showdown/memories/po/../qml/memories.qml:103
 #: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:146
