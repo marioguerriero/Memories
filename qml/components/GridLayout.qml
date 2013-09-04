@@ -151,14 +151,6 @@ Flickable {
     }
 
     function updateColumns() {
-        memoryGrid.columns = calculateColumns()
-    }
-
-    function truncate(text, width) {
-        if (text.length > width / units.gu(2)) {
-            text = text.substring(0, width / units.gu(2.3));
-            text += "...";
-        }
-        return text
+        memoryGrid.columns = memoryGrid.calculateColumns()
     }
 }

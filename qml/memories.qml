@@ -288,6 +288,14 @@ MainView {
         stack.push(memoryEditPage)
     }
 
+    function truncate(text, width) {
+        if (text.length > width / units.gu(2)) {
+            text = text.substring(0, width / units.gu(2.3));
+            text += "...";
+        }
+        return text
+    }
+
     function icon(name) {
         return "/usr/share/icons/ubuntu-mobile/actions/scalable/" + name + ".svg"
     }
