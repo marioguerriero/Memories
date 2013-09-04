@@ -211,6 +211,8 @@ Page {
         }
         // Filter the grid layout too
         gridLayout.filterByTag(filter)
+        // Update the sidebar
+        sidebar.currentCategory = filter
     }
 
     function filterFavorites() {

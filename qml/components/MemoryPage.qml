@@ -58,6 +58,9 @@ Page {
         editing = false
     }
 
+    property var tags: []
+    onTagsChanged: repeater.model = tags
+
     // Friends Popover
     Component {
         id: shareComponent
@@ -216,25 +219,19 @@ Page {
                 anchors.left: parent.left
                 width: parent.width
                 wrapMode: Text.WordWrap
+                visible: text != ""
                 onLinkActivated: Qt.openUrlExternally(link)
                 color: "white"
                 font.pointSize: units.gu(1.5)
             }
 
-            ListItem.ThinDivider { visible: tags.text.length > 0 }
+            ListItem.ThinDivider { }
 
-            Label {
-                visible: tags.text.length > 0
-                text: i18n.tr("Tags")
-                fontSize: "large"
-                font.bold: true
-            }
-
-            Label {
+            /*Label {
                 id: tags
                 visible: text.length > 0
                 fontSize: "medium"
-            }
+            }*/
 
             /*Label {
                 id: weather
@@ -242,7 +239,46 @@ Page {
                 visible: false // for now
             }*/
 
-            ListItem.ThinDivider { }
+            // Tags
+            Label {
+                visible: tags.length > 0
+                text: i18n.tr("Tags")
+                fontSize: "large"
+                font.bold: true
+            }
+
+            Flickable {
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+
+                height: tagRow.height
+
+                contentWidth: tagRow.width
+                interactive: contentWidth > width
+
+                flickableDirection: Flickable.HorizontalFlick
+
+                Row {
+                    id: tagRow
+                    spacing: units.gu(2)
+                    Repeater {
+                        id: repeater
+                        model: []
+
+                        delegate: Button {
+                            text: modelData
+                            onClicked: {
+                                homePage.filterByTag(modelData)
+                                stack.push(homePage)
+                            }
+                        }
+                    }
+                }
+            }
+
+            ListItem.ThinDivider { visible: tags.length > 0 }
 
             // Photos
             PhotoLayout {
@@ -261,7 +297,7 @@ Page {
         dateLabel.text = memory.date
         setTitle(memory.title)
         memoryArea.text = memory.description
-        tags.text = memory.tags
+        tags = memory.getTags()
         locationLabel.text = memory.location
         //weather.text = memory.weather
         photoLayout.photos = memory.photos
