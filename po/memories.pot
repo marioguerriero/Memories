@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-03 23:36+0200\n"
+"POT-Creation-Date: 2013-09-04 15:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,8 +64,24 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
+#: /home/mario/showdown/memories/po/../qml/memories.qml:100
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:142
+msgid "An error occurred"
+msgstr ""
+
+#: /home/mario/showdown/memories/po/../qml/memories.qml:101
+msgid ""
+"Cannot comunicate with social networks. Please try again or check your "
+"Online Accounts settings."
+msgstr ""
+
+#: /home/mario/showdown/memories/po/../qml/memories.qml:103
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:146
+msgid "Close"
+msgstr ""
+
 #: /home/mario/showdown/memories/po/../qml/components/GalleryPage.qml:140
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:99
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:102
 msgid "Share"
 msgstr ""
 
@@ -78,7 +94,7 @@ msgid "Link..."
 msgstr ""
 
 #: /home/mario/showdown/memories/po/../qml/components/TextTagsRow.qml:41
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:93
+#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:102
 #: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:46
 msgid "Cancel"
 msgstr ""
@@ -87,43 +103,35 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:77
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:80
 msgid "Favorite"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:88
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:91
 msgid "Export"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:109
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:112
 msgid "Edit"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:119
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:122
 msgid "Delete"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:139
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:142
 msgid "Memory exported successfully"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:139
-msgid "An error occurred!"
-msgstr ""
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:140
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:143
 msgid " was exported in "
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:140
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:143
 msgid "Please try again"
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:143
-msgid "Close"
-msgstr ""
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:227
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:245
 #: /home/mario/showdown/memories/po/../qml/components/FilterSidebar.qml:82
 msgid "Tags"
 msgstr ""
@@ -136,7 +144,7 @@ msgstr ""
 msgid "Select the photo file."
 msgstr ""
 
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:99
+#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:108
 msgid "Take from Camera"
 msgstr ""
 

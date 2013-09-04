@@ -93,6 +93,19 @@ MainView {
         id: accountsModel
     }
 
+    Component {
+        id: errorComp
+        Dialog {
+            id: errorDialog
+            title: i18n.tr("An error occurred")
+            text: i18n.tr("Cannot comunicate with social networks. Please try again or check your Online Accounts settings.")
+            Button {
+                text: i18n.tr("Close")
+                onClicked: PopupUtils.close(errorDialog)
+            }
+        }
+    }
+
     FriendsDispatcher {
         id: friends
         onSendComplete: {
@@ -100,7 +113,7 @@ MainView {
                 console.log ("Send completed successfully");
             } else {
                 console.log ("Send failed: " + errorMessage.split("str: str:")[1]);
-                // TODO: show some error dialog/widget
+                PopupUtils.open(errorComp)
             }
         }
         onUploadComplete: {
@@ -108,7 +121,7 @@ MainView {
                 console.log ("Upload completed successfully");
             } else {
                 console.log ("Upload failed: " + errorMessage);
-                // TODO: show some error dialog/widget
+                PopupUtils.open(errorComp)
             }
         }
     }

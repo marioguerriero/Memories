@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memories\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-03 23:36+0200\n"
-"PO-Revision-Date: 2013-09-03 23:50+0100\n"
+"POT-Creation-Date: 2013-09-04 15:57+0200\n"
+"PO-Revision-Date: 2013-09-04 15:57+0100\n"
 "Last-Translator: Mario Guerriero <mefrio.g@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -64,8 +64,26 @@ msgstr "Imposta una password"
 msgid "Password"
 msgstr "Password"
 
+#: /home/mario/showdown/memories/po/../qml/memories.qml:100
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:142
+msgid "An error occurred"
+msgstr "C'è stato un errore"
+
+#: /home/mario/showdown/memories/po/../qml/memories.qml:101
+msgid ""
+"Cannot comunicate with social networks. Please try again or check your "
+"Online Accounts settings."
+msgstr ""
+"Impossibile comunicare con i social network. Prova di nuovo o controlla le "
+"tue impostazioni per gli account online."
+
+#: /home/mario/showdown/memories/po/../qml/memories.qml:103
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:146
+msgid "Close"
+msgstr "Chiudi"
+
 #: /home/mario/showdown/memories/po/../qml/components/GalleryPage.qml:140
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:99
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:102
 msgid "Share"
 msgstr "Condividi"
 
@@ -78,7 +96,7 @@ msgid "Link..."
 msgstr "Link..."
 
 #: /home/mario/showdown/memories/po/../qml/components/TextTagsRow.qml:41
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:93
+#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:102
 #: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:46
 msgid "Cancel"
 msgstr "Annulla"
@@ -87,43 +105,35 @@ msgstr "Annulla"
 msgid "Confirm"
 msgstr "Conferma"
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:77
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:80
 msgid "Favorite"
 msgstr "Preferito"
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:88
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:91
 msgid "Export"
 msgstr "Esporta"
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:109
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:112
 msgid "Edit"
 msgstr "Modifica"
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:119
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:122
 msgid "Delete"
 msgstr "Cancella"
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:139
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:142
 msgid "Memory exported successfully"
 msgstr "Memoria esportata con successo"
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:139
-msgid "An error occurred!"
-msgstr "C'è stato un errore"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:140
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:143
 msgid " was exported in "
 msgstr " è stato esportato in "
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:140
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:143
 msgid "Please try again"
 msgstr "Prego, prova di nuovo"
 
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:143
-msgid "Close"
-msgstr "Chiudi"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:227
+#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:245
 #: /home/mario/showdown/memories/po/../qml/components/FilterSidebar.qml:82
 msgid "Tags"
 msgstr "Etichette"
@@ -136,7 +146,7 @@ msgstr "Aggiungi una photo"
 msgid "Select the photo file."
 msgstr "Selezione la foto."
 
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:99
+#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:108
 msgid "Take from Camera"
 msgstr "Acquisici dalla fotocamera"
 
@@ -239,3 +249,6 @@ msgstr "Tutto"
 #: /home/mario/showdown/memories/po/../qml/components/FilterSidebar.qml:58
 msgid "Favorites"
 msgstr "Preferiti"
+
+#~ msgid "An error occurred!"
+#~ msgstr "C'è stato un errore"

@@ -139,7 +139,7 @@ Page {
         Dialog {
             id: exportDialogue
 
-            title: exported ? i18n.tr("Memory exported successfully") : i18n.tr("An error occurred!")
+            title: exported ? i18n.tr("Memory exported successfully") : i18n.tr("An error occurred")
             text: exported ? memory.title + i18n.tr(" was exported in ") + memory.exportPath : i18n.tr("Please try again")
 
             Button {
