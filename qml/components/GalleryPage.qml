@@ -136,7 +136,7 @@ Page {
         ToolbarButton {
             id: shareButton
             objectName: "shareButton"
-            visible: accountsModel.count > 0 // It seems it is not yet implemented in Friends
+            visible: false //accountsModel.count > 0 // It seems it is not yet implemented in Friends
             text: i18n.tr("Share")
             iconSource: icon("share")
 

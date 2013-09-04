@@ -157,7 +157,7 @@ Page {
 
                 memory.save()
 
-                stack.push(homePage);
+                stack.push(tabs)
                 memoryEditPage.clear()
             }
             enabled: false

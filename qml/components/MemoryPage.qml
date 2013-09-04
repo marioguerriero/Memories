@@ -169,7 +169,7 @@ Page {
                     PopupUtils.close(dialogue)
                     memory.remove()
                     stack.clear()
-                    stack.push(homePage)
+                    stack.push(tabs)
                 }
             }
         }
@@ -271,7 +271,8 @@ Page {
                             text: modelData
                             onClicked: {
                                 homePage.filterByTag(modelData)
-                                stack.push(homePage)
+                                stack.clear()
+                                stack.push(tabs)
                             }
                         }
                     }
