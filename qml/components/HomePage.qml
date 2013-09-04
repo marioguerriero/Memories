@@ -88,11 +88,11 @@ Page {
         id: memoryModel
         onRowsInserted: {
             sidebar.appendTags(getTags())
-            gridLayout.addMemories(getMemories())
+            gridLayout.updateColumns()
         }
         onRowsRemoved: {
             sidebar.appendTags(getTags())
-            gridLayout.addMemories(getMemories())
+            gridLayout.updateColumns()
         }
     }
 
@@ -111,10 +111,6 @@ Page {
             model: memoryModel
             delegate: MemoryItem {
                 memory: mem
-                /*height: {
-                    if(!memory.visible)
-                        return 0
-                }*/
             }
         }
         Scrollbar {
@@ -195,7 +191,6 @@ Page {
             var memory = memoryModel.get(i).mem
             memory.visible = true
         }
-        gridLayout.addMemories(getMemories())
     }
 
     function filterByTag(filter) {
@@ -209,8 +204,6 @@ Page {
                     memory.visible = true
             }
         }
-        // Filter the grid layout too
-        gridLayout.filterByTag(filter)
         // Update the sidebar
         sidebar.currentCategory = filter
     }

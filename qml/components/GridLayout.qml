@@ -37,7 +37,7 @@ Flickable {
     flickableDirection: Flickable.VerticalFlick
 
     // Component properties
-    property var memories: [ ]
+    //property var memories: [ ]
     property int itemSize: units.gu(18.5)
 
     property int currentIndex: 0
@@ -65,7 +65,7 @@ Flickable {
 
         Repeater {
             id: repeater
-            model: [ ]
+            model: memoryModel
 
             delegate: UbuntuShape {
                 id: shape
@@ -73,7 +73,8 @@ Flickable {
                 width: itemSize
 
                 property int idx
-                property Memory memory: modelData
+                property Memory memory: mem
+                visible: memory.visible
 
                 color: UbuntuColors.orange
 
@@ -147,33 +148,10 @@ Flickable {
                 }
             }
         }
-
-        function addMemories(list) {
-            for(var n = 0; n < list.length; n++)
-                memories.push(list[n]);
-            // Update the model manually, since push() doesn't trigger
-            // the *Changed event
-            repeater.model = memories
-            // Update widget's columns
-            memoryGrid.columns = memoryGrid.calculateColumns()
-        }
-
-        function removeMemory(index) {
-            memories.splice(index, 1);
-            repeater.model = memories
-            // Update widget's columns
-            memoryGrid.columns = memoryGrid.calculateColumns()
-        }
     }
 
-    onMemoriesChanged: {
-        repeater.model = memories
-        memoryGrid.columns = (flickable.width - memories.length * memoryGrid.spacing - (flickable.anchors.leftMargin + flickable.anchors.rightMargin)) / (itemSize)
-    }
-
-    function addMemories(list) {
-        memories = []
-        memoryGrid.addMemories(list)
+    function updateColumns() {
+        memoryGrid.columns = calculateColumns()
     }
 
     function truncate(text, width) {
@@ -183,29 +161,4 @@ Flickable {
         }
         return text
     }
-
-    function filterByTag(filter) {
-        for(var i = 0; i < repeater.count; i++) {
-            var item = repeater.itemAt(i)
-            var memory = item.memory
-            var tags = memory.getTags()
-            for(var n = 0; n < tags.length; n++) {
-                if(tags[n] == filter) {
-                    item.visible = true
-                    break
-                }
-                else
-                    item.visible = false
-            }
-        }
-    }
-
-    function filterFavorites() {
-        for(var i = 0; i < repeater.count; i++) {
-            var item = repeater.itemAt(i)
-            var memory = item.memory
-            item.visible = memory.favorite
-        }
-    }
-
 }
