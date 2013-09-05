@@ -36,6 +36,19 @@ Page {
 
     visible: false
 
+    actions: [
+        Action {
+            text: i18n.tr("Edit")
+            keywords: i18n.tr("Edit")
+            onTriggered: edit()
+        },
+        Action {
+            text: i18n.tr("Delete")
+            keywords: i18n.tr("Delete")
+            onTriggered: PopupUtils.open(dialog)
+        }
+    ]
+
     states: [
         State {
             when: showToolbar
@@ -112,10 +125,7 @@ Page {
             text: i18n.tr("Edit")
             iconSource: icon("edit")
 
-            onTriggered: {
-                memoryEditPage.setMemory(memory)
-                stack.push(memoryEditPage);
-            }
+            onTriggered: edit()
         }
 
         ToolbarButton {
@@ -123,7 +133,7 @@ Page {
             iconSource: icon("delete")
 
             onTriggered: {
-                onClicked: PopupUtils.open(dialog)
+                PopupUtils.open(dialog)
             }
         }
 
@@ -302,6 +312,11 @@ Page {
         locationLabel.text = memory.location
         //weather.text = memory.weather
         photoLayout.photos = memory.photos
+    }
+
+    function edit() {
+        memoryEditPage.setMemory(memory)
+        stack.push(memoryEditPage);
     }
 
 }

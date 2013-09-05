@@ -21,7 +21,6 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import U1db 1.0 as U1db
-import Ubuntu.HUD 1.0 as HUD
 import Ubuntu.OnlineAccounts 0.1
 import Friends 0.1
 
@@ -55,38 +54,6 @@ MainView {
 
     // Translate the launcher description
     property string description: i18n.tr("Keep track of your best moments with your hands")
-
-    // HUD
-    HUD.HUD {
-        applicationIdentifier: applicationName
-        HUD.Context {
-            HUD.Action {
-                label: i18n.tr("Quit")
-                keywords: i18n.tr("Quit;Exit")
-                onTriggered: Qt.quit()
-            }
-            HUD.Action {
-                label: i18n.tr("New Memory")
-                keywords: i18n.tr("New;Add")
-                onTriggered : newMemory()
-            }
-            HUD.Action {
-                label: i18n.tr("Grid Layout")
-                keywords: i18n.tr("Grid")
-                onTriggered : homePage.saveSetting("showGrid", true)
-            }
-            HUD.Action {
-                label: i18n.tr("List Layout")
-                keywords: i18n.tr("List")
-                onTriggered : homePage.saveSetting("showGrid", false)
-            }
-            HUD.Action {
-                label: i18n.tr("Set a Password")
-                keywords: i18n.tr("Password")
-                onTriggered : homePage.editPassword()
-            }
-        }
-    }
 
     // Friends social network support
     ListModel {

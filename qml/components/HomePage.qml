@@ -30,6 +30,34 @@ Page {
     title: i18n.tr("Memories")
     visible: false
 
+    actions: [
+        Action {
+            text: i18n.tr("Quit")
+            keywords: i18n.tr("Exit")
+            onTriggered: Qt.quit()
+        },
+        Action {
+            text: i18n.tr("New Memory")
+            keywords: i18n.tr("New;Add")
+            onTriggered : newMemory()
+        },
+        Action {
+            text: i18n.tr("Grid Layout")
+            keywords: i18n.tr("Grid")
+            onTriggered : homePage.saveSetting("showGrid", true)
+        },
+        Action {
+            text: i18n.tr("List Layout")
+            keywords: i18n.tr("List")
+            onTriggered : homePage.saveSetting("showGrid", false)
+        },
+        Action {
+            text: i18n.tr("Set a Password")
+            keywords: i18n.tr("Password")
+            onTriggered : homePage.editPassword()
+        }
+    ]
+
     states: [
         State {
             when: showToolbar

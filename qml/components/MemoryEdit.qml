@@ -38,6 +38,19 @@ Page {
 
     visible: false
 
+    actions: [
+        Action {
+            text: i18n.tr("Save")
+            keywords: i18n.tr("Save")
+            onTriggered: save()
+        },
+        Action {
+            text: i18n.tr("Clear")
+            keywords: i18n.tr("Clear")
+            onTriggered: clear()
+        }
+    ]
+
     states: [
         State {
             when: showToolbar
@@ -109,57 +122,7 @@ Page {
             text: i18n.tr("Save")
             iconSource: icon("save")
 
-            onTriggered: {
-                if (!enabled) return;
-
-                // If editing
-                var model = homePage.model
-                var index
-                if(editing) {
-                    for(var i = 0; i < model.count; i++) {
-                        var item = model.get(i).mem
-                        if(item === memoryEditPage.memory) {
-                            index = i
-                            memoryEditPage.memory.remove()
-                        }
-                    }
-                }
-
-                var component = Qt.createComponent("Memory.qml")
-
-                // Date
-                var dt = dateField.text
-                if(dt == "" || dt == null)
-                    dt = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
-
-                // Photos
-                /*var photos = ""
-                for(var i = 0; i < photoLayout.photos.length; i++) {
-                    var photo_path = photoLayout.photos[i]
-                    if(photo_path)
-                        photos += photo_path + "||"
-                }*/
-
-                var memory = component.createObject(toolbar,
-                                                {   "title": titleField.text,
-                                                    "tags" : tagsField.text,
-                                                    "description": descriptionArea.text,
-                                                    "date": dt,
-                                                    "location": locationField.text,
-                                                    "weather": "",
-                                                    "photos": photoLayout.photos
-                                                })
-                model.append ({
-                                  "mem": memory
-                              })
-                if(editing)
-                    model.move(model.count-1, index, 1)
-
-                memory.save()
-
-                stack.push(tabs)
-                memoryEditPage.clear()
-            }
+            onTriggered: save()
             enabled: false
         }
 
@@ -345,5 +308,48 @@ Page {
         }
     }
     tools: toolbar
+
+    function save() {
+        if (!enabled) return;
+
+        // If editing
+        var model = homePage.model
+        var index
+        if(editing) {
+            for(var i = 0; i < model.count; i++) {
+                var item = model.get(i).mem
+                if(item === memoryEditPage.memory) {
+                    index = i
+                    memoryEditPage.memory.remove()
+                }
+            }
+        }
+
+        var component = Qt.createComponent("Memory.qml")
+
+        // Date
+        var dt = dateField.text
+        if(dt == "" || dt == null)
+            dt = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
+
+        var memory = component.createObject(toolbar,
+                               {   "title": titleField.text,
+                                   "tags" : tagsField.text,
+                                   "description": descriptionArea.text,
+                                   "date": dt,
+                                   "location": locationField.text,
+                                   "weather": "",
+                                   "photos": photoLayout.photos
+                                })
+        model.append ({ "mem": memory })
+
+        if(editing)
+            model.move(model.count-1, index, 1)
+
+        memory.save()
+
+        stack.push(tabs)
+        memoryEditPage.clear()
+    }
 
 }

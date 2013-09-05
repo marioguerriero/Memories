@@ -26,6 +26,14 @@ Page {
     title: i18n.tr("Camera")
     visible: false
 
+    actions: [
+        Action {
+            text: i18n.tr("Snaps")
+            keywords: i18n.tr("Snaps")
+            onTriggered: camera.capture()
+        }
+    ]
+
     states: [
         State {
             when: showToolbar
