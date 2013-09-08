@@ -239,10 +239,18 @@ Page {
                 editable: true
             }
 
+            AudioLayout {
+                id: audioLayout
+                anchors.top: photoLayout.bottom
+                anchors.topMargin: units.gu(1)
+                editable: true
+                memory: memory
+            }
+
             TextField {
                 id: locationField
                 objectName: "LocationField"
-                anchors.top: photoLayout.bottom
+                anchors.top: audioLayout.bottom
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.topMargin: units.gu(1)
@@ -339,6 +347,7 @@ Page {
                                    "date": dt,
                                    "location": locationField.text,
                                    "weather": "",
+                                   "audio": audioLayout.path,
                                    "photos": photoLayout.photos
                                 })
         model.append ({ "mem": memory })

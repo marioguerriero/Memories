@@ -20,7 +20,6 @@
 
 #include "Utils.h"
 
-#include <QtCore>
 #include <QTextDocument>
 #include <QtPrintSupport/QPrinter>
 
@@ -68,6 +67,35 @@ bool Utils::exportAsPdf(const QString &fileName, const QJsonObject &contents) {
     printer.setOutputFormat(QPrinter::PdfFormat);
     doc.print(&printer);
     printer.newPage();
+
+    return true;
+}
+
+void Utils::recordAudioStop() const {
+    emit audioRecordStop();
+}
+
+bool Utils::recordAudioStart() const {
+    QAudioRecorder* audioRecorder;
+    audioRecorder = new QAudioRecorder;
+
+    QAudioEncoderSettings audioSettings;
+    // Commenting this line the code work, but it shouldn't be so (?)
+    //audioSettings.setCodec("audio/amr");
+    audioSettings.setQuality(QMultimedia::HighQuality);
+
+    audioRecorder->setEncodingSettings(audioSettings);
+
+    audioRecorder->setOutputLocation(QUrl::fromLocalFile("test.amr"));
+    audioRecorder->record();
+
+    qDebug() << "Audio record started";
+
+    // Handle record stopping
+    connect(this, &Utils::audioRecordStop, [=]() {
+        audioRecorder->stop();
+        qDebug() << "Audio record stopped";
+    }  );
 
     return true;
 }

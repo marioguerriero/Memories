@@ -22,7 +22,10 @@
 #define UTILS_H
 
 #include <QObject>
+#include <QtCore>
 #include <QStandardPaths>
+#include <QAudioInput>
+#include <QAudioRecorder>
 
 class Utils : public QObject
 {
@@ -45,6 +48,14 @@ public:
     Q_INVOKABLE bool fileExists(const QString& path) const;
 
     Q_INVOKABLE bool exportAsPdf(const QString& fileName, const QJsonObject& contents);
+
+    Q_INVOKABLE bool recordAudioStart() const;
+    Q_INVOKABLE void recordAudioStop() const;
+
+private:
+
+signals:
+     void audioRecordStop();
 
 Q_SIGNALS:
 

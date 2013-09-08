@@ -16,8 +16,10 @@ find_package(Qt5Core            REQUIRED)
 find_package(Qt5PrintSupport    REQUIRED)
 find_package(Qt5Network         REQUIRED)
 find_package(Qt5Quick           REQUIRED)
+find_package(Qt5Multimedia      REQUIRED)
 
 add_definitions(-DWITHQT5=1)
+add_definitions(-fpermissive)
 
 # build flags
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")

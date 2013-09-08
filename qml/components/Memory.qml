@@ -43,13 +43,14 @@ QtObject {
         homePage.removeMemory(memory)
     }
 
-    property string title;
-    property string tags;
-    property string description;
-    property string date;
-    property string location;
-    property string weather;
+    property string title
+    property string tags
+    property string description
+    property string date
+    property string location
+    property string weather
     property var photos: []
+    property string audio
     property bool favorite
 
     property string exportPath: utils.standardLocation(Utils.DocumentsLocation)

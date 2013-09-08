@@ -17,6 +17,7 @@ include_directories(
     ${Qt5Network_INCLUDE_DIRS}
     ${Qt5Quick_INCLUDE_DIRS}
     ${Qt5PrintSupport_INCLUDE_DIRS}
+    ${Qt5Multimedia_INCLUDE_DIRS}
 )
 
 target_link_libraries(${LIB}
@@ -24,6 +25,7 @@ target_link_libraries(${LIB}
     ${Qt5Network_LIBRARIES}
     ${Qt5Quick_LIBRARIES}
     ${Qt5PrintSupport_LIBRARIES}
+    ${Qt5Multimedia_LIBRARIES}
 )
 
 # copy qmldir file into build directory for shadow builds
