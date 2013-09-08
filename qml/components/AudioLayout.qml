@@ -31,7 +31,7 @@ Flickable {
         right: parent.right
     }
 
-    height: 0//row.height
+    height: row.height
 
     contentWidth: row.width
     interactive: contentWidth > width

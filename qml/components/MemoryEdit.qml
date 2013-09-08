@@ -65,7 +65,6 @@ Page {
                 anchors.bottomMargin: units.gu(-2)
             }
         }
-
     ]
 
     // Some functions
@@ -131,190 +130,219 @@ Page {
     }
 
     // Page content
-    Column {
-        id: col
-        spacing: units.gu(1)
+    Flickable {
+        id: flickableView
+
         anchors {
-            margins: units.gu(2)
             fill: parent
+            topMargin: units.gu(2)
+            bottomMargin: units.gu(2)
         }
 
-        TextField {
-            id: dateField
-            objectName: "dateField"
-            anchors.left: parent.left
-            anchors.right: parent.right
-            text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
-            placeholderText: i18n.tr("Date...")
-            function setCurrentDate () {
-                text = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
-            }
-        }
+        clip: true
 
-        TextField {
-            id: titleField
-            objectName: "titleField"
-            anchors.left: parent.left
-            anchors.right: parent.right
-            placeholderText: i18n.tr("Title...")
-            onTextChanged: {
-                saveButton.enabled = (text != "")
-            }
-        }
+        contentHeight: layout.height
+        interactive: contentHeight + units.gu(5) > height
 
-        TextArea {
-            id: descriptionArea
-            objectName: "descriptionArea"
-            placeholderText: i18n.tr("Memory...")
-            //autoSize: true
-            maximumLineCount: 5
-            anchors.left: parent.left
-            anchors.right: parent.right
-            onHighlightedChanged: rect.show = highlighted
-        }
+        flickableDirection: Flickable.VerticalFlick
 
-        Rectangle {
-            id: rect
-            width: descriptionArea.width
-            height: 0
-            color: "transparent"
-            visible: false
-            //visible: descriptionArea.highlighted
+        Grid {
+            id: layout
 
-            property bool show
-
-            // Animate on visible changed
-            ParallelAnimation {
-                id: animateShow
-                NumberAnimation {
-                    target: rect;
-                    properties: "height";
-                    from: 0
-                    to: units.gu(4)
-                    duration: UbuntuAnimation.FastDuration
-                }
-                onStarted: rect.visible = true
-            }
-            ParallelAnimation {
-                id: animateHide
-                NumberAnimation {
-                    target: rect;
-                    properties: "height";
-                    from: rect.height
-                    to: 0
-                    duration: UbuntuAnimation.FastDuration
-                }
-                onRunningChanged: if(!animateHide.running) rect.visible = false
-            }
-            onShowChanged: {
-                if(show)
-                    animateShow.start()
-                else
-                    animateHide.start()
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
             }
 
-            //onVisibleChanged: animateShow.start()
-            TextTagsRow {
-                height: rect.height                
-            }
-        }
+            spacing: wideAspect ? units.gu(4) : units.gu(2)
+            columns: wideAspect ? 2 : 1
 
-        TextField {
-            id: tagsField
-            objectName: "tagsField"
-            anchors.left: parent.left
-            anchors.right: parent.right
-            placeholderText: i18n.tr("Tags... (separed by a comma)")
-        }
+            Behavior on columns { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
 
-        // Photos
-        Rectangle {
-            id: photoContainer
-            width: parent.width
-            height: units.gu(8)
-            color: "transparent"
+            Column {
+                id: firstColumn
+                width: wideAspect ? parent.width / 2 - units.gu(2) : parent.width
 
-            PhotoLayout {
-                id: photoLayout
-                editable: true
-            }
+                spacing: units.gu(1)
 
-            AudioLayout {
-                id: audioLayout
-                anchors.top: photoLayout.bottom
-                anchors.topMargin: units.gu(1)
-                editable: true
-                memory: memory
-            }
-
-            TextField {
-                id: locationField
-                objectName: "LocationField"
-                anchors.top: audioLayout.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.topMargin: units.gu(1)
-                placeholderText: i18n.tr("Location...")
-                hasClearButton: true
-                onTextChanged: {
-                    citiesModel.clear();
-                    searchWorker.sendMessage({
-                        action: "searchByName",
-                        params: {name:locationField.text, units:"metric"}
-                    })
-                }
-            }
-
-            ListView {
-                id: listView;
-                objectName: "SearchResultList"
-                visible: false
-                clip: true
-                height: units.gu(30)
-                width: parent.width
-                anchors.top: locationField.bottom
-                model:  citiesModel
-                delegate: ListItem.Standard {
-                    objectName: "searchResult" + index
-                    text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
-                    progression: true;
-                    onClicked: {
-                        locationField.text = text
+                TextField {
+                    id: dateField
+                    objectName: "dateField"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
+                    placeholderText: i18n.tr("Date...")
+                    function setCurrentDate () {
+                        text = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
                     }
                 }
-                Scrollbar {
-                    flickableItem: listView;
-                    align: Qt.AlignTrailing;
+
+                TextField {
+                    id: titleField
+                    objectName: "titleField"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    placeholderText: i18n.tr("Title...")
+                    onTextChanged: {
+                        saveButton.enabled = (text != "")
+                    }
+                }
+
+                TextArea {
+                    id: descriptionArea
+                    objectName: "descriptionArea"
+                    placeholderText: i18n.tr("Memory...")
+                    height: wideAspect ? units.gu(24) : units.gu(12)
+                    //maximumLineCount: 10
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    onHighlightedChanged: rect.show = highlighted
+                }
+
+                Rectangle {
+                    id: rect
+                    width: descriptionArea.width
+                    height: 0
+                    color: "transparent"
+                    visible: false
+                    //visible: descriptionArea.highlighted
+
+                    property bool show
+
+                    // Animate on visible changed
+                    ParallelAnimation {
+                        id: animateShow
+                        NumberAnimation {
+                            target: rect;
+                            properties: "height";
+                            from: 0
+                            to: units.gu(4)
+                            duration: UbuntuAnimation.FastDuration
+                        }
+                        onStarted: rect.visible = true
+                    }
+                    ParallelAnimation {
+                        id: animateHide
+                        NumberAnimation {
+                            target: rect;
+                            properties: "height";
+                            from: rect.height
+                            to: 0
+                            duration: UbuntuAnimation.FastDuration
+                        }
+                        onRunningChanged: if(!animateHide.running) rect.visible = false
+                    }
+                    onShowChanged: {
+                        if(show)
+                            animateShow.start()
+                        else
+                            animateHide.start()
+                    }
+
+                    //onVisibleChanged: animateShow.start()
+                    TextTagsRow {
+                        height: rect.height
+                    }
+                }
+
+                TextField {
+                    id: tagsField
+                    objectName: "tagsField"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    placeholderText: i18n.tr("Tags... (separed by a comma)")
+                }
+
+                Behavior on width { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+            }
+            Column {
+                id: secondColumn
+                width: wideAspect ? parent.width / 2 - units.gu(2) : parent.width
+                spacing: units.gu(1)
+
+                PhotoLayout {
+                    id: photoLayout
+                    editable: true
+                    iconSize: wideAspect ? units.gu(12) : units.gu(8)
+                    Behavior on iconSize { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+                }
+
+                AudioLayout {
+                    id: audioLayout
+                    editable: true
+                    memory: memory
+                    iconSize: wideAspect ? units.gu(12) : units.gu(8)
+                    Behavior on iconSize { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+                }
+
+                TextField {
+                    id: locationField
+                    objectName: "LocationField"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    placeholderText: i18n.tr("Location...")
+                    hasClearButton: true
+                    onTextChanged: {
+                        citiesModel.clear();
+                        searchWorker.sendMessage({
+                            action: "searchByName",
+                            params: {name:locationField.text, units:"metric"}
+                        })
+                    }
+                }
+
+                ListView {
+                    id: listView;
+                    objectName: "SearchResultList"
+                    visible: false
+                    clip: true
+                    height: wideAspect ? units.gu(45) : units.gu(35)
+                    width: parent.width
+                    model:  citiesModel
+                    delegate: ListItem.Standard {
+                        objectName: "searchResult" + index
+                        text: i18n.tr(name)+((country) ? ', '+i18n.tr(country): '');
+                        progression: true;
+                        onClicked: {
+                            locationField.text = text
+                        }
+                    }
+                    Scrollbar {
+                        flickableItem: listView;
+                        align: Qt.AlignTrailing;
+                    }
                 }
             }
-        }
-
-        // Location
-        WorkerScript {
-            id: searchWorker
-            objectName: "searchWorker"
-            source: "./WeatherApi.js"
-            onMessage: {
-                if(!messageObject.error) {
-                    listView.visible = true
-                    messageObject.result.locations.forEach(function(loc) {
-                        citiesModel.append(loc);
-                        //noCityError.visible = false
-                    });
-                } else {
-                    console.log(messageObject.error.msg + " / " + messageObject.error.request.url)
-                }
-                if (!citiesModel.count) {
-                    // DO NOTHING!
-                }
-            }
-        }
-
-        ListModel {
-            id: citiesModel
-            objectName: "citiesModel"
         }
     }
+
+    // Location
+    WorkerScript {
+        id: searchWorker
+        objectName: "searchWorker"
+        source: "./WeatherApi.js"
+        onMessage: {
+            if(!messageObject.error) {
+                listView.visible = true
+                messageObject.result.locations.forEach(function(loc) {
+                    citiesModel.append(loc);
+                    //noCityError.visible = false
+                });
+            } else {
+                console.log(messageObject.error.msg + " / " + messageObject.error.request.url)
+            }
+            if (!citiesModel.count) {
+                // DO NOTHING!
+            }
+        }
+    }
+
+    ListModel {
+        id: citiesModel
+        objectName: "citiesModel"
+    }
+
     tools: toolbar
 
     function save() {
