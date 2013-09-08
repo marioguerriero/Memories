@@ -198,104 +198,124 @@ Page {
 
         clip: true
 
-        height: col.height
+        height: layout.height
 
-        contentHeight: col.height
+        contentHeight: layout.height
         interactive: contentHeight > height
 
         flickableDirection: Flickable.VerticalFlick
 
-        Column {
-            id: col
-            spacing: units.gu(2)
-            width: parent.width
+        Grid {
+            id: layout
 
-            Label {
-                id: dateLabel
-                objectName: "dateLabel"
-                color: UbuntuColors.orange
-                fontSize: "large"
+            anchors {
+                left: parent.left
+                right: parent.right
+                margins: units.gu(2)
             }
 
-            Label {
-                id: locationLabel
-                fontSize: "large"
-                font.bold: true
-            }
+            spacing: wideAspect ? units.gu(4) : units.gu(2)
+            columns: wideAspect ? 2 : 1
 
-            Text {
-                id: memoryArea
-                anchors.right: parent.right
-                anchors.left: parent.left
-                width: parent.width
-                wrapMode: Text.WordWrap
-                visible: text != ""
-                onLinkActivated: Qt.openUrlExternally(link)
-                color: "white"
-                font.pointSize: units.gu(1.5)
-            }
+            Behavior on columns { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
 
-            ListItem.ThinDivider { }
+            Column {
+                id: firstColumn
+                width: wideAspect ? parent.width / 2 : parent.width
+                spacing: units.gu(2)
 
-            /*Label {
-                id: tags
-                visible: text.length > 0
-                fontSize: "medium"
-            }*/
-
-            /*Label {
-                id: weather
-                //visible: (text != "") && !editing
-                visible: false // for now
-            }*/
-
-            // Tags
-            Label {
-                visible: tags.length > 0
-                text: i18n.tr("Tags")
-                fontSize: "large"
-                font.bold: true
-            }
-
-            Flickable {
-                anchors {
-                    left: parent.left
-                    right: parent.right
+                Label {
+                    id: dateLabel
+                    objectName: "dateLabel"
+                    color: UbuntuColors.orange
+                    fontSize: "large"
                 }
 
-                height: tagRow.height
+                Label {
+                    id: locationLabel
+                    fontSize: "large"
+                    font.bold: true
+                }
 
-                contentWidth: tagRow.width
-                interactive: contentWidth > width
+                Text {
+                    id: memoryArea
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+                    width: parent.width
+                    wrapMode: Text.WordWrap
+                    visible: text != ""
+                    onLinkActivated: Qt.openUrlExternally(link)
+                    color: "white"
+                    font.pointSize: units.gu(1.5)
+                }
 
-                flickableDirection: Flickable.HorizontalFlick
+                ListItem.ThinDivider { visible: !wideAspect }
 
-                Row {
-                    id: tagRow
-                    spacing: units.gu(2)
-                    Repeater {
-                        id: repeater
-                        model: []
+                AudioLayout {
+                    id: audioLayout
+                    editable: false
+                    memory: memory
+                    iconSize: wideAspect ? units.gu(14) : units.gu(10)
+                    Behavior on iconSize { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+                }
 
-                        delegate: Button {
-                            text: modelData
-                            onClicked: {
-                                homePage.filterByTag(modelData)
-                                stack.clear()
-                                stack.push(tabs)
+                Behavior on width { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+            }
+
+            Column {
+                id: secondColumn
+                spacing: units.gu(2)
+                width: wideAspect ? parent.width / 2 : parent.width
+
+                // Tags
+                Label {
+                    visible: tags.length > 0
+                    text: i18n.tr("Tags")
+                    fontSize: "large"
+                    font.bold: true
+                }
+
+                Flickable {
+                    anchors {
+                        left: parent.left
+                        right: parent.right
+                    }
+
+                    height: tagRow.height
+
+                    contentWidth: tagRow.width
+                    interactive: contentWidth > width
+
+                    flickableDirection: Flickable.HorizontalFlick
+
+                    Row {
+                        id: tagRow
+                        spacing: units.gu(2)
+                        Repeater {
+                            id: repeater
+                            model: []
+
+                            delegate: Button {
+                                text: modelData
+                                onClicked: {
+                                    homePage.filterByTag(modelData)
+                                    stack.clear()
+                                    stack.push(tabs)
+                                }
                             }
                         }
                     }
                 }
-            }
 
-            ListItem.ThinDivider { visible: tags.length > 0 }
+                ListItem.ThinDivider { visible: tags.length > 0 }
 
-            // Photos
-            PhotoLayout {
-                id: photoLayout
-                editable: false
-                iconSize: units.gu(12)
+                // Photos
+                PhotoLayout {
+                    id: photoLayout
+                    editable: false
+                    iconSize: wideAspect ? units.gu(16) : units.gu(14)
+                    Behavior on iconSize { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+                }
             }
         }
     }
