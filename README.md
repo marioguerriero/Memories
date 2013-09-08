@@ -33,7 +33,7 @@ To build build and test the run the following commands
  * Sync with UbuntuOne personal cloud database
  * Basic memory management (add, remove and edit)
 
-## Contribution ##
+### Contribution ###
 
 See the wiki page for some information [Wiki](https://github.com/Mefrio/Memories/wiki).
 
