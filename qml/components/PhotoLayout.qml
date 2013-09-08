@@ -30,9 +30,9 @@ Flickable {
         right: parent.right
     }
 
-    height: photoRow.height
+    height: photoGrid.height
 
-    contentWidth: photoRow.width
+    contentWidth: photoGrid.width
     interactive: contentWidth > width
 
     flickableDirection: Flickable.HorizontalFlick
@@ -44,9 +44,17 @@ Flickable {
 
     property int currentIndex: 0
 
-    Row {
-        id: photoRow
+    Grid {
+        id: photoGrid
         spacing: units.gu(2)
+
+        columns: wideAspect ? calculateColumns() : photos.length
+        // Used to get columns value according to the window width
+        function calculateColumns() {
+            var width = flickable.width
+            var tmp = (width - iconSize)
+            return Math.round(tmp / (iconSize))
+        }
 
         Button {
             iconSource: image("import-image.png")
@@ -55,7 +63,7 @@ Flickable {
 
             visible: editable
 
-            onClicked: photoRow.selectPhoto();
+            onClicked: photoGrid.selectPhoto();
         }
 
         Repeater {
@@ -77,7 +85,7 @@ Flickable {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        photoRow.showPhoto(index);
+                        photoGrid.showPhoto(index);
                     }
                 }
 
@@ -115,7 +123,7 @@ Flickable {
         }
 
         function selectPhoto() {
-            PopupUtils.open(Qt.resolvedUrl("./PhotoChooser.qml"), photoRow);
+            PopupUtils.open(Qt.resolvedUrl("./PhotoChooser.qml"), photoGrid);
         }
 
         function addPhoto(filename) {
@@ -140,6 +148,6 @@ Flickable {
     }
 
     function addPhoto(path) {
-        photoRow.addPhoto(path)
+        photoGrid.addPhoto(path)
     }
 }
