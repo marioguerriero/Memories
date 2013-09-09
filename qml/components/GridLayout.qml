@@ -44,16 +44,21 @@ Flickable {
 
     Grid {
         id: memoryGrid
-        spacing: units.gu(6)
+        spacing: wideAspect ? units.gu(6) : units.gu(4.5)
 
         // Used to get columns value according to the window width
         function calculateColumns() {
             var width = wideAspect ? flickable.width : mainView.width
-            var tmp = (width - ((columns * spacing) + (anchors.leftMargin + anchors.rightMargin)))
+            var tmp = (width - (itemSize + spacing))//(anchors.leftMargin + anchors.rightMargin)))//((columns * spacing) + (anchors.leftMargin + anchors.rightMargin)))
             return Math.round(tmp / (itemSize))
         }
-        onWidthChanged: columns = calculateColumns()
-
+        onWidthChanged: {
+            var value = calculateColumns()
+            if(value < 1)
+                columns = 1
+            else
+                columns = value
+        }
         anchors {
             left: parent.left
             right: parent.right
