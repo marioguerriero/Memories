@@ -308,7 +308,7 @@ Page {
                     }
                 }
 
-                ListItem.ThinDivider { visible: tags.length > 0; anchors.rightMargin: units.gu(2) }
+                ListItem.ThinDivider { visible: tags.length > 0 }
 
                 // Photos
                 PhotoLayout {

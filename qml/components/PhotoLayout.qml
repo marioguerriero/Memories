@@ -48,7 +48,7 @@ Flickable {
         id: photoGrid
         spacing: units.gu(2)
 
-        columns: wideAspect ? calculateColumns() : photos.length
+        columns: wideAspect ? calculateColumns() : (editing ? photos.length + 1 : photos.length)
         // Used to get columns value according to the window width
         function calculateColumns() {
             var width = flickable.width
