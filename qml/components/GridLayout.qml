@@ -38,7 +38,7 @@ Flickable {
 
     // Component properties
     //property var memories: [ ]
-    property int itemSize: units.gu(18.5)
+    property int itemSize: wideAspect ? units.gu(18.5) : units.gu(14)
 
     property int currentIndex: 0
 
@@ -119,11 +119,25 @@ Flickable {
 
                     Label {
                         text: truncate(memory.title, itemSize * 1.5) // * 2.5 because of the large size
-                        fontSize: "large"
+                        fontSize: wideAspect ? "large" : "medium"
+                        onWidthChanged: {
+                            if(wideAspect)
+                                text = truncate(memory.title, itemSize * 1.5)
+                            else
+                                text = truncate(memory.title, itemSize * 2.3)
+                        }
                     }
 
                     Label {
-                        text: {
+                        text: truncate(buildText(), itemSize * 2.9) // * 2.5 because of the small size
+                        fontSize: wideAspect ? "small" : "x-small"
+                        onWidthChanged: {
+                            if(wideAspect)
+                                text = truncate(buildText(), itemSize * 2.9)
+                            else
+                                text = truncate(buildText(), itemSize * 3.6)
+                        }
+                        function buildText() {
                             var text = ""
                             if(memory.location && memory.date)
                                 text = memory.location + ", " + memory.date
@@ -131,9 +145,8 @@ Flickable {
                                 text = memory.location
                             else if(!memory.location && memory.date)
                                 text = memory.date
-                            return truncate(text, itemSize * 2.9) // * 2.5 because of the small size
+                            return text
                         }
-                        fontSize: "small"
                     }
                 }
 
@@ -146,6 +159,9 @@ Flickable {
                     memoryPage.memory = memory
                     stack.push(memoryPage);
                 }
+
+                Behavior on height { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+                Behavior on width { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
             }
         }
     }

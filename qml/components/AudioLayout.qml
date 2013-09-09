@@ -43,22 +43,30 @@ Flickable {
     property string path
     property bool editable: true
     property bool recording: false
+    property int seconds: 0
     property int iconSize: units.gu(8)
 
     onMemoryChanged: path = memory.audio
+    onRecordingChanged: {
+        if(recording)
+            timer.start()
+        else
+            timer.stop()
+    }
 
     Row {
         id: row
         spacing: units.gu(2)
 
         Button {
+            id: recordButton
             iconSource: image("microphone.png")
             height: iconSize
             width: height
 
             visible: editable
 
-            onClicked: print("nothing")
+            onClicked: PopupUtils.open(popoverComponent, recordButton)
             onPressAndHold: {
                 recording = true
                 utils.recordAudioStart()
@@ -66,11 +74,37 @@ Flickable {
             onPressedChanged: {
                 if(!pressed && recording)
                     utils.audioRecordStop()
+                recording = false
             }
         }
 
+        Timer {
+            id: timer
+            repeat: true
+            onTriggered: seconds++;
+        }
+
         Label {
-            id: label
+            visible: seconds > 0
+            text: seconds
+        }
+    }
+
+    // Popover
+    Component {
+        id: popoverComponent
+
+        Popover {
+            id: popover
+            Column {
+                id: containerLayout
+                anchors {
+                    left: parent.left
+                    top: parent.top
+                    right: parent.right
+                }
+                ListItem.Standard { text: i18n.tr("Press and hold to record") }
+            }
         }
     }
 }

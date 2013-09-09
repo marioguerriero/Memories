@@ -33,7 +33,8 @@ class TestMemories(MemoriesTestCase):
         super(TestMemories, self).tearDown()
     
     """ Test the sidebar """
-    #def test_sidebar(self):
+    def test_sidebar(self):
+        self.ubuntusdk._next_tab()
         #no_filter = self.main_window.get_no_filter_item()
         #favorites_filter = self.main_window.get_favorites_filter_item()
 

@@ -192,7 +192,6 @@ Page {
         anchors {
             left: parent.left
             right: parent.right
-            margins: units.gu(2)
             fill: parent
         }
 
@@ -211,6 +210,7 @@ Page {
             anchors {
                 left: parent.left
                 right: parent.right
+                top: parent.top
                 margins: units.gu(2)
             }
 
@@ -247,6 +247,7 @@ Page {
                     onLinkActivated: Qt.openUrlExternally(link)
                     color: "white"
                     font.pointSize: units.gu(1.5)
+                    Behavior on height{ UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
                 }
 
                 ListItem.ThinDivider { visible: !wideAspect }
@@ -307,7 +308,7 @@ Page {
                     }
                 }
 
-                ListItem.ThinDivider { visible: tags.length > 0 }
+                ListItem.ThinDivider { visible: tags.length > 0; anchors.rightMargin: units.gu(2) }
 
                 // Photos
                 PhotoLayout {

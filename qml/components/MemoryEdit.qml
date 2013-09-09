@@ -135,8 +135,6 @@ Page {
 
         anchors {
             fill: parent
-            topMargin: units.gu(2)
-            bottomMargin: units.gu(2)
         }
 
         clip: true
@@ -152,7 +150,9 @@ Page {
             anchors {
                 left: parent.left
                 right: parent.right
+                top: parent.top
                 margins: units.gu(2)
+                topMargin: units.gu(2)
             }
 
             spacing: wideAspect ? units.gu(4) : units.gu(2)
@@ -198,6 +198,7 @@ Page {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     onHighlightedChanged: rect.show = highlighted
+                    Behavior on height{ UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
                 }
 
                 Rectangle {

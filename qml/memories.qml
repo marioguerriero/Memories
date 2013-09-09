@@ -128,7 +128,6 @@ MainView {
                 PopupUtils.open(Qt.resolvedUrl("./components/UnlockDialog.qml"), homePage);
             else
                 homePage.locked = false
-            utils.recordAudioStart()
         }
 
         Component.onDestruction: {

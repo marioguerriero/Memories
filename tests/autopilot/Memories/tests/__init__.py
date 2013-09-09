@@ -61,7 +61,7 @@ class MemoriesTestCase(AutopilotTestCase):
             "/usr/share/memories/qml/memories.qml",
             "--desktop_file_hint=/usr/share/applications/memories.desktop",
             app_type='qt')
-
+    
     @property
     def main_window(self):
         return MainWindow(self.app)
