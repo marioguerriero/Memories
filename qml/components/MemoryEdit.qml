@@ -26,15 +26,7 @@ import Qt.labs.folderlistmodel 1.0
 Page {
     id: memoryEditPage
     objectName: "memoryEdit"
-    title: i18n.tr("New Memory")
-
-    function setTitle(text) {
-        if (text.length > parent.width / units.gu(2)) {
-            text = text.substring(0, parent.width / units.gu(2.3));
-            text += "...";
-        }
-        memoryEditPage.title = text
-    }
+    onWidthChanged: title = truncate(editing ? (i18n.tr("Editing: ") + memory.title) : i18n.tr("New Memory"), parent.width, units.gu(2.3))
 
     visible: false
 
@@ -70,7 +62,7 @@ Page {
     // Some functions
     function clear() {
         editing = false
-        setTitle(i18n.tr("New Memory"))
+        title = truncate(i18n.tr("New Memory"), parent.width, units.gu(2.3))
         titleField.text = ""
         dateField.setCurrentDate()
         descriptionArea.text = ""
@@ -87,7 +79,7 @@ Page {
         memory = mem
         editing = true
         titleField.text = memory.title
-        setTitle(i18n.tr("Editing: ") + titleField.text)
+        title = truncate(i18n.tr("Editing: ") + titleField.text, parent.width, units.gu(2.3))
         dateField.text = memory.date
         descriptionArea.text = memory.description
         tagsField.text = memory.tags

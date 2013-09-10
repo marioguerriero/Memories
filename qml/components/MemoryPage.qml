@@ -25,14 +25,7 @@ import Qt.labs.folderlistmodel 1.0
 
 Page {
     id: page
-    title: ""   
-    function setTitle(text) {
-        if (text.length > parent.width / units.gu(2)) {
-            text = text.substring(0, parent.width / units.gu(2.3));
-            text += "...";
-        }
-        page.title = text
-    }
+    onWidthChanged: title = truncate(memory ? memory.title : "", parent.width, units.gu(2.5))
 
     visible: false
 
@@ -327,7 +320,7 @@ Page {
             return;
 
         dateLabel.text = memory.date
-        setTitle(memory.title)
+        title = truncate(memory.title, parent.width, units.gu(2.5))
         memoryArea.text = memory.description
         tags = memory.getTags()
         locationLabel.text = memory.location

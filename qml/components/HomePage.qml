@@ -27,7 +27,7 @@ import "./MD5.js" as Crypto
 Page {
     id: home
     objectName: "homePage"
-    title: i18n.tr("Memories")
+    title:  truncate(i18n.tr("Memories"), parent.width, units.gu(3))
     visible: false
 
     actions: [

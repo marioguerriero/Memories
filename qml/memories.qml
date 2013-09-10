@@ -255,12 +255,13 @@ MainView {
         stack.push(memoryEditPage)
     }
 
-    function truncate(text, width) {
-        if (text.length > width / units.gu(2)) {
-            text = text.substring(0, width / units.gu(2.3));
-            text += "...";
+    function truncate(name, width, unit) {
+        unit = typeof unit === "undefined" ? units.gu(2) : unit
+        if (name.length > width / unit) {
+            name = name.substring(0, width / (unit + units.gu(0.2)));
+            name += "...";
         }
-        return text
+        return name;
     }
 
     function icon(name) {
