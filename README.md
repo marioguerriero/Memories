@@ -10,6 +10,7 @@ Keep track of your best moments with your hands
 
  * Ubuntu SDK
  * U1db - qtdeclarative5-u1db1.0
+ * Ubuntu Mobile Icons - ubuntu-mobile-icons
 
 To build build and test the run the following commands
     
