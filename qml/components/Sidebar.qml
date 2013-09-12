@@ -92,19 +92,11 @@ Rectangle {
     anchors.rightMargin: expanded ? 0 : -width
 
     Behavior on anchors.leftMargin {
-        UbuntuNumberAnimation {}
-
-//        PropertyAnimation {
-//            duration: 250
-//        }
+        UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration }
     }
 
     Behavior on anchors.rightMargin {
-        UbuntuNumberAnimation {}
-
-//        PropertyAnimation {
-//            duration: 250
-//        }
+        UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration }
     }
 
     default property alias contents: contents.data
