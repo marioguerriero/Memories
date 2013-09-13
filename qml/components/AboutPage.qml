@@ -84,7 +84,7 @@ Page {
         }
 
         Label {
-            text: i18n.tr("<a href=\"https://github.com/Mefrio/Memories/\">Website</a>")
+            text: i18n.tr("<a href=\"http://mefrio.github.io/Memories/\">Website</a>")
             anchors.horizontalCenter: parent.horizontalCenter
             onLinkActivated: Qt.openUrlExternally(link)
         }

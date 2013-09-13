@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 18:55+0200\n"
+"POT-Creation-Date: 2013-09-13 20:35+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,7 +40,7 @@ msgid "Password..."
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:46
-#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:137
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:136
 #: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:41
 #: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:102
 msgid "Cancel"
@@ -97,23 +97,23 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:171
-msgid "Date..."
-msgstr ""
-
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:191
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:166
 msgid "Title..."
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:200
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:193
+msgid "Date..."
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:222
 msgid "Memory..."
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:260
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:293
 msgid "Tags... (separed by a comma)"
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:290
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:335
 msgid "Location..."
 msgstr ""
 
@@ -147,7 +147,7 @@ msgstr ""
 msgid "Select Date"
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:148
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:147
 msgid "Ok"
 msgstr ""
 
@@ -217,7 +217,7 @@ msgid "<a href=\"https://github.com/Mefrio/Memories/issues/\">Report a Bug</a>"
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:87
-msgid "<a href=\"https://github.com/Mefrio/Memories/\">Website</a>"
+msgid "<a href=\"http://mefrio.github.io/Memories/\">Website</a>"
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:93
@@ -272,7 +272,7 @@ msgstr ""
 msgid "Reset filters"
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:168
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:171
 msgid "New"
 msgstr ""
 
