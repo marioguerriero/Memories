@@ -7,262 +7,303 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memories\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 16:49+0200\n"
-"PO-Revision-Date: 2013-09-10 05:25-0600\n"
-"Last-Translator: Ángel Araya <al.arayaq@gmail.com>\n"
+"POT-Creation-Date: 2013-09-13 11:59+0200\n"
+"PO-Revision-Date: 2013-09-13 12:04+0100\n"
+"Last-Translator: Mario Guerriero <mefrio.g@gmail.com>\n"
 "Language-Team: Español; Castellano <>\n"
 "Language: es_CR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 2.91.6\n"
+"X-Generator: Poedit 1.5.4\n"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:56
-msgid "Keep track of your best moments with your hands"
-msgstr "Manten un recuerdo de tus mejores momentos en tus manos."
+#: /home/mario/showdown/Memories/po/../qml/components/GalleryPage.qml:140
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:108
+msgid "Share"
+msgstr "Compartir"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:67
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:152
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:30
+msgid "Settings"
+msgstr "Ajustes"
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:36
+msgid "Protect your memories"
+msgstr "Proteje tus recuerdos"
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:37
+msgid "Set a password to keep unwanted people away from you memories."
+msgstr "Establece una contraseña y manten lejos a otros de tus memorias"
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:41
+#: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:41
+msgid "Password..."
+msgstr "Contraseña..."
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:46
+#: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:41
+#: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:102
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:55
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:35
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:36
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:113
+msgid "Save"
+msgstr "Guardar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:74
+msgid "Protect memories with password"
+msgstr "Proteje tus recuerdos con una contraseña"
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:88
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:45
+msgid "Grid Layout"
+msgstr "Vista en Cuadrícula"
+
+#: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:99
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:24
+msgid "About"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/FilterSidebar.qml:46
+msgid "All"
+msgstr "Todas"
+
+#: /home/mario/showdown/Memories/po/../qml/components/FilterSidebar.qml:58
+msgid "Favorites"
+msgstr "Favoritas"
+
+#: /home/mario/showdown/Memories/po/../qml/components/FilterSidebar.qml:82
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:267
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:29
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:82
+msgid "Editing: "
+msgstr "Editando:"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:29
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:65
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:40
+msgid "New Memory"
+msgstr "Nuevo recuerdo"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:40
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:41
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:103
+msgid "Clear"
+msgstr "Limpiar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:167
+msgid "Date..."
+msgstr "Fecha..."
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:178
+msgid "Title..."
+msgstr "Título"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:187
+msgid "Memory..."
+msgstr "Recuerdo..."
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:247
+msgid "Tags... (separed by a comma)"
+msgstr "Etiquetas...(Separadas por coma)"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:277
+msgid "Location..."
+msgstr "Lugar..."
+
+#: /home/mario/showdown/Memories/po/../qml/components/CameraPage.qml:26
+msgid "Camera"
+msgstr "Cámara"
+
+# Right now I cant check if this is the right usage as I cant run the UI  as of now.
+#: /home/mario/showdown/Memories/po/../qml/components/CameraPage.qml:31
+#: /home/mario/showdown/Memories/po/../qml/components/CameraPage.qml:32
+#: /home/mario/showdown/Memories/po/../qml/components/CameraPage.qml:76
+msgid "Snaps"
+msgstr "Instatánea"
+
+#: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:29
+msgid "Unlock Memories"
+msgstr "Desbloquear Memories"
+
+#: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:30
+msgid "Enter your password to continue to use Memories."
+msgstr "Ingresa tu contraseña para continuar usando Memories"
+
+#: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:35
+msgid "The password you entered is not valid."
+msgstr "La contraseña ingresada no es válida"
+
+#: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:46
+msgid "Unlock"
+msgstr "Desbloquear"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:34
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:35
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:118
+msgid "Edit"
+msgstr "Editar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:39
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:40
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:125
+msgid "Delete"
+msgstr "Eliminar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:86
+msgid "Favorite"
+msgstr "Favorito"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:97
+msgid "Export"
+msgstr "Exportar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:145
+msgid "Memory exported successfully"
+msgstr "Recuerdo exportado exitósamente"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:145
+#: /home/mario/showdown/Memories/po/../qml/memories.qml:67
 msgid "An error occurred"
 msgstr "Ha ocurrido un error"
 
-#: /home/mario/showdown/memories/po/../qml/memories.qml:68
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:146
+msgid " was exported in "
+msgstr " fue exportado en "
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:146
+msgid "Please try again"
+msgstr "Por favor intente de nuevo"
+
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:149
+#: /home/mario/showdown/Memories/po/../qml/memories.qml:70
+msgid "Close"
+msgstr "Cerrar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:53
+msgid "Author:          "
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:62
+msgid "Icon:"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:71
+msgid "Contact:"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:75
+#, c-format
+msgid ""
+"<a href=\"mailto:mefrio.g@gmail.com?subject=Memories%20support\">mefrio."
+"g@gmail.com</a>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:81
+msgid "<a href=\"https://github.com/Mefrio/Memories/issues/\">Report a Bug</a>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:87
+msgid "<a href=\"https://github.com/Mefrio/Memories/\">Website</a>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:93
+msgid "Version <b>%1</b>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:98
+msgid "Copyright (C) 2013 Mario Guerriero"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:30
+msgid "Memories"
+msgstr "Memories"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:35
+msgid "Quit"
+msgstr "Salir"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:36
+msgid "Exit"
+msgstr "Salir"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:41
+msgid "New;Add"
+msgstr "Nuevo;Añadir"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:46
+msgid "Grid"
+msgstr "Cuadrícula"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:50
+msgid "List Layout"
+msgstr "Vista en Lista"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:51
+msgid "List"
+msgstr "Lista"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:55
+msgid "Set a Password"
+msgstr "Establecer una contraseña"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:56
+msgid "Password"
+msgstr "Contraseña"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:85
+msgid "No memories!"
+msgstr "No hay recuerdos!"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:159
+msgid "New"
+msgstr "Nueva"
+
+#: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:35
+msgid "Enter a link"
+msgstr "Ingresar un link"
+
+#: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:38
+msgid "Link..."
+msgstr "Link..."
+
+#: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:48
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/AudioLayout.qml:106
+msgid "Press and hold to record"
+msgstr "Mantiene presionado para grabar"
+
+#: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:29
+msgid "Add a Photo"
+msgstr "Agregar una Foto"
+
+#: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:30
+msgid "Select the photo file."
+msgstr "Seleccione el archivo de la foto"
+
+#: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:108
+msgid "Take from Camera"
+msgstr "Tomar desde la cámara"
+
+#: /home/mario/showdown/Memories/po/../qml/memories.qml:56
+msgid "Keep track of your best moments with your hands"
+msgstr "Manten un recuerdo de tus mejores momentos en tus manos."
+
+#: /home/mario/showdown/Memories/po/../qml/memories.qml:68
 msgid ""
 "Cannot comunicate with social networks. Please try again or check your "
 "Online Accounts settings."
 msgstr ""
 "No se puede comunicar con sus redes sociales. Por favor intente de nuevo o "
 "revise sus preferencias de Cuentas en Línea"
-
-#: /home/mario/showdown/memories/po/../qml/memories.qml:70
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:156
-msgid "Close"
-msgstr "Cerrar"
-
-#: /home/mario/showdown/memories/po/../qml/components/GalleryPage.qml:140
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:115
-msgid "Share"
-msgstr "Compartir"
-
-#: /home/mario/showdown/memories/po/../qml/components/TextTagsRow.qml:35
-msgid "Enter a link"
-msgstr "Ingresar un link"
-
-#: /home/mario/showdown/memories/po/../qml/components/TextTagsRow.qml:38
-msgid "Link..."
-msgstr "Link..."
-
-#: /home/mario/showdown/memories/po/../qml/components/TextTagsRow.qml:41
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:102
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:46
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: /home/mario/showdown/memories/po/../qml/components/TextTagsRow.qml:48
-msgid "Confirm"
-msgstr "Confirmar"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:41
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:42
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:125
-msgid "Edit"
-msgstr "Editar"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:46
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:47
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:132
-msgid "Delete"
-msgstr "Eliminar"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:93
-msgid "Favorite"
-msgstr "Favorito"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:104
-msgid "Export"
-msgstr "Exportar"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:152
-msgid "Memory exported successfully"
-msgstr "Recuerdo exportado exitósamente"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:153
-msgid " was exported in "
-msgstr " fue exportado en "
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:153
-msgid "Please try again"
-msgstr "Por favor intente de nuevo"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryPage.qml:274
-#: /home/mario/showdown/memories/po/../qml/components/FilterSidebar.qml:82
-msgid "Tags"
-msgstr "Etiquetas"
-
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:29
-msgid "Add a Photo"
-msgstr "Agregar una Foto"
-
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:30
-msgid "Select the photo file."
-msgstr "Seleccione el archivo de la foto"
-
-#: /home/mario/showdown/memories/po/../qml/components/PhotoChooser.qml:108
-msgid "Take from Camera"
-msgstr "Tomar desde la cámara"
-
-#: /home/mario/showdown/memories/po/../qml/components/AudioLayout.qml:106
-msgid "Press and hold to record"
-msgstr "Mantiene presionado para grabar"
-
-#: /home/mario/showdown/memories/po/../qml/components/CameraPage.qml:26
-msgid "Camera"
-msgstr "Cámara"
-
-# Right now I cant check if this is the right usage as I cant run the UI  as of now.
-#: /home/mario/showdown/memories/po/../qml/components/CameraPage.qml:31
-#: /home/mario/showdown/memories/po/../qml/components/CameraPage.qml:32
-#: /home/mario/showdown/memories/po/../qml/components/CameraPage.qml:76
-msgid "Snaps"
-msgstr "Instatánea"
-
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:30
-msgid "Settings"
-msgstr "Ajustes"
-
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:36
-msgid "Protect your memories"
-msgstr "Proteje tus recuerdos"
-
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:37
-msgid "Set a password to keep unwanted people away from you memories."
-msgstr "Establece una contraseña y manten lejos a otros de tus memorias"
-
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:41
-#: /home/mario/showdown/memories/po/../qml/components/UnlockDialog.qml:41
-msgid "Password..."
-msgstr "Contraseña..."
-
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:55
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:43
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:44
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:121
-msgid "Save"
-msgstr "Guardar"
-
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:74
-msgid "Protect memories with password"
-msgstr "Proteje tus recuerdos con una contraseña"
-
-#: /home/mario/showdown/memories/po/../qml/components/SettingsPage.qml:88
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:45
-msgid "Grid Layout"
-msgstr "Vista en Cuadrícula"
-
-#: /home/mario/showdown/memories/po/../qml/components/UnlockDialog.qml:29
-msgid "Unlock Memories"
-msgstr "Desbloquear Memories"
-
-#: /home/mario/showdown/memories/po/../qml/components/UnlockDialog.qml:30
-msgid "Enter your password to continue to use Memories."
-msgstr "Ingresa tu contraseña para continuar usando Memories"
-
-#: /home/mario/showdown/memories/po/../qml/components/UnlockDialog.qml:35
-msgid "The password you entered is not valid."
-msgstr "La contraseña ingresada no es válida"
-
-#: /home/mario/showdown/memories/po/../qml/components/UnlockDialog.qml:46
-msgid "Unlock"
-msgstr "Desbloquear"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:30
-msgid "Memories"
-msgstr "Memories"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:35
-msgid "Quit"
-msgstr "Salir"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:36
-msgid "Exit"
-msgstr "Salir"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:40
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:29
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:73
-msgid "New Memory"
-msgstr "Nuevo recuerdo"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:41
-msgid "New;Add"
-msgstr "Nuevo;Añadir"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:46
-msgid "Grid"
-msgstr "Cuadrícula"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:50
-msgid "List Layout"
-msgstr "Vista en Lista"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:51
-msgid "List"
-msgstr "Lista"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:55
-msgid "Set a Password"
-msgstr "Establecer una contraseña"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:56
-msgid "Password"
-msgstr "Contraseña"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:85
-msgid "No memories!"
-msgstr "No hay recuerdos!"
-
-#: /home/mario/showdown/memories/po/../qml/components/HomePage.qml:159
-msgid "New"
-msgstr "Nueva"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:48
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:49
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:111
-msgid "Clear"
-msgstr "Limpiar"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:90
-msgid "Editing: "
-msgstr "Editando:"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:175
-msgid "Date..."
-msgstr "Fecha..."
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:186
-msgid "Title..."
-msgstr "Título"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:195
-msgid "Memory..."
-msgstr "Recuerdo..."
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:255
-msgid "Tags... (separed by a comma)"
-msgstr "Etiquetas...(Separadas por coma)"
-
-#: /home/mario/showdown/memories/po/../qml/components/MemoryEdit.qml:285
-msgid "Location..."
-msgstr "Lugar..."
-
-#: /home/mario/showdown/memories/po/../qml/components/FilterSidebar.qml:46
-msgid "All"
-msgstr "Todas"
-
-#: /home/mario/showdown/memories/po/../qml/components/FilterSidebar.qml:58
-msgid "Favorites"
-msgstr "Favoritas"
 
 #~ msgid "An error occurred!"
 #~ msgstr "Ha ocurrido un error!"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 11:55+0200\n"
+"POT-Creation-Date: 2013-09-13 11:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,6 +62,7 @@ msgid "Grid Layout"
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:99
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:24
 msgid "About"
 msgstr ""
 
@@ -181,6 +182,41 @@ msgstr ""
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:149
 #: /home/mario/showdown/Memories/po/../qml/memories.qml:70
 msgid "Close"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:53
+msgid "Author:          "
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:62
+msgid "Icon:"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:71
+msgid "Contact:"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:75
+#, c-format
+msgid ""
+"<a href=\"mailto:mefrio.g@gmail.com?subject=Memories%20support\">mefrio."
+"g@gmail.com</a>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:81
+msgid "<a href=\"https://github.com/Mefrio/Memories/issues/\">Report a Bug</a>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:87
+msgid "<a href=\"https://github.com/Mefrio/Memories/\">Website</a>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:93
+msgid "Version <b>%1</b>"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:98
+msgid "Copyright (C) 2013 Mario Guerriero"
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:30
