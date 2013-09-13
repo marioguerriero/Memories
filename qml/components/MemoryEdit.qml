@@ -158,15 +158,28 @@ Page {
 
                 spacing: units.gu(1)
 
-                TextField {
-                    id: dateField
-                    objectName: "dateField"
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    text: Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
-                    placeholderText: i18n.tr("Date...")
-                    function setCurrentDate () {
-                        text = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
+                Row {
+                    width: parent.width
+                    spacing: units.gu(1)
+                    TextField {
+                        id: dateField
+                        objectName: "dateField"
+                        property var date: { return new Date() }
+                        onDateChanged: text = Qt.formatDateTime(date, "ddd d MMMM yyyy")
+                        width: parent.width - height - parent.spacing
+                        text: Qt.formatDateTime(date, "ddd d MMMM yyyy")
+                        placeholderText: i18n.tr("Date...")
+                        function setCurrentDate () {
+                            text = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
+                        }
+                    }
+                    Button {
+                        id: dateButton
+                        iconSource: image("select.png")
+                        height: dateField.height
+                        width: height
+                        property alias date: dateField.text
+                        onClicked: PopupUtils.open(Qt.resolvedUrl("DatePicker.qml"), dateField)
                     }
                 }
 
@@ -290,7 +303,7 @@ Page {
                     objectName: "SearchResultList"
                     visible: false
                     clip: true
-                    height: wideAspect ? units.gu(45) : units.gu(35)
+                    height: wideAspect ? units.gu(45) : units.gu(20)
                     width: parent.width
                     model:  citiesModel
                     delegate: ListItem.Standard {
