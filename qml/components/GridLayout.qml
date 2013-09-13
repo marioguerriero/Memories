@@ -122,20 +122,20 @@ Flickable {
                     anchors.rightMargin: units.gu(1)
                     clip: true
 
-                    Text {
+                    Label {
                         text: memory.title
                         color: "white"
                         width: itemSize
                         elide: Text.ElideRight
-                        font.pixelSize: wideAspect ? 18 : 16
+                        fontSize: wideAspect ? "large" : "medium"
                         maximumLineCount: 1
                     }
-                    Text {
+                    Label {
                         text: buildText()
                         color: "white"
                         width: itemSize
                         elide: Text.ElideRight
-                        font.pixelSize: wideAspect ? 12 : 10
+                        fontSize: wideAspect ? "small" : "small"
                         maximumLineCount: 1
                         function buildText() {
                             var text = ""
