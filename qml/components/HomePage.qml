@@ -228,6 +228,7 @@ Page {
             var memory = memoryModel.get(i).mem
             memory.visible = true
         }
+        sidebar.currentCategory = sidebar.nullCategory
     }
 
     function filterByTag(filter) {

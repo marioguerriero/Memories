@@ -173,16 +173,16 @@ Page {
                             text = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
                         }
 
-                        InverseMouseArea {
-                            onClicked: {
-                                memoryEditPage.forceActiveFocus()
-                                parent.focus = false
-                                mouse.accepted = false
-                            }
-                            anchors.fill: parent;
-                            visible: parent.activeFocus;
-                            propagateComposedEvents: true
-                        }
+//                        InverseMouseArea {
+//                            onClicked: {
+//                                memoryEditPage.forceActiveFocus()
+//                                parent.focus = false
+//                                mouse.accepted = false
+//                            }
+//                            anchors.fill: parent;
+//                            visible: parent.activeFocus;
+//                            propagateComposedEvents: true
+//                        }
                     }
                     Button {
                         id: dateButton
@@ -204,16 +204,16 @@ Page {
                         saveButton.enabled = (text != "")
                     }
 
-                    InverseMouseArea {
-                        onClicked: {
-                            memoryEditPage.forceActiveFocus()
-                            parent.focus = false
-                            mouse.accepted = false
-                        }
-                        anchors.fill: parent;
-                        visible: parent.activeFocus;
-                        propagateComposedEvents: true
-                    }
+//                    InverseMouseArea {
+//                        onClicked: {
+//                            memoryEditPage.forceActiveFocus()
+//                            parent.focus = false
+//                            mouse.accepted = false
+//                        }
+//                        anchors.fill: parent;
+//                        visible: parent.activeFocus;
+//                        propagateComposedEvents: true
+//                    }
                 }
 
                 TextArea {
@@ -227,16 +227,16 @@ Page {
                     onHighlightedChanged: rect.show = highlighted
                     Behavior on height{ UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
 
-                    InverseMouseArea {
-                        onClicked: {
-                            memoryEditPage.forceActiveFocus()
-                            parent.focus = false
-                            mouse.accepted = false
-                        }
-                        anchors.fill: parent;
-                        visible: parent.activeFocus;
-                        propagateComposedEvents: true
-                    }
+//                    InverseMouseArea {
+//                        onClicked: {
+//                            memoryEditPage.forceActiveFocus()
+//                            parent.focus = false
+//                            mouse.accepted = false
+//                        }
+//                        anchors.fill: parent;
+//                        visible: parent.activeFocus;
+//                        propagateComposedEvents: true
+//                    }
                 }
 
                 Rectangle {
@@ -291,17 +291,18 @@ Page {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     placeholderText: i18n.tr("Tags... (separed by a comma)")
+                    validator: RegExpValidator { regExp: /^[\S]*$/ }
 
-                    InverseMouseArea {
-                        onClicked: {
-                            memoryEditPage.forceActiveFocus()
-                            parent.focus = false
-                            mouse.accepted = false
-                        }
-                        anchors.fill: parent;
-                        visible: parent.activeFocus;
-                        propagateComposedEvents: true
-                    }
+//                    InverseMouseArea {
+//                        onClicked: {
+//                            memoryEditPage.forceActiveFocus()
+//                            parent.focus = false
+//                            mouse.accepted = false
+//                        }
+//                        anchors.fill: parent;
+//                        visible: parent.activeFocus;
+//                        propagateComposedEvents: true
+//                    }
                 }
 
                 Behavior on width { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
@@ -341,16 +342,16 @@ Page {
                         })
                     }
 
-                    InverseMouseArea {
-                        onClicked: {
-                            memoryEditPage.forceActiveFocus()
-                            parent.focus = false
-                            mouse.accepted = false
-                        }
-                        anchors.fill: parent;
-                        visible: parent.activeFocus;
-                        propagateComposedEvents: true
-                    }
+//                    InverseMouseArea {
+//                        onClicked: {
+//                            memoryEditPage.forceActiveFocus()
+//                            parent.focus = false
+//                            mouse.accepted = false
+//                        }
+//                        anchors.fill: parent;
+//                        visible: parent.activeFocus;
+//                        propagateComposedEvents: true
+//                    }
                 }
 
                 ListView {
