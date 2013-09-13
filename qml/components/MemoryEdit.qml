@@ -175,8 +175,9 @@ Page {
 
                         InverseMouseArea {
                             onClicked: {
-                                memoryEditPage.forceActiveFocus();
+                                memoryEditPage.forceActiveFocus()
                                 parent.focus = false
+                                mouse.accepted = false
                             }
                             anchors.fill: parent;
                             visible: parent.activeFocus;
@@ -205,8 +206,9 @@ Page {
 
                     InverseMouseArea {
                         onClicked: {
-                            memoryEditPage.forceActiveFocus();
+                            memoryEditPage.forceActiveFocus()
                             parent.focus = false
+                            mouse.accepted = false
                         }
                         anchors.fill: parent;
                         visible: parent.activeFocus;
@@ -227,8 +229,9 @@ Page {
 
                     InverseMouseArea {
                         onClicked: {
-                            memoryEditPage.forceActiveFocus();
+                            memoryEditPage.forceActiveFocus()
                             parent.focus = false
+                            mouse.accepted = false
                         }
                         anchors.fill: parent;
                         visible: parent.activeFocus;
@@ -291,8 +294,9 @@ Page {
 
                     InverseMouseArea {
                         onClicked: {
-                            memoryEditPage.forceActiveFocus();
+                            memoryEditPage.forceActiveFocus()
                             parent.focus = false
+                            mouse.accepted = false
                         }
                         anchors.fill: parent;
                         visible: parent.activeFocus;
@@ -339,8 +343,9 @@ Page {
 
                     InverseMouseArea {
                         onClicked: {
-                            memoryEditPage.forceActiveFocus();
+                            memoryEditPage.forceActiveFocus()
                             parent.focus = false
+                            mouse.accepted = false
                         }
                         anchors.fill: parent;
                         visible: parent.activeFocus;
