@@ -101,7 +101,7 @@ Page {
             id: clearButton
             objectName: "clearBtn"
             text: i18n.tr("Clear")
-            iconSource: icon("back")
+            iconSource: icon("reset")
 
             onTriggered: {
                 memoryEditPage.clear()

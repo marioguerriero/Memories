@@ -230,17 +230,15 @@ Page {
                     font.bold: true
                 }
 
-                Text {
+                Label {
                     id: memoryArea
-                    anchors.right: parent.right
-                    anchors.left: parent.left
                     width: parent.width
                     wrapMode: Text.WordWrap
                     visible: text != ""
                     onLinkActivated: Qt.openUrlExternally(link)
                     color: "white"
-                    font.pointSize: units.gu(1.5)
-                    Behavior on height{ UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+                    fontSize: "medium"
+                    Behavior on height { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
                 }
 
                 ListItem.ThinDivider { visible: !wideAspect }

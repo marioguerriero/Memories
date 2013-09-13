@@ -135,7 +135,7 @@ Flickable {
                         color: "white"
                         width: itemSize
                         elide: Text.ElideRight
-                        fontSize: wideAspect ? "small" : "small"
+                        fontSize: "small"
                         maximumLineCount: 1
                         function buildText() {
                             var text = ""

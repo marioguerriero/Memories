@@ -155,6 +155,15 @@ Page {
     // Toolbar
     tools: ToolbarItems {
         ToolbarButton {
+            id: clearButton
+            visible: !wideAspect && sidebar.currentCategory != sidebar.nullCategory
+            text: "Reset filters"
+            iconSource: icon("reset")
+
+            onTriggered: clearFilter()
+        }
+
+        ToolbarButton {
             id: newButton
             text: i18n.tr("New")
             iconSource: icon("add")
@@ -242,8 +251,6 @@ Page {
             var memory = memoryModel.get(i).mem
             memory.visible = memory.favorite
         }
-        // Filter the grid layout too
-        gridLayout.filterFavorites()
     }
 
     function getTags() {
