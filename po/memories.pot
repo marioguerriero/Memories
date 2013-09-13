@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 11:59+0200\n"
+"POT-Creation-Date: 2013-09-13 18:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,6 +40,7 @@ msgid "Password..."
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:46
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:137
 #: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:41
 #: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:102
 msgid "Cancel"
@@ -75,7 +76,7 @@ msgid "Favorites"
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/FilterSidebar.qml:82
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:267
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:265
 msgid "Tags"
 msgstr ""
 
@@ -96,23 +97,23 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:167
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:171
 msgid "Date..."
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:178
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:191
 msgid "Title..."
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:187
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:200
 msgid "Memory..."
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:247
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:260
 msgid "Tags... (separed by a comma)"
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:277
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:290
 msgid "Location..."
 msgstr ""
 
@@ -140,6 +141,14 @@ msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:46
 msgid "Unlock"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:32
+msgid "Select Date"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:148
+msgid "Ok"
 msgstr ""
 
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:34
@@ -259,7 +268,11 @@ msgstr ""
 msgid "No memories!"
 msgstr ""
 
-#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:159
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:160
+msgid "Reset filters"
+msgstr ""
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:168
 msgid "New"
 msgstr ""
 

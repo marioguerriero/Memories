@@ -172,6 +172,16 @@ Page {
                         function setCurrentDate () {
                             text = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
                         }
+
+                        InverseMouseArea {
+                            onClicked: {
+                                memoryEditPage.forceActiveFocus();
+                                parent.focus = false
+                            }
+                            anchors.fill: parent;
+                            visible: parent.activeFocus;
+                            propagateComposedEvents: true
+                        }
                     }
                     Button {
                         id: dateButton
@@ -192,6 +202,16 @@ Page {
                     onTextChanged: {
                         saveButton.enabled = (text != "")
                     }
+
+                    InverseMouseArea {
+                        onClicked: {
+                            memoryEditPage.forceActiveFocus();
+                            parent.focus = false
+                        }
+                        anchors.fill: parent;
+                        visible: parent.activeFocus;
+                        propagateComposedEvents: true
+                    }
                 }
 
                 TextArea {
@@ -204,6 +224,16 @@ Page {
                     anchors.right: parent.right
                     onHighlightedChanged: rect.show = highlighted
                     Behavior on height{ UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
+
+                    InverseMouseArea {
+                        onClicked: {
+                            memoryEditPage.forceActiveFocus();
+                            parent.focus = false
+                        }
+                        anchors.fill: parent;
+                        visible: parent.activeFocus;
+                        propagateComposedEvents: true
+                    }
                 }
 
                 Rectangle {
@@ -258,6 +288,16 @@ Page {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     placeholderText: i18n.tr("Tags... (separed by a comma)")
+
+                    InverseMouseArea {
+                        onClicked: {
+                            memoryEditPage.forceActiveFocus();
+                            parent.focus = false
+                        }
+                        anchors.fill: parent;
+                        visible: parent.activeFocus;
+                        propagateComposedEvents: true
+                    }
                 }
 
                 Behavior on width { UbuntuNumberAnimation { duration: UbuntuAnimation.SlowDuration } }
@@ -295,6 +335,16 @@ Page {
                             action: "searchByName",
                             params: {name:locationField.text, units:"metric"}
                         })
+                    }
+
+                    InverseMouseArea {
+                        onClicked: {
+                            memoryEditPage.forceActiveFocus();
+                            parent.focus = false
+                        }
+                        anchors.fill: parent;
+                        visible: parent.activeFocus;
+                        propagateComposedEvents: true
                     }
                 }
 

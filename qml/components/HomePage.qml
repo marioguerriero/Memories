@@ -157,7 +157,7 @@ Page {
         ToolbarButton {
             id: clearButton
             visible: !wideAspect && sidebar.currentCategory != sidebar.nullCategory
-            text: "Reset filters"
+            text: i18n.tr("Reset filters")
             iconSource: icon("reset")
 
             onTriggered: clearFilter()

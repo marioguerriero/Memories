@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memories\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-13 11:59+0200\n"
-"PO-Revision-Date: 2013-09-13 12:02+0100\n"
+"POT-Creation-Date: 2013-09-13 18:55+0200\n"
+"PO-Revision-Date: 2013-09-13 18:57+0100\n"
 "Last-Translator: Mario Guerriero <mefrio.g@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,6 +42,7 @@ msgid "Password..."
 msgstr "Password..."
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:46
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:137
 #: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:41
 #: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:102
 msgid "Cancel"
@@ -77,7 +78,7 @@ msgid "Favorites"
 msgstr "Preferiti"
 
 #: /home/mario/showdown/Memories/po/../qml/components/FilterSidebar.qml:82
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:267
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:265
 msgid "Tags"
 msgstr "Etichette"
 
@@ -98,23 +99,23 @@ msgstr "Nuova memoria"
 msgid "Clear"
 msgstr "Pulisci"
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:167
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:171
 msgid "Date..."
 msgstr "Data..."
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:178
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:191
 msgid "Title..."
 msgstr "Titolo..."
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:187
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:200
 msgid "Memory..."
 msgstr "Memoria..."
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:247
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:260
 msgid "Tags... (separed by a comma)"
 msgstr "Etichette... (separate da una virgola)"
 
-#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:277
+#: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:290
 msgid "Location..."
 msgstr "Luogo..."
 
@@ -143,6 +144,14 @@ msgstr "La password che hai inserito non è valida."
 #: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:46
 msgid "Unlock"
 msgstr "Sblocca"
+
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:32
+msgid "Select Date"
+msgstr "Seleziona una data"
+
+#: /home/mario/showdown/Memories/po/../qml/components/DatePicker.qml:148
+msgid "Ok"
+msgstr "Ok"
 
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:34
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:35
@@ -210,7 +219,8 @@ msgstr ""
 #: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:81
 msgid "<a href=\"https://github.com/Mefrio/Memories/issues/\">Report a Bug</a>"
 msgstr ""
-"<a href=\"https://github.com/Mefrio/Memories/issues/\">Segnala un problema</a>"
+"<a href=\"https://github.com/Mefrio/Memories/issues/\">Segnala un problema</"
+"a>"
 
 #: /home/mario/showdown/Memories/po/../qml/components/AboutPage.qml:87
 msgid "<a href=\"https://github.com/Mefrio/Memories/\">Website</a>"
@@ -264,7 +274,11 @@ msgstr "Password"
 msgid "No memories!"
 msgstr "Nessuna memoria!"
 
-#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:159
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:160
+msgid "Reset filters"
+msgstr "Ripristina i filtri"
+
+#: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:168
 msgid "New"
 msgstr "Nuovo"
 
