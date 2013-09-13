@@ -2,8 +2,6 @@
 
 Keep track of your best moments with your hands
 
-![Memories 13.09.2013](https://raw.github.com/Mefrio/Memories/master/resources/gh-page/memories-13-09-2013.png)
-
 ### Installation ###
 
 **Dependencies:**
