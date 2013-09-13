@@ -158,6 +158,28 @@ Page {
 
                 spacing: units.gu(1)
 
+                TextField {
+                    id: titleField
+                    objectName: "titleField"
+                    anchors.left: parent.left
+                    anchors.right: parent.right
+                    placeholderText: i18n.tr("Title...")
+                    onTextChanged: {
+                        saveButton.enabled = (text != "")
+                    }
+
+//                    InverseMouseArea {
+//                        onClicked: {
+//                            memoryEditPage.forceActiveFocus()
+//                            parent.focus = false
+//                            mouse.accepted = false
+//                        }
+//                        anchors.fill: parent;
+//                        visible: parent.activeFocus;
+//                        propagateComposedEvents: true
+//                    }
+                }
+
                 Row {
                     width: parent.width
                     spacing: units.gu(1)
@@ -192,28 +214,6 @@ Page {
                         property alias date: dateField.text
                         onClicked: PopupUtils.open(Qt.resolvedUrl("DatePicker.qml"), dateField)
                     }
-                }
-
-                TextField {
-                    id: titleField
-                    objectName: "titleField"
-                    anchors.left: parent.left
-                    anchors.right: parent.right
-                    placeholderText: i18n.tr("Title...")
-                    onTextChanged: {
-                        saveButton.enabled = (text != "")
-                    }
-
-//                    InverseMouseArea {
-//                        onClicked: {
-//                            memoryEditPage.forceActiveFocus()
-//                            parent.focus = false
-//                            mouse.accepted = false
-//                        }
-//                        anchors.fill: parent;
-//                        visible: parent.activeFocus;
-//                        propagateComposedEvents: true
-//                    }
                 }
 
                 TextArea {

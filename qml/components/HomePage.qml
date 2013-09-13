@@ -160,7 +160,10 @@ Page {
             text: i18n.tr("Reset filters")
             iconSource: icon("reset")
 
-            onTriggered: clearFilter()
+            onTriggered: {
+                clearFilter()
+                sidebar.currentCategory = sidebar.nullCategory
+            }
         }
 
         ToolbarButton {
@@ -228,7 +231,6 @@ Page {
             var memory = memoryModel.get(i).mem
             memory.visible = true
         }
-        sidebar.currentCategory = sidebar.nullCategory
     }
 
     function filterByTag(filter) {

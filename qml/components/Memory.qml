@@ -60,9 +60,11 @@ QtObject {
     function getTags() {
         var list = []
 
-        for(var n = 0; n < tags.split(",").length; n++)
-            list.push(tags.split(",")[n].replace(" ", ""))
-
+        for(var n = 0; n < tags.split(",").length; n++) {
+            var tag = tags.split(",")[n]
+            if(tag != "")
+                list.push(tag)
+        }
         return list
     }
 

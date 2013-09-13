@@ -75,7 +75,6 @@ Dialog {
                     for(var n = 1; n <= 12; n++) {
                         var date = new Date()
                         date.setMonth(n)
-                        print(Qt.formatDateTime(date, "MMMM"))
                         months.push(Qt.formatDateTime(date, "MMMM"))
                     }
                     return months

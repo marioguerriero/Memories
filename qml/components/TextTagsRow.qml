@@ -63,6 +63,7 @@ Row {
         height: parent.height
         width: units.gu(4)
         iconSource: image("bold.png")
+        clip: true
         onClicked: {
             var open = "<b>"
             var close = "</b>"
@@ -74,6 +75,7 @@ Row {
         height: parent.height
         width: units.gu(4)
         iconSource: image("italic.png")
+        clip: true
         onClicked: {
             var open = "<i>"
             var close = "</i>"
@@ -85,6 +87,7 @@ Row {
         height: parent.height
         width: units.gu(4)
         iconSource: image("underline.png")
+        clip: true
         onClicked: {
             var open = "<u>"
             var close = "</u>"
@@ -96,6 +99,7 @@ Row {
         height: parent.height
         width: units.gu(4)
         iconSource: image("barred.png")
+        clip: true
         onClicked: {
             var open = "<del>"
             var close = "</del>"
@@ -107,6 +111,7 @@ Row {
         height: parent.height
         width: units.gu(4)
         iconSource: image("link.png")
+        clip: true
         onClicked: {
             PopupUtils.open(linkComp)
         }
@@ -115,6 +120,7 @@ Row {
         height: parent.height
         width: units.gu(4)
         iconSource: image("ordered-list.png")
+        clip: true
         onClicked: {
             var open = "<ol>\n\t<li>"
             var close = "</li>\n</ol>"
@@ -126,6 +132,7 @@ Row {
         height: parent.height
         width: units.gu(4)
         iconSource: image("unordered-list.png")
+        clip: true
         onClicked: {
             var open = "<ul>\n\t<li>"
             var close = "</li>\n</ul>"
