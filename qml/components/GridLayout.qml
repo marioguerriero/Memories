@@ -38,7 +38,7 @@ Flickable {
 
     // Component properties
     //property var memories: [ ]
-    property int itemSize: wideAspect ? units.gu(18.5) : units.gu(14)
+    property int itemSize: wideAspect ? units.gu(18.5) : units.gu(12.5)
 
     property int currentIndex: 0
 
@@ -122,26 +122,21 @@ Flickable {
                     anchors.rightMargin: units.gu(1)
                     clip: true
 
-                    Label {
-                        text: truncate(memory.title, itemSize * 1.5) // * 2.5 because of the large size
-                        fontSize: wideAspect ? "large" : "medium"
-                        onWidthChanged: {
-                            if(wideAspect)
-                                text = truncate(memory.title, itemSize * 1.5)
-                            else
-                                text = truncate(memory.title, itemSize * 2.3)
-                        }
+                    Text {
+                        text: memory.title
+                        color: "white"
+                        width: itemSize
+                        elide: Text.ElideRight
+                        font.pixelSize: wideAspect ? 18 : 16
+                        maximumLineCount: 1
                     }
-
-                    Label {
-                        text: truncate(buildText(), itemSize * 2.9) // * 2.5 because of the small size
-                        fontSize: wideAspect ? "small" : "x-small"
-                        onWidthChanged: {
-                            if(wideAspect)
-                                text = truncate(buildText(), itemSize * 2.9)
-                            else
-                                text = truncate(buildText(), itemSize * 3.6)
-                        }
+                    Text {
+                        text: buildText()
+                        color: "white"
+                        width: itemSize
+                        elide: Text.ElideRight
+                        font.pixelSize: wideAspect ? 12 : 10
+                        maximumLineCount: 1
                         function buildText() {
                             var text = ""
                             if(memory.location && memory.date)
