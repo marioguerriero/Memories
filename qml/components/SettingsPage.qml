@@ -94,5 +94,10 @@ Page {
                 }
             }
         }
+
+        Standard {
+            text: i18n.tr("About")
+            onClicked: stack.push(aboutPage)
+        }
     }
 }

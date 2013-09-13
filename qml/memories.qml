@@ -150,6 +150,10 @@ MainView {
             id: cameraPage
         }
 
+        AboutPage {
+            id: aboutPage
+        }
+
         Tabs {
             id: tabs
 
