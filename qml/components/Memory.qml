@@ -104,7 +104,4 @@ QtObject {
         return utils.exportAsPdf(fileName, toJSON())
     }
 
-    function save() {
-    }
-
 }

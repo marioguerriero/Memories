@@ -130,10 +130,6 @@ MainView {
                 homePage.locked = false
         }
 
-        Component.onDestruction: {
-            homePage.saveMemories()
-        }
-
         MemoryPage {
             id: memoryPage
         }
