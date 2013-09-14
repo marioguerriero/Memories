@@ -64,7 +64,7 @@ Page {
             PropertyChanges {
                 target: tools
                 opened: true
-                locked: true
+                locked: false
             }
 
             PropertyChanges {

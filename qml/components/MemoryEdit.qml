@@ -447,7 +447,12 @@ Page {
 
         homePage.saveMemories()
 
+        memoryPage.memory = memory
+
+        stack.clear()
         stack.push(tabs)
+        stack.push(memoryPage)
+
         memoryEditPage.clear()
     }
 
