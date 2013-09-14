@@ -110,6 +110,7 @@ Sidebar {
     }
     Scrollbar {
         flickableItem: listView
+        align: Qt.AlignTrailing
     }
 
     property var tagsList: [] // Used to get counts
