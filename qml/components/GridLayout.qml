@@ -33,7 +33,8 @@ Flickable {
     clip: true
 
     height: memoryGrid.height
-    contentHeight: memoryGrid.columns == 1 ? height : height + units.gu(10)
+    contentHeight: memoryGrid.height + itemSize
+    interactive: true
 
     flickableDirection: Flickable.VerticalFlick
 

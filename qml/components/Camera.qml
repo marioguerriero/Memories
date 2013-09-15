@@ -32,10 +32,9 @@ UbuntuShape {
         id: videoPreview
         source: camera
         anchors {
-            top: parent.top
-            bottom: parent.bottom
-            right: parent.right
-            left: parent.left
+            fill: parent
+            //horizontalCenter: parent.horizontalCenter
+            //verticalCenter: parent.verticalCenter
         }
 
         focus: visible
