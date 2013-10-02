@@ -34,7 +34,7 @@ MainView {
     objectName: "mainView"
 
     // Note! applicationName needs to match the .desktop filename
-    applicationName: "memories"
+    applicationName: "com.ubuntu.developer.mefrio.memories"
 
     /*
      This property enables the application to change orientation

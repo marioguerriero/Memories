@@ -23,7 +23,7 @@ import Ubuntu.Components 0.1
 Page {
     id: cameraPage
     objectName: "cameraPage"
-    //title: i18n.tr("Camera")
+    title: i18n.tr("Camera")
     visible: false
 
     actions: [
