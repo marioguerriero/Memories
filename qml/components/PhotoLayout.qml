@@ -21,6 +21,7 @@ import QtQuick 2.0
 import Ubuntu.Components 0.1
 import Ubuntu.Components.Popups 0.1
 import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Content 0.1
 
 Flickable {
     id: flickable
@@ -64,6 +65,16 @@ Flickable {
             visible: editable
 
             onClicked: photoGrid.selectPhoto();
+        }
+
+        Button {
+            iconSource: image("camera-white.png")
+            height: iconSize
+            width: height
+
+            visible: editable
+
+            onClicked: stack.push(cameraPage)
         }
 
         Repeater {
@@ -123,11 +134,11 @@ Flickable {
         }
 
         function selectPhoto() {
-            PopupUtils.open(Qt.resolvedUrl("./PhotoChooser.qml"), photoGrid);
+            importPictures()//PopupUtils.open(Qt.resolvedUrl("./PhotoChooser.qml"), photoGrid);
         }
 
         function addPhoto(filename) {
-            photos.push(filename)
+            photos.push(filename.toString().replace("file://", ""))
             // Update the model manually, since push() doesn't trigger
             // the *Changed event
             repeater.model = photos
@@ -149,5 +160,34 @@ Flickable {
 
     function addPhoto(path) {
         photoGrid.addPhoto(path)
+    }
+
+    // Content HUB
+    property list<ContentItem> importItems
+    property var activeTransfer
+
+    function importPictures() {
+        var peer = ContentHub.defaultSourceForType(ContentType.Pictures);
+        var transfer = ContentHub.importContent(ContentType.Pictures, peer);
+        var store = ContentHub.defaultStoreForType(ContentType.Pictures);
+        console.log("Store is: " + store.uri);
+        if (transfer !== null) {
+            transfer.selectionType = ContentTransfer.Multiple;
+            transfer.setStore(store);
+            activeTransfer = transfer;
+            activeTransfer.start();
+        }
+    }
+
+    Connections {
+        target: activeTransfer
+        onStateChanged: {
+            console.log("StateChanged: " + activeTransfer.state);
+            if (activeTransfer.state === ContentTransfer.Charged) {
+                importItems = activeTransfer.items;
+                for(var n = 0; n < importItems.length; n++)
+                    photoGrid.addPhoto(importItems[n].url.toString())
+            }
+        }
     }
 }

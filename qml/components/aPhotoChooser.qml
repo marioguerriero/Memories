@@ -19,8 +19,9 @@
 
 import QtQuick 2.0
 import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
+import Ubuntu.Components.ListItems 0.1
 import Ubuntu.Components.Popups 0.1
+import Ubuntu.Content 0.1
 import Qt.labs.folderlistmodel 1.0
 import Memories 0.1
 
@@ -44,6 +45,7 @@ Dialog {
     ListView {
         clip: true
         height: units.gu(30)
+
         FolderListModel {
             id: folderModel
             folder: folderPath
@@ -52,7 +54,7 @@ Dialog {
 
         Component {
             id: fileDelegate
-            ListItem.Standard {
+            Standard {
                 Label {
                     anchors {
                         verticalCenter: parent.verticalCenter
@@ -94,14 +96,64 @@ Dialog {
             }
         }
 
-        model: folderModel
-        delegate: fileDelegate
+        //model: folderModel
+        //delegate: fileDelegate
+        model: importItems
+        delegate: Empty {
+            id: result
+            height: 128
+            UbuntuShape {
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: image.width
+                height: image.height
+                image: Image {
+                    id: image
+                    source: url
+                    height: result.height
+                    fillMode: Image.PreserveAspectFit
+                    smooth: true
+                }
+            }
+        }
     }
 
+    // Content HUB
+    property list<ContentItem> importItems
+    property var activeTransfer
+
+    function importPictures() {
+        var peer = ContentHub.defaultSourceForType(ContentType.Pictures);
+        var transfer = ContentHub.importContent(ContentType.Pictures, peer);
+        var store = ContentHub.defaultStoreForType(ContentType.Pictures);
+        console.log("Store is: " + store.uri);
+        if (transfer !== null) {
+            transfer.selectionType = ContentTransfer.Multiple;
+            transfer.setStore(store);
+            activeTransfer = transfer;
+            activeTransfer.start();
+        }
+    }
+
+    Connections {
+        target: activeTransfer
+        onStateChanged: {
+            console.log("StateChanged: " + activeTransfer.state);
+            if (activeTransfer.state === ContentTransfer.Charged) {
+                importItems = activeTransfer.items;
+                for(var n = 0; n < importItems.length; n++)
+                    caller.addPhoto(importItems[n].url)
+            }
+        }
+    }
+
+    // Dialog buttons
     Button {
         text: i18n.tr("Cancel")
         gradient: UbuntuColors.greyGradient
-        onClicked: PopupUtils.close(dialogue)
+        onClicked: {
+            PopupUtils.close(dialogue)
+            importPictures()
+        }
     }
 
     Button {
