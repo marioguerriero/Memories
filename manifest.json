@@ -1,0 +1,14 @@
+{
+    "description": "Keep track of your best moments with your hands. Create a digital journal of your life and share it with your friends.",
+    "framework": "ubuntu-sdk-13.10",
+    "hooks": {
+        "memories": {
+            "apparmor": "memories.json",
+            "desktop": "memories.desktop"
+        }
+    },
+    "maintainer": "Mario Guerriero <mefrio.g@gmail.com>",
+    "name": "com.ubuntu.developer.mefrio.memories",
+    "title": "Memories",
+    "version": "1.09"
+}
