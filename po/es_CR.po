@@ -29,11 +29,11 @@ msgstr "Ajustes"
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:36
 msgid "Protect your memories"
-msgstr "Proteje tus recuerdos"
+msgstr "Protege tus recuerdos"
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:37
 msgid "Set a password to keep unwanted people away from you memories."
-msgstr "Establece una contraseña y manten lejos a otros de tus memorias"
+msgstr "Establece una contraseña y mantén lejos a otros de tus memorias"
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:41
 #: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:41
@@ -55,7 +55,7 @@ msgstr "Guardar"
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:74
 msgid "Protect memories with password"
-msgstr "Proteje tus recuerdos con una contraseña"
+msgstr "Protege tus recuerdos con una contraseña"
 
 #: /home/mario/showdown/Memories/po/../qml/components/SettingsPage.qml:88
 #: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:45
@@ -111,7 +111,7 @@ msgstr "Recuerdo..."
 
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:247
 msgid "Tags... (separed by a comma)"
-msgstr "Etiquetas...(Separadas por coma)"
+msgstr "Etiquetas... (separadas por comas)"
 
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryEdit.qml:277
 msgid "Location..."
@@ -126,7 +126,7 @@ msgstr "Cámara"
 #: /home/mario/showdown/Memories/po/../qml/components/CameraPage.qml:32
 #: /home/mario/showdown/Memories/po/../qml/components/CameraPage.qml:76
 msgid "Snaps"
-msgstr "Instatánea"
+msgstr "Instantánea"
 
 #: /home/mario/showdown/Memories/po/../qml/components/UnlockDialog.qml:29
 msgid "Unlock Memories"
@@ -166,7 +166,7 @@ msgstr "Exportar"
 
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:145
 msgid "Memory exported successfully"
-msgstr "Recuerdo exportado exitósamente"
+msgstr "Recuerdo exportado exitosamente"
 
 #: /home/mario/showdown/Memories/po/../qml/components/MemoryPage.qml:145
 #: /home/mario/showdown/Memories/po/../qml/memories.qml:67
@@ -259,7 +259,7 @@ msgstr "Contraseña"
 
 #: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:85
 msgid "No memories!"
-msgstr "No hay recuerdos!"
+msgstr "¡No hay recuerdos!"
 
 #: /home/mario/showdown/Memories/po/../qml/components/HomePage.qml:159
 msgid "New"
@@ -267,11 +267,11 @@ msgstr "Nueva"
 
 #: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:35
 msgid "Enter a link"
-msgstr "Ingresar un link"
+msgstr "Ingresar un enlace"
 
 #: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:38
 msgid "Link..."
-msgstr "Link..."
+msgstr "Enlace..."
 
 #: /home/mario/showdown/Memories/po/../qml/components/TextTagsRow.qml:48
 msgid "Confirm"
@@ -279,7 +279,7 @@ msgstr "Confirmar"
 
 #: /home/mario/showdown/Memories/po/../qml/components/AudioLayout.qml:106
 msgid "Press and hold to record"
-msgstr "Mantiene presionado para grabar"
+msgstr "Mantén presionado para grabar"
 
 #: /home/mario/showdown/Memories/po/../qml/components/PhotoChooser.qml:29
 msgid "Add a Photo"
@@ -295,7 +295,7 @@ msgstr "Tomar desde la cámara"
 
 #: /home/mario/showdown/Memories/po/../qml/memories.qml:56
 msgid "Keep track of your best moments with your hands"
-msgstr "Manten un recuerdo de tus mejores momentos en tus manos."
+msgstr "Mantén un recuerdo de tus mejores momentos en tus manos."
 
 #: /home/mario/showdown/Memories/po/../qml/memories.qml:68
 msgid ""
