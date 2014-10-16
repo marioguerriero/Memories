@@ -18,8 +18,8 @@
 **/
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.Popups 1.0
 import U1db 1.0 as U1db
 import Ubuntu.OnlineAccounts 0.1
 import Friends 0.2
@@ -40,7 +40,7 @@ MainView {
      This property enables the application to change orientation
      when the device is rotated. The default is false.
     */
-    //automaticOrientation: true
+    automaticOrientation: true
 
     width: units.gu(110)
     height: units.gu(75)
@@ -48,12 +48,20 @@ MainView {
     property bool wideAspect: width > units.gu(80)
     property bool showToolbar: height > units.gu(75)
 
-    headerColor: "#464646"
-    backgroundColor: "#797979"
-    footerColor: "#808080"
+    backgroundColor: "#464646"
+
+	// Use new toolbar
+    useDeprecatedToolbar: false
 
     // Translate the launcher description
     property string description: i18n.tr("Keep track of your best moments with your hands")
+
+	// Saving window state
+    StateSaver.properties: "height, width"
+
+	// New properties of this page
+    readonly property real minimumWidth: units.gu(50)
+    readonly property real minimumHeight: units.gu(75)
 
     // Friends social network support
     ListModel {
@@ -177,6 +185,15 @@ MainView {
                 cameraPage.start()
         }
     }
+
+	Component.onCompleted: {
+		// When root component is completed the StateSaver restore it to previous dimensions.
+        // If it is too small, set height and width to a proper size.
+        if((mainView.width < minimumWidth) || (mainView.height < minimumHeight)){
+            mainView.width = minimumWidth
+            mainView.height = minimumHeight
+        }
+	}
 
     // Memories managment
     U1db.Database {

@@ -18,14 +18,14 @@
 **/
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0
 import Qt.labs.folderlistmodel 1.0
 
 Page {
     id: page
-    onWidthChanged: title = truncate(memory ? memory.title : "", parent.width, units.gu(2.5))
+    onWidthChanged: title = memory ? memory.title : ""
 
     visible: false
 
@@ -40,23 +40,6 @@ Page {
             keywords: i18n.tr("Delete")
             onTriggered: PopupUtils.open(dialog)
         }
-    ]
-
-    states: [
-        State {
-            when: showToolbar
-            PropertyChanges {
-                target: tools
-                opened: true
-                locked: true
-            }
-
-            PropertyChanges {
-                target: parent
-                anchors.bottomMargin: units.gu(-2)
-            }
-        }
-
     ]
 
     property bool editing: false
@@ -81,57 +64,50 @@ Page {
     }
 
     tools: ToolbarItems {
-
         ToolbarButton {
-            text: i18n.tr("Favorite")
-            iconSource: memory ? (memory.favorite ? icon("favorite-selected") : icon("favorite-unselected")) : ""
-
-            onTriggered: {
-                memory.favorite = !memory.favorite;
+            action: Action {
+                text: i18n.tr("Favorite")
+                iconSource: memory ? (memory.favorite ? icon("favorite-selected") : icon("favorite-unselected")) : ""
+                onTriggered: {
+                    memory.favorite = !memory.favorite
+                    homePage.saveMemories()
+                }
             }
         }
-
+        ToolbarButton {
+            action: Action {
+                text: i18n.tr("Edit")
+                iconSource: icon("edit")
+                onTriggered: edit()
+            }
+        }
+        ToolbarButton {
+            action: Action {
+                text: i18n.tr("Delete")
+                iconSource: icon("delete")
+                onTriggered: PopupUtils.open(dialog)
+            }
+        }
         ToolbarButton {
             id: exportButton
-            objectName: "exportButton"
-            text: i18n.tr("Export")
-            iconSource: image("export-document.png")
-            onTriggered: {
-                exported = memory.exportAsPdf()
-                PopupUtils.open(exportDialog)
+            action: Action {
+                text: i18n.tr("Export")
+                iconSource: image("export-document.png")
+                onTriggered: {
+                    exported = memory.exportAsPdf()
+                    PopupUtils.open(exportDialog)
+                }
             }
         }
-
         ToolbarButton {
             id: shareButton
-            objectName: "shareButton"
-            text: i18n.tr("Share")
-            iconSource: icon("share")
-            visible: accountsModel.count > 0
-
-            onTriggered: {
-                PopupUtils.open(shareComponent, shareButton)
+            action: Action {
+                text: i18n.tr("Share")
+                iconSource: icon("share")
+                visible: accountsModel.count > 0
+                onTriggered: PopupUtils.open(shareComponent, shareButton)
             }
         }
-
-        ToolbarButton {
-            text: i18n.tr("Edit")
-            iconSource: icon("edit")
-
-            onTriggered: edit()
-        }
-
-        ToolbarButton {
-            text: i18n.tr("Delete")
-            iconSource: icon("delete")
-
-            onTriggered: {
-                PopupUtils.open(dialog)
-            }
-        }
-
-        locked: false
-        opened: false
     }
 
     // Export confirmation dialog
@@ -318,7 +294,7 @@ Page {
             return;
 
         dateLabel.text = memory.date
-        title = truncate(memory.title, parent.width, units.gu(2.5))
+        title = memory.title
         memoryArea.text = memory.description
         tags = memory.getTags()
         locationLabel.text = memory.location

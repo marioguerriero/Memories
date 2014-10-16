@@ -18,16 +18,13 @@
 **/
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0
 import Qt.labs.folderlistmodel 1.0
 
 Page {
     id: memoryEditPage
-    objectName: "memoryEdit"
-    onWidthChanged: title = truncate(editing ? (i18n.tr("Editing: ") + memory.title) : i18n.tr("New Memory"), parent.width, units.gu(2.3))
-
     visible: false
 
     actions: [
@@ -43,26 +40,10 @@ Page {
         }
     ]
 
-    states: [
-        State {
-            when: showToolbar
-            PropertyChanges {
-                target: tools
-                opened: true
-                locked: true
-            }
-
-            PropertyChanges {
-                target: parent
-                anchors.bottomMargin: units.gu(-2)
-            }
-        }
-    ]
-
     // Some functions
     function clear() {
         editing = false
-        title = truncate(i18n.tr("New Memory"), parent.width, units.gu(2.3))
+        title = i18n.tr("New Memory")
         titleField.text = ""
         dateField.setCurrentDate()
         descriptionArea.text = ""
@@ -79,7 +60,7 @@ Page {
         memory = mem
         editing = true
         titleField.text = memory.title
-        title = truncate(i18n.tr("Editing: ") + titleField.text, parent.width, units.gu(2.3))
+        title = (i18n.tr("Editing: ") + titleField.text)
         dateField.text = memory.date
         descriptionArea.text = memory.description
         tagsField.text = memory.tags
@@ -93,45 +74,15 @@ Page {
 
     }
 
-    // Toolbar
-    ToolbarItems {
-        id: toolbar
-        property int index: 0
-        ToolbarButton {
-            id: clearButton
-            objectName: "clearBtn"
-            text: i18n.tr("Clear")
-            iconSource: icon("reset")
-
-            onTriggered: {
-                memoryEditPage.clear()
-            }
-        }
-
-        ToolbarButton {
-            id: saveButton
-            text: i18n.tr("Save")
-            iconSource: icon("save")
-
-            onTriggered: save()
-            enabled: false
-        }
-
-        locked: false
-        opened: false
-    }
-
     // Page content
     Flickable {
         id: flickableView
 
-        anchors {
-            fill: parent
-        }
+        anchors.fill: parent
 
         clip: true
 
-        contentHeight: layout.height
+        contentHeight: parent.height + units.gu(5) // Layout height + Top Bar height
         interactive: contentHeight + units.gu(5) > height
 
         flickableDirection: Flickable.VerticalFlick
@@ -165,7 +116,7 @@ Page {
                     anchors.right: parent.right
                     placeholderText: i18n.tr("Title...")
                     onTextChanged: {
-                        saveButton.enabled = (text != "")
+                        saveButton.action.enabled = (text != "")
                     }
 
                     InverseMouseArea {
@@ -405,7 +356,26 @@ Page {
         objectName: "citiesModel"
     }
 
-    tools: toolbar
+    tools: ToolbarItems {
+        ToolbarButton {
+            id: clearButton
+            action: Action {
+                text: i18n.tr("Clear")
+                iconSource: icon("reset")
+                onTriggered: memoryEditPage.clear()
+            }
+        }
+
+        ToolbarButton {
+            id: saveButton
+            action: Action {
+                text: i18n.tr("Save")
+                iconSource: icon("save")
+                onTriggered: save()
+                enabled: false
+            }
+        }
+    }
 
     function save() {
         if (!enabled) return;

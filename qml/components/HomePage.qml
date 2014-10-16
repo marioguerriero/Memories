@@ -18,9 +18,9 @@
 **/
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0
+import Ubuntu.Components.Popups 1.0
 import U1db 1.0 as U1db
 import "./MD5.js" as Crypto
 
@@ -156,22 +156,24 @@ Page {
     tools: ToolbarItems {
         ToolbarButton {
             id: clearButton
-            visible: !wideAspect && sidebar.currentCategory != sidebar.nullCategory
-            text: i18n.tr("Reset filters")
-            iconSource: icon("reset")
-
-            onTriggered: {
-                clearFilter()
-                sidebar.currentCategory = sidebar.nullCategory
-            }
+            action: Action {
+				visible: !wideAspect && sidebar.currentCategory != sidebar.nullCategory
+            	text: i18n.tr("Reset filters")
+            	iconSource: icon("reset")
+            	onTriggered: {
+                	clearFilter()
+                	sidebar.currentCategory = sidebar.nullCategory
+            	}
+			}
         }
 
         ToolbarButton {
             id: newButton
-            text: i18n.tr("New")
-            iconSource: icon("add")
-
-            onTriggered: newMemory()
+			action: Action {
+		        text: i18n.tr("New")
+		        iconSource: icon("add")
+		        onTriggered: newMemory()
+			}
         }
 
         locked: false

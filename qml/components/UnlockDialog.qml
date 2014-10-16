@@ -18,9 +18,9 @@
 **/
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
-import Ubuntu.Components.ListItems 0.1 as ListItem
-import Ubuntu.Components.Popups 0.1
+import Ubuntu.Components 1.1
+import Ubuntu.Components.ListItems 1.0 as ListItem
+import Ubuntu.Components.Popups 1.0
 import Qt.labs.folderlistmodel 1.0
 import "./MD5.js" as Crypto
 
@@ -40,9 +40,11 @@ Dialog {
         id: passwordField
         placeholderText: i18n.tr("Password...")
         echoMode: TextInput.Password
+		onAccepted: confirmBtn.clicked()
     }
 
     Button {
+		id: confirmBtn
         text: i18n.tr("Unlock")
         color: UbuntuColors.orange
         onClicked: {
@@ -54,4 +56,6 @@ Dialog {
                 errorLabel.visible = true
         }
     }
+
+	Component.onCompleted: passwordField.forceActiveFocus();
 }

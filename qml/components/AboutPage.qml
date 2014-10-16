@@ -18,7 +18,7 @@
 **/
 
 import QtQuick 2.0
-import Ubuntu.Components 0.1
+import Ubuntu.Components 1.1
 
 Page {
     title: i18n.tr("About")
@@ -72,7 +72,7 @@ Page {
             }
 
             Label {
-                text: i18n.tr("<a href=\"mailto:mefrio.g@gmail.com?subject=Memories%20support\">mefrio.g@gmail.com</a>")
+                text: i18n.tr("<a href=\"mailto:marioguerriero33@gmail.com?subject=Memories%20support\">marioguerriero33@gmail.com</a>")
                 onLinkActivated: Qt.openUrlExternally(link)
             }
         }
@@ -87,13 +87,13 @@ Page {
             }
 
             Label {
-                text: i18n.tr("<a href=\"https://github.com/Mefrio/Memories/issues/\">Report a Bug</a>")
+                text: i18n.tr("<a href=\"https://github.com/marioguerriero/Memories/issues/\">Report a Bug</a>")
                 onLinkActivated: Qt.openUrlExternally(link)
             }
         }
 
         Label {
-            text: i18n.tr("<a href=\"http://mefrio.github.io/Memories/\">Website</a>")
+            text: i18n.tr("<a href=\"http://marioguerriero.github.io/Memories/\">Website</a>")
             anchors.horizontalCenter: parent.horizontalCenter
             onLinkActivated: Qt.openUrlExternally(link)
         }
@@ -104,7 +104,7 @@ Page {
         }
 
         Label {
-            text: i18n.tr("Copyright (C) 2013 Mario Guerriero")
+            text: i18n.tr("Copyright (C) 2013-2014 Mario Guerriero")
             anchors.horizontalCenter: parent.horizontalCenter
         }
     }
