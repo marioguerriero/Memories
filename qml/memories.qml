@@ -21,8 +21,6 @@ import QtQuick 2.0
 import Ubuntu.Components 1.1
 import Ubuntu.Components.Popups 1.0
 import U1db 1.0 as U1db
-import Ubuntu.OnlineAccounts 0.1
-import Friends 0.2
 
 import "components"
 
@@ -61,67 +59,6 @@ MainView {
 	// New properties of this page
     readonly property real minimumWidth: units.gu(50)
     readonly property real minimumHeight: units.gu(75)
-
-    // Friends social network support
-    ListModel {
-        id: accountsModel
-    }
-
-    Component {
-        id: errorComp
-        Dialog {
-            id: errorDialog
-            title: i18n.tr("An error occurred")
-            text: i18n.tr("Cannot comunicate with social networks. Please try again or check your Online Accounts settings.")
-            Button {
-                text: i18n.tr("Close")
-                onClicked: PopupUtils.close(errorDialog)
-            }
-        }
-    }
-
-    FriendsDispatcher {
-        id: friends
-        onSendComplete: {
-            if (success) {
-                console.log ("Send completed successfully");
-            } else {
-                console.log ("Send failed: " + errorMessage.split("str: str:")[1]);
-                PopupUtils.open(errorComp)
-            }
-        }
-        onUploadComplete: {
-            if (success) {
-                console.log ("Upload completed successfully");
-            } else {
-                console.log ("Upload failed: " + errorMessage);
-                PopupUtils.open(errorComp)
-            }
-        }
-    }
-
-    AccountServiceModel {
-        id: accounts
-        serviceType: "microblogging"
-        Component.onCompleted: {
-            for(var i=0; i<accounts.count; i++) {
-                var displayName = accounts.get(i, "displayName");
-                var accountId = accounts.get(i, "accountId");
-                var serviceName = accounts.get(i, "serviceName");
-                var features = friends.featuresForProtocol(serviceName.toLowerCase().replace(".",""));
-                if(features.indexOf("send") > -1) {
-                    console.log (serviceName + " Supports send");
-                    accountsModel.append({
-                        "displayName": displayName,
-                        "id": accountId,
-                        "provider": serviceName,
-                        "iconName": serviceName.toLowerCase().replace(".",""),
-                        "sendEnabled": true
-                    });
-                }
-            }
-        }
-    }
 
     // Pages
     PageStack {

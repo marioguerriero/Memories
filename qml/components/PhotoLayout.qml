@@ -147,10 +147,6 @@ Flickable {
     }
 
     onPhotosChanged: {
-        for(var n = 0; n < photos.length; n++)
-            if(!utils.fileExists(photos[n]))
-                photos.splice(n, 1)
-
         repeater.model = photos
     }
 

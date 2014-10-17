@@ -10,13 +10,9 @@ Keep track of your best moments everywhere!
  * U1db - qtdeclarative5-u1db1.0
  * Ubuntu Mobile Icons - ubuntu-mobile-icons
 
-To build build and test the run the following commands
+To test run the following commands
     
-    mkdir build
-    cd build
-    cmake ..
-    make
-    qmlscene -I ../modules ../qml/memories.qml
+    qmlscene qml/memories.qml
 
 ### Features ###
  

@@ -22,7 +22,7 @@ import Ubuntu.Components 1.1
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
 import U1db 1.0 as U1db
-import "./MD5.js" as Crypto
+import "../../js/MD5.js" as Crypto
 
 Page {
     id: home
@@ -199,7 +199,7 @@ Page {
     }
 
     function loadMemories() {
-        print("Loading Memories...")
+        console.log("Loading Memories...")
         var memories = JSON.parse(memoriesDatabase.contents.memories)
         for(var i = 0; i < memories.length; i++) {
             newMemoryObject(memories[i])

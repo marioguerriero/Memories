@@ -334,7 +334,7 @@ Page {
     WorkerScript {
         id: searchWorker
         objectName: "searchWorker"
-        source: "./WeatherApi.js"
+        source: "../../js/WeatherApi.js"
         onMessage: {
             if(!messageObject.error) {
                 listView.visible = true

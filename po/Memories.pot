@@ -1,0 +1,267 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-10-17 16:52+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: qml/components/UnlockDialog.qml:29
+msgid "Unlock Memories"
+msgstr ""
+
+#: qml/components/UnlockDialog.qml:30
+msgid "Enter your password to continue to use Memories."
+msgstr ""
+
+#: qml/components/UnlockDialog.qml:35
+msgid "The password you entered is not valid."
+msgstr ""
+
+#: qml/components/UnlockDialog.qml:41 qml/components/SettingsPage.qml:41
+msgid "Password..."
+msgstr ""
+
+#: qml/components/UnlockDialog.qml:48
+msgid "Unlock"
+msgstr ""
+
+#: qml/components/FilterSidebar.qml:46
+msgid "All"
+msgstr ""
+
+#: qml/components/FilterSidebar.qml:58
+msgid "Favorites"
+msgstr ""
+
+#: qml/components/FilterSidebar.qml:82 qml/components/MemoryPage.qml:189
+msgid "Tags"
+msgstr ""
+
+#: qml/components/AboutPage.qml:24 qml/components/SettingsPage.qml:99
+msgid "About"
+msgstr ""
+
+#: qml/components/AboutPage.qml:53
+msgid "Author:          "
+msgstr ""
+
+#: qml/components/AboutPage.qml:62
+msgid "Icon:"
+msgstr ""
+
+#: qml/components/AboutPage.qml:71
+msgid "Contact:"
+msgstr ""
+
+#: qml/components/AboutPage.qml:75
+#, c-format, qt-format
+msgid ""
+"<a href=\"mailto:marioguerriero33@gmail.com?subject=Memories%20support"
+"\">marioguerriero33@gmail.com</a>"
+msgstr ""
+
+#: qml/components/AboutPage.qml:85
+msgid ""
+"<a href=\"https://www.paypal.com/us/cgi-bin/webscr?"
+"cmd=_flow&SESSION=hIBnlI0q1A447--"
+"JjCVws5rcYOB46jp11HElKYE15m4aqruLp77bJtcAJgS&dispatch=5885d80a13c0db1f8e263663d3faee8def8934b92a630e40b7fef61ab7e9fe63\">Donate</"
+"a>"
+msgstr ""
+
+#: qml/components/AboutPage.qml:90
+msgid ""
+"<a href=\"https://github.com/marioguerriero/Memories/issues/\">Report a Bug</"
+"a>"
+msgstr ""
+
+#: qml/components/AboutPage.qml:96
+msgid "<a href=\"http://marioguerriero.github.io/Memories/\">Website</a>"
+msgstr ""
+
+#: qml/components/AboutPage.qml:102
+#, qt-format
+msgid "Version <b>%1</b>"
+msgstr ""
+
+#: qml/components/AboutPage.qml:107
+msgid "Copyright (C) 2013-2014 Mario Guerriero"
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:32 qml/components/MemoryEdit.qml:33
+#: qml/components/MemoryEdit.qml:372 qml/components/SettingsPage.qml:55
+msgid "Save"
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:37 qml/components/MemoryEdit.qml:38
+#: qml/components/MemoryEdit.qml:363
+msgid "Clear"
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:46 qml/components/HomePage.qml:40
+msgid "New Memory"
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:63
+msgid "Editing: "
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:117
+msgid "Title..."
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:144
+msgid "Date..."
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:173
+msgid "Memory..."
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:244
+msgid "Tags... (separed by a comma)"
+msgstr ""
+
+#: qml/components/MemoryEdit.qml:286
+msgid "Location..."
+msgstr ""
+
+#: qml/components/CameraPage.qml:26
+msgid "Camera"
+msgstr ""
+
+#: qml/components/CameraPage.qml:31 qml/components/CameraPage.qml:32
+#: qml/components/CameraPage.qml:80
+msgid "Snaps"
+msgstr ""
+
+#: qml/components/HomePage.qml:30
+msgid "Memories"
+msgstr ""
+
+#: qml/components/HomePage.qml:35
+msgid "Quit"
+msgstr ""
+
+#: qml/components/HomePage.qml:36
+msgid "Exit"
+msgstr ""
+
+#: qml/components/HomePage.qml:41
+msgid "New;Add"
+msgstr ""
+
+#: qml/components/HomePage.qml:45 qml/components/SettingsPage.qml:88
+msgid "Grid Layout"
+msgstr ""
+
+#: qml/components/HomePage.qml:46
+msgid "Grid"
+msgstr ""
+
+#: qml/components/HomePage.qml:50
+msgid "List Layout"
+msgstr ""
+
+#: qml/components/HomePage.qml:51
+msgid "List"
+msgstr ""
+
+#: qml/components/HomePage.qml:55
+msgid "Set a Password"
+msgstr ""
+
+#: qml/components/HomePage.qml:56
+msgid "Password"
+msgstr ""
+
+#: qml/components/HomePage.qml:85
+msgid "No memories!"
+msgstr ""
+
+#: qml/components/HomePage.qml:161
+msgid "Reset filters"
+msgstr ""
+
+#: qml/components/HomePage.qml:173
+msgid "New"
+msgstr ""
+
+#: qml/components/TextTagsRow.qml:35
+msgid "Enter a link"
+msgstr ""
+
+#: qml/components/TextTagsRow.qml:38
+msgid "Link..."
+msgstr ""
+
+#: qml/components/TextTagsRow.qml:41 qml/components/DatePicker.qml:136
+#: qml/components/MemoryPage.qml:88 qml/components/SettingsPage.qml:46
+msgid "Cancel"
+msgstr ""
+
+#: qml/components/TextTagsRow.qml:48
+msgid "Confirm"
+msgstr ""
+
+#: qml/components/GalleryPage.qml:140
+msgid "Share"
+msgstr ""
+
+#: qml/components/AudioLayout.qml:106
+msgid "Press and hold to record"
+msgstr ""
+
+#: qml/components/DatePicker.qml:32
+msgid "Select Date"
+msgstr ""
+
+#: qml/components/DatePicker.qml:147
+msgid "Ok"
+msgstr ""
+
+#: qml/components/MemoryPage.qml:34 qml/components/MemoryPage.qml:35
+#: qml/components/MemoryPage.qml:66
+msgid "Edit"
+msgstr ""
+
+#: qml/components/MemoryPage.qml:39 qml/components/MemoryPage.qml:40
+#: qml/components/MemoryPage.qml:73 qml/components/MemoryPage.qml:85
+#: qml/components/MemoryPage.qml:93
+msgid "Delete"
+msgstr ""
+
+#: qml/components/MemoryPage.qml:56
+msgid "Favorite"
+msgstr ""
+
+#: qml/components/MemoryPage.qml:86
+msgid "Are you sure you want to delete this memory?"
+msgstr ""
+
+#: qml/components/SettingsPage.qml:30
+msgid "Settings"
+msgstr ""
+
+#: qml/components/SettingsPage.qml:36
+msgid "Protect your memories"
+msgstr ""
+
+#: qml/components/SettingsPage.qml:37
+msgid "Set a password to keep unwanted people away from you memories."
+msgstr ""
+
+#: qml/components/SettingsPage.qml:74
+msgid "Protect memories with password"
+msgstr ""

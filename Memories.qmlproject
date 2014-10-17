@@ -8,10 +8,13 @@ Project {
         directory: "qml/components"
     }
     JavaScriptFiles {
-        directory: "."
+        directory: "js"
     }
     ImageFiles {
-        directory: "."
+        directory: "resources/images"
+    }
+    Files {
+        directory: "resources"
     }
     Files {
         filter: "*.desktop"

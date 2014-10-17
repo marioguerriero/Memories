@@ -26,7 +26,7 @@ ListItem.MultiValue {
     progression: true
     icon: {
         var photo = memory.photos[0]
-        if(photo == "")
+        if(photo === undefined)
             return Qt.resolvedUrl("../../resources/images/empty.png")
         return photo
     }

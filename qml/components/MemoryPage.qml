@@ -50,19 +50,6 @@ Page {
     property var tags: []
     onTagsChanged: repeater.model = tags
 
-    // Friends Popover
-    Component {
-        id: shareComponent
-        SharePopover {
-            id: sharePopover
-            onSend: {
-                var share_string = page.memory.getShareString()
-                friends.sendForAccountAsync(id, share_string)
-                PopupUtils.close(sharePopover)
-            }
-        }
-    }
-
     tools: ToolbarItems {
         ToolbarButton {
             action: Action {
@@ -88,14 +75,6 @@ Page {
                 onTriggered: PopupUtils.open(dialog)
             }
         }
-        ToolbarButton {
-            id: shareButton
-            action: Action {
-                text: i18n.tr("Share")
-                iconSource: icon("share")
-                onTriggered: PopupUtils.open(shareComponent, shareButton)
-            }
-        }
     }
 
     // Delete dialog
@@ -103,15 +82,15 @@ Page {
         id: dialog
         Dialog {
             id: dialogue
-            title: "Delete"
-            text: "Are you sure you want to delete this memory?"
+            title: i18n.tr("Delete")
+            text: i18n.tr("Are you sure you want to delete this memory?")
             Button {
-                text: "Cancel"
+                text: i18n.tr("Cancel")
                 gradient: UbuntuColors.greyGradient
                 onClicked: PopupUtils.close(dialogue)
             }
             Button {
-                text: "Delete"
+                text: i18n.tr("Delete")
                 color: UbuntuColors.orange
                 onClicked: {
                     PopupUtils.close(dialogue)
