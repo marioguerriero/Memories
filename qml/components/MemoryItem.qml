@@ -24,7 +24,7 @@ import Ubuntu.Components.ListItems 1.0 as ListItem
 ListItem.MultiValue {
     id: item
     progression: true
-    icon: {
+    iconSource: {
         var photo = memory.photos[0]
         if(photo === undefined)
             return Qt.resolvedUrl("../../resources/images/empty.png")
