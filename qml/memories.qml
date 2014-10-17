@@ -24,7 +24,6 @@ import U1db 1.0 as U1db
 import Ubuntu.OnlineAccounts 0.1
 import Friends 0.2
 
-import Memories 0.1
 import "components"
 
 MainView {
@@ -259,11 +258,6 @@ MainView {
         password =  tmp ? tmp : nullPassword
 
         showGrid = getSetting("showGrid") ? "undefined" : false
-    }
-
-    // from Memories library
-    Utils {
-        id: utils
     }
 
     // Helper functions

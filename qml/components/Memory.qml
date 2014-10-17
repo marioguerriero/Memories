@@ -18,7 +18,6 @@
 **/
 
 import QtQuick 2.0
-import Memories 0.1
 
 // It is used only to get informations about memories
 
@@ -52,8 +51,6 @@ QtObject {
     property var photos: []
     property string audio
     property bool favorite
-
-    property string exportPath: utils.standardLocation(Utils.DocumentsLocation)
 
     property bool visible: true
 
@@ -97,11 +94,6 @@ QtObject {
     function getPhotoList() {
         var array = photos.split("||")
         return array.slice(0, array.length-1)
-    }
-
-    function exportAsPdf() {
-        var fileName = exportPath + "/" + title + ".pdf"
-        return utils.exportAsPdf(fileName, toJSON())
     }
 
 }

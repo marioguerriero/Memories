@@ -1,5 +1,0 @@
-tests /usr/share/memories
-tests/unit /usr/share/memories
-tests/unit/tst_memories.qml /usr/share/memories
-tests/autopilot /usr/share/memories
-tests/autopilot/run /usr/share/memories

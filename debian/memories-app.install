@@ -1,6 +1,0 @@
-qml/memories.qml /usr/share/memories/qml
-qml/components/*.qml /usr/share/memories/qml/components
-qml/components/*.js /usr/share/memories/qml/components
-modules/Memories/*.so /usr/share/memories/modules/Memories
-resources/images /usr/share/memories/resources
-resources/memories.desktop /usr/share/applications

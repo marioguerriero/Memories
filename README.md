@@ -1,6 +1,6 @@
 # Memories #
 
-Keep track of your best moments with your hands
+Keep track of your best moments everywhere!
 
 ### Installation ###
 
@@ -25,16 +25,15 @@ To build build and test the run the following commands
  * HTML instead of simple text for memory content
  * Associate photos with your memories
  * Camera support
- * Alternative view types for the home page
+ * Different view layouts for the home page
  * Localization support
  * Social Networks sharing
  * Protect your memories with a password
  * Sync with UbuntuOne personal cloud database
- * Basic memory management (add, remove and edit)
 
 ### Contribution ###
 
-See the wiki page for some information [Wiki](https://github.com/Mefrio/Memories/wiki).
+See the [Wiki](https://github.com/Mefrio/Memories/wiki) page for some information.
 
 ### License ###
 

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=memories
+Exec=qmlscene $@ qml/memories.qml
+Icon=Memories.png
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true
+

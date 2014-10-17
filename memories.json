@@ -1,8 +1,0 @@
-{
-    "policy_groups": [
-        "accounts",
-        "camera",
-        "networking"
-    ],
-    "policy_version": 1
-}

@@ -64,7 +64,7 @@ Flickable {
 
             visible: editable
 
-            onClicked: photoGrid.selectPhoto();
+            onClicked: activeTransfer = picSourceSingle.request()
         }
 
         Button {
@@ -133,10 +133,6 @@ Flickable {
             stack.push(galleryPage)
         }
 
-        function selectPhoto() {
-            importPictures()//PopupUtils.open(Qt.resolvedUrl("./PhotoChooser.qml"), photoGrid);
-        }
-
         function addPhoto(filename) {
             photos.push(filename.toString().replace("file://", ""))
             // Update the model manually, since push() doesn't trigger
@@ -164,30 +160,29 @@ Flickable {
 
     // Content HUB
     property list<ContentItem> importItems
-    property var activeTransfer
+	property var activeTransfer
 
-    function importPictures() {
-        var peer = ContentHub.defaultSourceForType(ContentType.Pictures);
-        var transfer = ContentHub.importContent(ContentType.Pictures, peer);
-        var store = ContentHub.defaultStoreForType(ContentType.Pictures);
-        console.log("Store is: " + store.uri);
-        if (transfer !== null) {
-            transfer.selectionType = ContentTransfer.Multiple;
-            transfer.setStore(store);
-            activeTransfer = transfer;
-            activeTransfer.start();
-        }
-    }
+    ContentPeer {
+    	id: picSourceSingle
+    	contentType: ContentType.Pictures
+    	handler: ContentHandler.Source
+    	selectionType: ContentTransfer.Single
+	}
 
-    Connections {
-        target: activeTransfer
-        onStateChanged: {
-            console.log("StateChanged: " + activeTransfer.state);
+	ContentTransferHint {
+    	id: transferHint
+		anchors.fill: parent
+        activeTransfer: parent.activeTransfer
+	}
+  	
+	Connections {
+        target: parent.activeTransfer ? parent.activeTransfer : null
+		onStateChanged: {
             if (activeTransfer.state === ContentTransfer.Charged) {
                 importItems = activeTransfer.items;
-                for(var n = 0; n < importItems.length; n++)
-                    photoGrid.addPhoto(importItems[n].url.toString())
-            }
-        }
-    }
+				for(var i = 0; i < importItems.length; i++)
+					addPhoto(importItems.get(i))			
+			}
+		}
+	}
 }

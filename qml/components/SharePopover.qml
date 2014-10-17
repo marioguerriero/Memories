@@ -48,7 +48,7 @@ Popover {
 
             model: accountsModel
 
-            delegate: Item{
+            delegate: Item {
                 width: parent.width
                 height: childrenRect.height
 
@@ -57,7 +57,7 @@ Popover {
                     values: [ displayName ]
                     property real accountId: id
                     property string serviceName: provider
-                    icon: {
+                    iconSource: {
                         return "/usr/share/icons/ubuntu-mobile/apps/144/" + iconName + ".png"
                     }
                     onClicked: {
