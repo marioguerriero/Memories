@@ -39,6 +39,7 @@ Flickable {
     flickableDirection: Flickable.HorizontalFlick
 
     // Component properties
+    property var memory
     property var photos: []
     property bool editable: true
     property int iconSize: units.gu(8)
@@ -104,8 +105,7 @@ Flickable {
                 MouseArea {
                     id: closeItem
                     objectName: "closeItem"
-                    width: units.gu(3)
-                    height: units.gu(3)
+                    anchors.fill: parent
 
                     visible: editable
 
@@ -113,12 +113,13 @@ Flickable {
                         width: parent.width
                         height: parent.height
                         anchors.fill: parent
-                        source: "../../resources/images/close_badge.png"
+                        source: icon("delete")
                     }
 
                     onClicked: {
-                        photos.splice(index, 1);
-                        repeater.model = photos
+                        var dialog = PopupUtils.open(Qt.resolvedUrl("./ConfirmPhotoDeleteDialog.qml"), photoGrid);
+                        dialog.imm = photos[index]
+                        dialog.photoIndex = index
                     }
                 }
 
@@ -129,6 +130,7 @@ Flickable {
 
         function showPhoto(index) {
             galleryPage.photos = photos
+            galleryPage.memory = memory
             galleryPage.showPhoto(index)
             stack.push(galleryPage)
         }

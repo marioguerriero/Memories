@@ -76,12 +76,13 @@ Page {
     tools: ToolbarItems {
 
         ToolbarButton {
-            id: snapButton
-            text: i18n.tr("Snaps")
-            iconSource: image("camera.svg")
+            action: Action {
+                text: i18n.tr("Snaps")
+                iconSource: image("camera.svg")
 
-            onTriggered: {
-                camera.capture()
+                onTriggered: {
+                    camera.capture()
+                }
             }
         }
     }

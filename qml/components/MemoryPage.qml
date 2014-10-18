@@ -85,11 +85,6 @@ Page {
             title: i18n.tr("Delete")
             text: i18n.tr("Are you sure you want to delete this memory?")
             Button {
-                text: i18n.tr("Cancel")
-                gradient: UbuntuColors.greyGradient
-                onClicked: PopupUtils.close(dialogue)
-            }
-            Button {
                 text: i18n.tr("Delete")
                 color: UbuntuColors.orange
                 onClicked: {
@@ -98,6 +93,11 @@ Page {
                     stack.clear()
                     stack.push(tabs)
                 }
+            }
+            Button {
+                text: i18n.tr("Cancel")
+                gradient: UbuntuColors.greyGradient
+                onClicked: PopupUtils.close(dialogue)
             }
         }
     }
@@ -248,6 +248,7 @@ Page {
         locationLabel.text = memory.location
         //weather.text = memory.weather
         photoLayout.photos = memory.photos
+        photoLayout.memory = memory
     }
 
     function edit() {

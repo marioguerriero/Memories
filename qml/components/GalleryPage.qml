@@ -23,8 +23,10 @@ import Ubuntu.Components.Popups 1.0
 
 Page {
     id: gallery
+    title: memory ? memory.title : i18n.tr("Gallery")
     visible: false
 
+    property var memory
     property var photos: []
     property var current
 
@@ -32,37 +34,8 @@ Page {
 
     onWidthChanged: showPhoto(current)
 
-    states: [
-        State {
-            when: showToolbar
-            PropertyChanges {
-                target: tools
-                opened: true
-            }
-
-            PropertyChanges {
-                target: parent
-                anchors.bottomMargin: units.gu(-2)
-            }
-        }
-
-    ]
-
-    // Share Popover
-    Component {
-        id: shareComponent
-
-        SharePopover {
-            id: sharePopover
-            onSend: {
-                var photo = "file://" /* :S */ + photos[getCurrentPhoto()]
-                friends.uploadForAccountAsync(id, photo, memoryPage.memory.title)
-                PopupUtils.close(sharePopover)
-            }
-        }
-    }
-
     Rectangle {
+        id: rect
         anchors.fill: parent
         color: "black"
 
@@ -98,22 +71,19 @@ Page {
             }
 
             height: row.height
-
-            anchors.fill: parent
             contentWidth: mainView.width * repeater.model.length
 
             flickableDirection: Flickable.HorizontalFlick
 
             Row {
                 id: row
-                anchors.fill: parent
 
                 Repeater {
                     id: repeater
                     model: [ ]
                     delegate: Image {
-                        height: mainView.height
-                        width: mainView.width
+                        height: rect.height
+                        width: rect.width
 
                         source: modelData
                         fillMode: Image.PreserveAspectFit
@@ -130,19 +100,5 @@ Page {
 
     function getCurrentPhoto() {
         return flickable.contentX / mainView.width
-    }
-
-    tools: ToolbarItems {
-        ToolbarButton {
-            id: shareButton
-            objectName: "shareButton"
-            visible: false //accountsModel.count > 0 // It seems it is not yet implemented in Friends
-            text: i18n.tr("Share")
-            iconSource: icon("share")
-
-            onTriggered: {
-                PopupUtils.open(shareComponent, shareButton)
-            }
-        }
     }
 }
