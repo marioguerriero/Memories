@@ -30,7 +30,6 @@ MainView {
     // objectName for functional testing purposes (autopilot-qt5)
     objectName: "mainView"
 
-    // Note! applicationName needs to match the .desktop filename
     applicationName: "com.ubuntu.developer.mefrio.memories"
 
     /*

@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=memories
+Name=Memories
 Exec=qmlscene $@ qml/memories.qml
 Icon=Memories.png
 Terminal=false
