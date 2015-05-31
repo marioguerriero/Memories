@@ -1,7 +1,7 @@
 /**
  * This file is part of Memories.
  *
- * Copyright 2013 (C) Mario Guerriero <mefrio.g@gmail.com>
+ * Copyright 2013-2015 (C) Mario Guerriero <marioguerriero33@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-import QtQuick 2.0
-import Ubuntu.Components 1.1
+import QtQuick 2.2
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Popups 1.0
 import Qt.labs.folderlistmodel 1.0
@@ -116,7 +116,7 @@ Page {
                     anchors.right: parent.right
                     placeholderText: i18n.tr("Title...")
                     onTextChanged: {
-                        saveButton.action.enabled = (text != "")
+                        saveAction.enabled = (text != "")
                     }
 
                     InverseMouseArea {
@@ -288,9 +288,9 @@ Page {
                     onTextChanged: {
                         citiesModel.clear();
                         searchWorker.sendMessage({
-                            action: "searchByName",
-                            params: {name:locationField.text, units:"metric"}
-                        })
+                                                     action: "searchByName",
+                                                     params: {name:locationField.text, units:"metric"}
+                                                 })
                     }
 
                     InverseMouseArea {
@@ -356,26 +356,20 @@ Page {
         objectName: "citiesModel"
     }
 
-    tools: ToolbarItems {
-        ToolbarButton {
-            id: clearButton
-            action: Action {
-                text: i18n.tr("Clear")
-                iconSource: icon("reset")
-                onTriggered: memoryEditPage.clear()
-            }
+    head.actions: [
+        Action {
+            text: i18n.tr("Clear")
+            iconSource: icon("reset")
+            onTriggered: memoryEditPage.clear()
+        },
+        Action {
+            id: saveAction
+            text: i18n.tr("Save")
+            iconSource: icon("save")
+            onTriggered: save()
+            enabled: titleField.text.length > 0
         }
-
-        ToolbarButton {
-            id: saveButton
-            action: Action {
-                text: i18n.tr("Save")
-                iconSource: icon("save")
-                onTriggered: save()
-                enabled: false
-            }
-        }
-    }
+    ]
 
     function save() {
         if (!enabled) return;
@@ -401,15 +395,15 @@ Page {
             dt = Qt.formatDateTime(new Date(), "ddd d MMMM yyyy")
 
         var memory = component.createObject(toolbar,
-                               {   "title": titleField.text,
-                                   "tags" : tagsField.text,
-                                   "description": descriptionArea.text,
-                                   "date": dt,
-                                   "location": locationField.text,
-                                   "weather": "",
-                                   "audio": audioLayout.path,
-                                   "photos": photoLayout.photos
-                                })
+                                            {   "title": titleField.text,
+                                                "tags" : tagsField.text,
+                                                "description": descriptionArea.text,
+                                                "date": dt,
+                                                "location": locationField.text,
+                                                "weather": "",
+                                                "audio": audioLayout.path,
+                                                "photos": photoLayout.photos
+                                            })
         model.append ({ "mem": memory })
 
         if(editing)

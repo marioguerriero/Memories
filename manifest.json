@@ -1,15 +1,15 @@
 {
-    "architecture": "all",
+    "name": "memories.mefrio-g",
     "description": "Keep track of your best moments everywhere!",
-    "framework": "ubuntu-sdk-14.10",
+    "architecture": "all",
+    "title": "Memories",
     "hooks": {
         "memories": {
             "apparmor": "memories.apparmor",
             "desktop": "memories.desktop"
         }
     },
+    "version": "1.3",
     "maintainer": "Mario Guerriero <marioguerriero33@gmail.com>",
-    "name": "com.ubuntu.developer.mefrio.memories",
-    "title": "Memories",
-    "version": "1.21"
+    "framework": "ubuntu-sdk-15.04"
 }

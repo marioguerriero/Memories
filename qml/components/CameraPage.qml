@@ -1,7 +1,7 @@
 /**
  * This file is part of Memories.
  *
- * Copyright 2013 (C) Mario Guerriero <mefrio.g@gmail.com>
+ * Copyright 2013-2015 (C) Mario Guerriero <marioguerriero33@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-import QtQuick 2.0
-import Ubuntu.Components 1.1
+import QtQuick 2.2
+import Ubuntu.Components 1.2
 
 Page {
     id: cameraPage
@@ -73,17 +73,12 @@ Page {
         camera.stop()
     }
 
-    tools: ToolbarItems {
-
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Snaps")
-                iconSource: image("camera.svg")
-
-                onTriggered: {
-                    camera.capture()
-                }
-            }
+    head.actions: [
+        Action {
+            text: i18n.tr("Snaps")
+            iconSource: image("camera.svg")
+            onTriggered: camera.capture()
         }
-    }
+
+    ]
 }

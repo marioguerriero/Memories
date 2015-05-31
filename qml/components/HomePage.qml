@@ -1,7 +1,7 @@
 /**
  * This file is part of Memories.
  *
- * Copyright 2013 (C) Mario Guerriero <mefrio.g@gmail.com>
+ * Copyright 2013-2015 (C) Mario Guerriero <marioguerriero33@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-import QtQuick 2.0
-import Ubuntu.Components 1.1
+import QtQuick 2.2
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0
 import Ubuntu.Components.Popups 1.0
 import U1db 1.0 as U1db
@@ -153,34 +153,23 @@ Page {
     }
 
     // Toolbar
-    tools: ToolbarItems {
-        ToolbarButton {
-            id: clearButton
-            action: Action {
-				visible: !wideAspect && sidebar.currentCategory != sidebar.nullCategory
-            	text: i18n.tr("Reset filters")
-            	iconSource: icon("reset")
-            	onTriggered: {
-                	clearFilter()
-                	sidebar.currentCategory = sidebar.nullCategory
-            	}
-			}
+    head.actions: [
+        Action {
+            visible: !wideAspect && sidebar.currentCategory != sidebar.nullCategory
+            text: i18n.tr("Reset filters")
+            iconSource: icon("reset")
+            onTriggered: {
+                clearFilter()
+                sidebar.currentCategory = sidebar.nullCategory
+            }
+        },
+
+        Action {
+            text: i18n.tr("New")
+            iconSource: icon("add")
+            onTriggered: newMemory()
         }
-
-        ToolbarButton {
-            id: newButton
-			action: Action {
-		        text: i18n.tr("New")
-		        iconSource: icon("add")
-		        onTriggered: newMemory()
-			}
-        }
-
-        locked: false
-        opened: false
-    }
-
-
+    ]
 
     function saveMemories() {
         print("Saving...")
@@ -200,9 +189,11 @@ Page {
 
     function loadMemories() {
         console.log("Loading Memories...")
-        var memories = JSON.parse(memoriesDatabase.contents.memories)
-        for(var i = 0; i < memories.length; i++) {
-            newMemoryObject(memories[i])
+        if(memoriesDatabase.contents.memories) {
+            var memories = JSON.parse(memoriesDatabase.contents.memories)
+            for(var i = 0; i < memories.length; i++) {
+                newMemoryObject(memories[i])
+            }
         }
     }
 

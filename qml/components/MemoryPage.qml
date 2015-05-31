@@ -1,7 +1,7 @@
 /**
  * This file is part of Memories.
  *
- * Copyright 2013 (C) Mario Guerriero <mefrio.g@gmail.com>
+ * Copyright 2013-2015 (C) Mario Guerriero <marioguerriero33@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-import QtQuick 2.0
-import Ubuntu.Components 1.1
+import QtQuick 2.2
+import Ubuntu.Components 1.2
 import Ubuntu.Components.ListItems 1.0 as ListItem
 import Ubuntu.Components.Popups 1.0
 import Qt.labs.folderlistmodel 1.0
@@ -50,32 +50,26 @@ Page {
     property var tags: []
     onTagsChanged: repeater.model = tags
 
-    tools: ToolbarItems {
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Favorite")
-                iconSource: memory ? (memory.favorite ? icon("favorite-selected") : icon("favorite-unselected")) : ""
-                onTriggered: {
-                    memory.favorite = !memory.favorite
-                    homePage.saveMemories()
-                }
+    head.actions: [
+        Action {
+            text: i18n.tr("Favorite")
+            iconSource: memory ? (memory.favorite ? icon("favorite-selected") : icon("favorite-unselected")) : ""
+            onTriggered: {
+                memory.favorite = !memory.favorite
+                homePage.saveMemories()
             }
+        },
+        Action {
+            text: i18n.tr("Edit")
+            iconSource: icon("edit")
+            onTriggered: edit()
+        },
+        Action {
+            text: i18n.tr("Delete")
+            iconSource: icon("delete")
+            onTriggered: PopupUtils.open(dialog)
         }
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Edit")
-                iconSource: icon("edit")
-                onTriggered: edit()
-            }
-        }
-        ToolbarButton {
-            action: Action {
-                text: i18n.tr("Delete")
-                iconSource: icon("delete")
-                onTriggered: PopupUtils.open(dialog)
-            }
-        }
-    }
+    ]
 
     // Delete dialog
     Component {
