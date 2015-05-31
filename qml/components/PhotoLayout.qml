@@ -21,7 +21,7 @@ import QtQuick 2.2
 import Ubuntu.Components 1.2
 import Ubuntu.Components.Popups 1.0
 import Ubuntu.Components.ListItems 1.0 as ListItem
-import Ubuntu.Content 0.1
+import Ubuntu.Content 1.1
 
 Flickable {
     id: flickable
@@ -62,9 +62,7 @@ Flickable {
             iconSource: image("import-image.png")
             height: iconSize
             width: height
-
             visible: editable
-
             onClicked: activeTransfer = picSourceSingle.request()
         }
 
@@ -174,7 +172,7 @@ Flickable {
 	}
   	
 	Connections {
-        target: parent.activeTransfer ? parent.activeTransfer : null
+        target: parent.activeTransfer
 		onStateChanged: {
             if (activeTransfer.state === ContentTransfer.Charged) {
                 importItems = activeTransfer.items;
